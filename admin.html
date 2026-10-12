@@ -978,6 +978,45 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
         </form>
       </div>
 
+      <!-- Production Security & Firestore Rules Guide -->
+      <div class="card-box" style="margin-top:28px;background:rgba(8,18,14,0.6);border:1px solid rgba(16,185,129,0.3)">
+        <div class="card-box-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:24px">🛡️</span>
+            <div>
+              <h3 class="card-box-title" style="font-size:18px">Firestore Production Security Rules</h3>
+              <p style="font-size:12px;color:var(--mu);margin-top:2px">Paste into Firebase Console &rarr; Firestore Database &rarr; Rules tab to enforce server-side access control</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="copyFirestoreSecurityRules()">📋 Copy Rules</button>
+        </div>
+        <pre id="firestoreRulesText" style="background:#050d0a;border:1px solid var(--ln);border-radius:8px;padding:14px;color:#a8c2b5;font-size:11.5px;overflow-x:auto;font-family:monospace;line-height:1.6">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Inquiries: Public can submit inquiries with validation; only admin can view/manage
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.name is string && request.resource.data.phone is string;
+      allow read, update, delete: if request.auth != null;
+    }
+    // 2. Portfolio Projects: Public can view, only authenticated admin can create/edit/delete
+    match /projects/{projectId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    // 3. Website Content & Branding: Public can read, only admin can write
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    // 4. Testimonials & Reviews: Public can read, only admin can manage
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}</pre>
+      </div>
+
       <!-- Cloudinary Free Image Storage & CDN Card -->
       <div class="card-box" style="margin-top:28px">
         <div class="card-box-header">
@@ -1316,6 +1355,17 @@ function updateCloudBadge() {
   }
 }
 
+// XSS Protection & HTML Sanitizer
+function escapeHtml(str) {
+  if (typeof str !== 'string') return str || '';
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 // 1. Dashboard Inquiries Table
 function renderDashboardInquiries() {
   const tbody = document.getElementById("dashboardInqTable");
@@ -1326,11 +1376,11 @@ function renderDashboardInquiries() {
   }
   tbody.innerHTML = recent.map(inq => `
     <tr>
-      <td><strong>${inq.name}</strong></td>
-      <td><a href="tel:${inq.phone}" style="color:var(--br-light)">${inq.phone}</a></td>
-      <td>${inq.service}</td>
+      <td><strong>${escapeHtml(inq.name)}</strong></td>
+      <td><a href="tel:${escapeHtml(inq.phone)}" style="color:var(--br-light)">${escapeHtml(inq.phone)}</a></td>
+      <td>${escapeHtml(inq.service)}</td>
       <td style="color:var(--mu);font-size:12px">${new Date(inq.timestamp).toLocaleDateString()}</td>
-      <td><span class="status-badge status-${(inq.status || 'new').toLowerCase()}">${inq.status || 'New'}</span></td>
+      <td><span class="status-badge status-${(inq.status || 'new').toLowerCase()}">${escapeHtml(inq.status || 'New')}</span></td>
       <td>
         <a class="btn btn-outline btn-sm" href="https://wa.me/${(inq.phone || '').replace(/[^0-9]/g, '')}" target="_blank">WhatsApp</a>
       </td>
@@ -1623,10 +1673,10 @@ function renderInquiriesTable() {
     const cleanPhone = (inq.phone || '').replace(/[^0-9]/g, '');
     return `
       <tr>
-        <td><strong>${inq.name}</strong></td>
-        <td><a href="tel:${inq.phone}" style="color:var(--br-light);font-weight:600">${inq.phone}</a></td>
-        <td>${inq.service}</td>
-        <td style="max-width:240px;color:#9cb0a6">${inq.message || '—'}</td>
+        <td><strong>${escapeHtml(inq.name)}</strong></td>
+        <td><a href="tel:${escapeHtml(inq.phone)}" style="color:var(--br-light);font-weight:600">${escapeHtml(inq.phone)}</a></td>
+        <td>${escapeHtml(inq.service)}</td>
+        <td style="max-width:240px;color:#9cb0a6">${escapeHtml(inq.message || '—')}</td>
         <td style="font-size:12px;color:var(--mu)">${new Date(inq.timestamp).toLocaleString()}</td>
         <td>
           <select style="padding:4px 8px;font-size:11.5px;width:auto" onchange="changeInquiryStatus('${inq.id}', this.value)">
@@ -1710,10 +1760,10 @@ function renderReviewsTable() {
   const tbody = document.getElementById("reviewsTableBody");
   tbody.innerHTML = reviewsList.map(r => `
     <tr>
-      <td><strong>${r.author}</strong></td>
-      <td>📍 ${r.loc}</td>
+      <td><strong>${escapeHtml(r.author)}</strong></td>
+      <td>📍 ${escapeHtml(r.loc)}</td>
       <td style="color:#f59e0b">★★★★★</td>
-      <td style="color:#a6b9ae;max-width:320px">${r.quote}</td>
+      <td style="color:#a6b9ae;max-width:320px">${escapeHtml(r.quote)}</td>
       <td>
         <button class="btn btn-sm btn-danger" onclick="deleteReviewItem('${r.id}')">Delete</button>
       </td>
@@ -1905,6 +1955,15 @@ function copyCldTestUrl() {
   }).catch(() => {
     document.execCommand("copy");
     showToast("CDN URL copied!");
+  });
+}
+
+function copyFirestoreSecurityRules() {
+  const code = document.getElementById("firestoreRulesText").textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast("Firestore Security Rules copied to clipboard!");
+  }).catch(() => {
+    showToast("Firestore Rules copied!");
   });
 }
 
