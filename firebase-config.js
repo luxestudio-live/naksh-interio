@@ -33,6 +33,12 @@ const DPA_INITIAL_DATA = {
       category: "3D Renderings",
       loc: "Ravindrapuri, UP",
       img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1400&q=80"
+      ],
       featured: true,
       year: "2026",
       desc: "Ultra-luxury modern residence featuring cantilevered steel volumes, expansive double-height glazing, dynamic solar shading louvers, and bespoke exterior landscape architecture designed and rendered in photorealistic CGI.",
@@ -44,6 +50,11 @@ const DPA_INITIAL_DATA = {
       category: "Commercial",
       loc: "Lanka, Ravindrapuri, UP",
       img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=1400&q=80"
+      ],
       featured: true,
       year: "2026",
       desc: "Comprehensive hospital suite architectural design with medical gas conduit integration, antibacterial surfaces, acoustic isolation walls, ergonomic doctor stations, and serene patient recovery spaces.",
@@ -55,6 +66,12 @@ const DPA_INITIAL_DATA = {
       category: "Interior Design",
       loc: "Ravindrapuri, Uttar Pradesh",
       img: "images/living_tv_unit.jpg",
+      images: [
+        "images/living_tv_unit.jpg",
+        "images/kitchen_walnut.jpg",
+        "images/bedroom_suite.jpg",
+        "images/walkin_wardrobe.jpg"
+      ],
       featured: false,
       year: "2026",
       desc: "Seamless full-height Statuario marble book-matched wall paneling, acoustic fluted timber battens, integrated 3000K indirect LED profiles, and bespoke walnut media cabinetry.",
@@ -66,6 +83,11 @@ const DPA_INITIAL_DATA = {
       category: "Interior Design",
       loc: "Ravindrapuri, UP",
       img: "images/kitchen_walnut.jpg",
+      images: [
+        "images/kitchen_walnut.jpg",
+        "images/living_tv_unit.jpg",
+        "images/bedroom_suite.jpg"
+      ],
       featured: false,
       year: "2025",
       desc: "Architectural culinary studio crafted with boiling-water-proof HDHMR joinery, anti-scratch smoked walnut acrylic finishes, seamless Calacatta quartz countertops, and German soft-close tandem hardware.",
@@ -77,6 +99,11 @@ const DPA_INITIAL_DATA = {
       category: "Architecture",
       loc: "Uttar Pradesh 233001",
       img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80"
+      ],
       featured: true,
       year: "2025",
       desc: "Ground-up contemporary architectural construction with climate-responsive orientation, RCC frame engineering, rooftop terrace gardens, and seamless indoor-outdoor courtyards.",
@@ -88,6 +115,11 @@ const DPA_INITIAL_DATA = {
       category: "Residential",
       loc: "Ravindrapuri, UP",
       img: "images/bedroom_suite.jpg",
+      images: [
+        "images/bedroom_suite.jpg",
+        "images/walkin_wardrobe.jpg",
+        "images/living_tv_unit.jpg"
+      ],
       featured: false,
       year: "2025",
       desc: "Bespoke master suite with fluted wood headboard wall, acoustic fabric paneling, cove lighting controls, and dedicated reading nook overlooking private garden greenery.",
@@ -99,6 +131,10 @@ const DPA_INITIAL_DATA = {
       category: "Interior Design",
       loc: "Ravindrapuri, UP",
       img: "images/walkin_wardrobe.jpg",
+      images: [
+        "images/walkin_wardrobe.jpg",
+        "images/bedroom_suite.jpg"
+      ],
       featured: false,
       year: "2025",
       desc: "Walk-in wardrobe sanctuary with bronze aluminum slim profile frames, sensor LED strip shelving, velvet accessory trays, and full-length vanity mirror integration.",
@@ -110,6 +146,10 @@ const DPA_INITIAL_DATA = {
       category: "Commercial",
       loc: "Ravindrapuri Commercial Corridor, UP",
       img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
+        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80"
+      ],
       featured: true,
       year: "2026",
       desc: "Site master planning and commercial facade engineering for a multi-story retail and corporate business center featuring high-performance double glazed curtain walls and pedestrian plazas.",
@@ -270,26 +310,54 @@ window.DPAService = {
 
   // PROJECTS
   async getProjects() {
+    let list = [];
     if (this.isFirebaseActive && this.db) {
       try {
         const snapshot = await this.db.collection("projects").get();
         if (!snapshot.empty) {
-          const list = [];
           snapshot.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
-          return list;
         }
       } catch (e) {
         console.warn("Firestore getProjects failed:", e);
       }
     }
-    const local = localStorage.getItem("dpa_projects");
-    return local ? JSON.parse(local) : DPA_INITIAL_DATA.projects;
+    if (!list.length) {
+      const local = localStorage.getItem("dpa_projects");
+      list = local ? JSON.parse(local) : DPA_INITIAL_DATA.projects;
+    }
+    // Normalize gallery images for every project
+    return list.map(p => {
+      const initialMatch = DPA_INITIAL_DATA.projects.find(init => init.id === p.id);
+      let gallery = Array.isArray(p.images) && p.images.length > 0 ? p.images : null;
+      if (!gallery && initialMatch && Array.isArray(initialMatch.images)) {
+        gallery = initialMatch.images;
+      }
+      if (!gallery) {
+        gallery = p.img ? [p.img] : [];
+      }
+      return {
+        ...p,
+        images: gallery,
+        img: p.img || (gallery[0] || "")
+      };
+    });
   },
 
   async saveProject(proj) {
     const list = await this.getProjects();
     const id = proj.id || "proj_" + Date.now();
     proj.id = id;
+
+    // Normalize gallery images and cover
+    if (!Array.isArray(proj.images)) {
+      proj.images = proj.img ? [proj.img] : [];
+    }
+    if (proj.images.length > 0 && !proj.img) {
+      proj.img = proj.images[0];
+    } else if (proj.img && !proj.images.includes(proj.img)) {
+      proj.images.unshift(proj.img);
+    }
+
     const idx = list.findIndex(p => p.id === id);
     if (idx >= 0) {
       list[idx] = proj;

@@ -461,12 +461,121 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: all 0.2s;
 }
 .lb-close-btn:hover { background: var(--br); color: #000; }
+
+/* Multi-Image Card Count Badge */
+.pt-card-count {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(8, 18, 14, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--br-light);
+  border: 1px solid rgba(223, 192, 138, 0.35);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Lightbox Multi-Image Carousel & Strip */
+.lb-carousel-wrap {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
 .lb-hero-img {
   width: 100%;
-  max-height: 480px;
+  height: 480px;
+  max-height: 52vh;
   object-fit: cover;
-  border-radius: 12px 12px 0 0;
+  display: block;
   background: #000;
+  transition: opacity 0.2s ease;
+}
+.lb-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(8, 18, 14, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(223, 192, 138, 0.35);
+  color: #fff;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  z-index: 6;
+}
+.lb-nav-btn:hover {
+  background: var(--gold-grad);
+  color: #0b1713;
+  border-color: var(--br-light);
+  transform: translateY(-50%) scale(1.08);
+}
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-counter {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  background: rgba(8, 18, 14, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  color: #cad8d0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 14px;
+  letter-spacing: 0.5px;
+  z-index: 4;
+}
+.lb-thumbnails-strip {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #0a1712;
+  border-bottom: 1px solid var(--ln);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.lb-thumb-item {
+  width: 76px;
+  height: 52px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  background: #000;
+}
+.lb-thumb-item:hover {
+  opacity: 0.9;
+}
+.lb-thumb-item.active {
+  opacity: 1;
+  border-color: var(--br-light);
+  box-shadow: 0 0 12px var(--br-glow);
+}
+.lb-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .lb-content { padding: 32px; }
 .lb-tag-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
@@ -610,7 +719,13 @@ footer {
 <div class="lb-modal" id="lbModal" role="dialog" aria-modal="true">
   <div class="lb-dialog">
     <button class="lb-close-btn" id="lbClose" aria-label="Close dialog">✕</button>
-    <img id="lbModalImg" class="lb-hero-img" src="" alt="Project Preview">
+    <div class="lb-carousel-wrap">
+      <img id="lbModalImg" class="lb-hero-img" src="" alt="Project Preview">
+      <button class="lb-nav-btn lb-prev" id="lbPrevBtn" onclick="prevModalPhoto()" aria-label="Previous photo">&#8249;</button>
+      <button class="lb-nav-btn lb-next" id="lbNextBtn" onclick="nextModalPhoto()" aria-label="Next photo">&#8250;</button>
+      <div class="lb-counter" id="lbCounter">Photo 1 of 1</div>
+    </div>
+    <div class="lb-thumbnails-strip" id="lbThumbnails"></div>
     <div class="lb-content">
       <div class="lb-tag-row" id="lbModalTags"></div>
       <h2 class="lb-title" id="lbModalTitle">Project Title</h2>
@@ -647,10 +762,13 @@ let allProjects = [];
 let currentCategory = 'All';
 let searchQuery = '';
 let currentSort = 'featured';
+let modalActiveProject = null;
+let modalActiveImageIdx = 0;
 
 async function initPortfolio() {
   allProjects = await window.DPAService.getProjects();
   renderProjects();
+  setupTouchSwipe();
 }
 
 function renderProjects() {
@@ -690,9 +808,10 @@ function renderProjects() {
   grid.innerHTML = filtered.map(p => `
     <article class="pt-card" onclick="openProjectModal('${p.id}')">
       <div class="pt-card-img-wrap">
-        <img class="pt-card-img" src="${p.img}" alt="${p.title}" loading="lazy">
+        <img class="pt-card-img" src="${p.img || (p.images && p.images[0]) || ''}" alt="${p.title}" loading="lazy">
         <span class="pt-card-badge">${p.category}</span>
         ${p.featured ? '<span class="pt-card-featured">★ Featured</span>' : ''}
+        ${(p.images && p.images.length > 1) ? `<span class="pt-card-count">📸 ${p.images.length} Photos</span>` : ''}
       </div>
       <div class="pt-card-body">
         <div class="pt-card-meta">
@@ -705,7 +824,7 @@ function renderProjects() {
           ${(p.tags || []).map(t => `<span class="pt-tag">${t}</span>`).join('')}
         </div>
         <div class="pt-card-action">
-          <span>View Blueprint &amp; 3D Walkthrough</span>
+          <span>View Blueprint &amp; 3D Walkthrough (${(p.images && p.images.length) || 1} Views)</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
@@ -745,12 +864,14 @@ document.getElementById('sortSelect').addEventListener('change', e => {
   renderProjects();
 });
 
-// Modal Logic
+// Modal Logic & Carousel
 function openProjectModal(id) {
   const p = allProjects.find(item => item.id === id);
   if (!p) return;
 
-  document.getElementById('lbModalImg').src = p.img;
+  modalActiveProject = p;
+  modalActiveImageIdx = 0;
+
   document.getElementById('lbModalTitle').textContent = p.title;
   document.getElementById('lbModalDesc').textContent = p.desc || 'Custom architectural blueprint and 3D rendering executed with complete supervision by DPA CREATORS.';
   document.getElementById('lbModalMeta').innerHTML = `
@@ -767,7 +888,91 @@ function openProjectModal(id) {
   const waMsg = encodeURIComponent(`Hi DPA CREATORS, I am reviewing your portfolio project "${p.title}" (${p.category} in ${p.loc}) and would like to discuss a similar project.`);
   document.getElementById('lbWaBtn').href = `https://wa.me/918896761919?text=${waMsg}`;
 
+  renderModalCarousel();
   document.getElementById('lbModal').classList.add('active');
+}
+
+function getActiveProjectImages() {
+  if (!modalActiveProject) return [];
+  if (Array.isArray(modalActiveProject.images) && modalActiveProject.images.length > 0) {
+    return modalActiveProject.images;
+  }
+  return modalActiveProject.img ? [modalActiveProject.img] : [];
+}
+
+function renderModalCarousel() {
+  const images = getActiveProjectImages();
+  const imgEl = document.getElementById('lbModalImg');
+  const counterEl = document.getElementById('lbCounter');
+  const prevBtn = document.getElementById('lbPrevBtn');
+  const nextBtn = document.getElementById('lbNextBtn');
+  const thumbsStrip = document.getElementById('lbThumbnails');
+
+  if (!images.length) return;
+
+  if (modalActiveImageIdx < 0) modalActiveImageIdx = images.length - 1;
+  if (modalActiveImageIdx >= images.length) modalActiveImageIdx = 0;
+
+  imgEl.src = images[modalActiveImageIdx];
+
+  if (images.length > 1) {
+    counterEl.style.display = 'block';
+    counterEl.textContent = `Photo ${modalActiveImageIdx + 1} of ${images.length}`;
+    prevBtn.style.display = 'flex';
+    nextBtn.style.display = 'flex';
+    thumbsStrip.style.display = 'flex';
+
+    thumbsStrip.innerHTML = images.map((url, idx) => `
+      <div class="lb-thumb-item ${idx === modalActiveImageIdx ? 'active' : ''}" onclick="jumpToModalPhoto(${idx})">
+        <img src="${url}" alt="Thumbnail ${idx + 1}">
+      </div>
+    `).join('');
+
+    const activeThumb = thumbsStrip.children[modalActiveImageIdx];
+    if (activeThumb) {
+      activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+    }
+  } else {
+    counterEl.style.display = 'none';
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+    thumbsStrip.style.display = 'none';
+  }
+}
+
+function nextModalPhoto() {
+  const images = getActiveProjectImages();
+  if (images.length <= 1) return;
+  modalActiveImageIdx = (modalActiveImageIdx + 1) % images.length;
+  renderModalCarousel();
+}
+
+function prevModalPhoto() {
+  const images = getActiveProjectImages();
+  if (images.length <= 1) return;
+  modalActiveImageIdx = (modalActiveImageIdx - 1 + images.length) % images.length;
+  renderModalCarousel();
+}
+
+function jumpToModalPhoto(idx) {
+  modalActiveImageIdx = idx;
+  renderModalCarousel();
+}
+
+function setupTouchSwipe() {
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const carouselEl = document.querySelector('.lb-carousel-wrap');
+  if (carouselEl) {
+    carouselEl.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    carouselEl.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextModalPhoto();
+      if (touchEndX - touchStartX > 50) prevModalPhoto();
+    }, { passive: true });
+  }
 }
 
 document.getElementById('lbClose').onclick = () => document.getElementById('lbModal').classList.remove('active');
@@ -775,7 +980,10 @@ document.getElementById('lbModal').onclick = e => {
   if (e.target.id === 'lbModal') document.getElementById('lbModal').classList.remove('active');
 };
 document.addEventListener('keydown', e => {
+  if (!document.getElementById('lbModal').classList.contains('active')) return;
   if (e.key === 'Escape') document.getElementById('lbModal').classList.remove('active');
+  if (e.key === 'ArrowRight') nextModalPhoto();
+  if (e.key === 'ArrowLeft') prevModalPhoto();
 });
 
 document.addEventListener('DOMContentLoaded', initPortfolio);
