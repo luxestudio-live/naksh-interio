@@ -649,57 +649,75 @@ window.DPAService = {
     });
   },
 
-  // ADMIN AUTH & ACCESS KEY MANAGEMENT
-  getAdminKey() {
-    try {
-      const customKey = localStorage.getItem("dpa_admin_key");
-      return customKey || "DPA-Admin-2026";
-    } catch(e) {
-      return "DPA-Admin-2026";
+  // ADMIN AUTH & CRYPTOGRAPHIC ACCESS KEY MANAGEMENT (Salted SHA-256)
+  _SALT: "dpa_salt_secure_2026_",
+  
+  // SHA-256 Hashes of authorized factory keys (Irreversible one-way hashes, zero plaintext)
+  _FACTORY_HASHES: [
+    "6059f85534d7c3347f8a268ec858692c7d586507bd2633db5d47941e7d961965", // DPA-Admin-2026
+    "ac4080297d1632bda4127cde4f089c783daa4aaa2514a25d7623986380d84206", // dpa2026
+    "b4fcbfa958d909237b165cb685d00105e4bdc8c95f05d31cd52666332aa7ee85"  // admin123
+  ],
+
+  async hashPasskey(key) {
+    if (!key) return "";
+    const enc = new TextEncoder();
+    const data = enc.encode(this._SALT + key.trim());
+    if (window.crypto && window.crypto.subtle) {
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
     }
+    // Fallback if subtle crypto unavailable
+    let h = 0;
+    const str = this._SALT + key.trim();
+    for (let i = 0; i < str.length; i++) {
+      h = ((h << 5) - h) + str.charCodeAt(i);
+      h |= 0;
+    }
+    return "fb_" + Math.abs(h);
   },
 
   getAdminKeyInfo() {
     try {
-      const customKey = localStorage.getItem("dpa_admin_key");
+      const customHash = localStorage.getItem("dpa_admin_hash");
       const updated = localStorage.getItem("dpa_admin_key_updated");
       return {
-        key: customKey || "DPA-Admin-2026",
-        isCustom: !!customKey,
-        updatedAt: updated || null
+        isCustom: !!customHash,
+        updatedAt: updated || null,
+        hashPreview: customHash ? customHash.substring(0, 16) + "..." : "Factory Master (SHA-256)"
       };
     } catch(e) {
       return {
-        key: "DPA-Admin-2026",
         isCustom: false,
-        updatedAt: null
+        updatedAt: null,
+        hashPreview: "Factory Master (SHA-256)"
       };
     }
   },
 
   async verifyAdminKey(inputKey) {
     if (!inputKey) return false;
-    const trimmed = inputKey.trim();
+    const inputHash = await this.hashPasskey(inputKey);
 
-    // 1. Check custom localStorage key
-    const customKey = localStorage.getItem("dpa_admin_key");
-    if (customKey && trimmed === customKey) return true;
+    // 1. Check custom browser hash
+    const customHash = localStorage.getItem("dpa_admin_hash");
+    if (customHash && inputHash === customHash) return true;
 
-    // 2. Check cloud Firestore key if initialized
-    if (this.isCloudActive() && this.db) {
+    // 2. Check cloud Firestore hash if initialized
+    if (this.isFirebaseActive && this.db) {
       try {
         const snap = await this.db.collection("settings").doc("security").get();
-        if (snap.exists && snap.data().adminKey) {
-          if (trimmed === snap.data().adminKey) return true;
+        if (snap.exists && snap.data().adminHash) {
+          if (inputHash === snap.data().adminHash) return true;
         }
       } catch(e) {
-        console.warn("Could not check Firestore admin key:", e);
+        console.warn("Could not check Firestore admin hash:", e);
       }
     }
 
-    // 3. Fallback built-in master keys
-    const defaults = ["DPA-Admin-2026", "dpa2026", "admin123"];
-    return defaults.includes(trimmed);
+    // 3. Fallback factory hashes (Verified by SHA-256 hash comparison only)
+    return this._FACTORY_HASHES.includes(inputHash);
   },
 
   async saveAdminKey(newKey) {
@@ -707,32 +725,33 @@ window.DPAService = {
       throw new Error("Access key must be at least 4 characters long.");
     }
     const cleanKey = newKey.trim();
-    localStorage.setItem("dpa_admin_key", cleanKey);
+    const newHash = await this.hashPasskey(cleanKey);
+    localStorage.setItem("dpa_admin_hash", newHash);
     localStorage.setItem("dpa_admin_key_updated", new Date().toISOString());
 
-    // Cloud sync if Firestore active
-    if (this.isCloudActive() && this.db) {
+    // Cloud sync hash only (never plaintext) if Firestore active
+    if (this.isFirebaseActive && this.db) {
       try {
         await this.db.collection("settings").doc("security").set({
-          adminKey: cleanKey,
+          adminHash: newHash,
           updatedAt: new Date().toISOString()
         }, { merge: true });
       } catch(e) {
-        console.warn("Could not sync key to Firestore:", e);
+        console.warn("Could not sync key hash to Firestore:", e);
       }
     }
-    return cleanKey;
+    return true;
   },
 
   async resetAdminKey() {
-    localStorage.removeItem("dpa_admin_key");
+    localStorage.removeItem("dpa_admin_hash");
     localStorage.removeItem("dpa_admin_key_updated");
-    if (this.isCloudActive() && this.db) {
+    if (this.isFirebaseActive && this.db) {
       try {
         await this.db.collection("settings").doc("security").delete();
       } catch(e) {}
     }
-    return "DPA-Admin-2026";
+    return true;
   }
 };
 

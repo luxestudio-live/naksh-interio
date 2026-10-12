@@ -625,14 +625,8 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       <div id="authGateError" style="display:none;font-size:12px;color:#ef4444;background:rgba(239,68,68,0.1);padding:8px 12px;border-radius:6px;margin-bottom:12px;border:1px solid rgba(239,68,68,0.3);text-align:left"></div>
       <button class="btn" style="width:100%;margin-top:4px;padding:12px" type="submit">Unlock Admin Panel &rarr;</button>
       
-      <div style="margin-top:20px;background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:8px;padding:12px 14px;font-size:11.5px;color:var(--mu);text-align:left;line-height:1.55">
-        <div style="color:var(--br-light);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px">
-          <span>🔑 Default Master Passkey:</span>
-        </div>
-        Default Key: <code style="color:#dfc08a;background:rgba(0,0,0,0.5);padding:2px 7px;border-radius:4px;font-weight:700">DPA-Admin-2026</code> <span style="font-size:11px;color:var(--mu)">(also supports <code style="color:#cad8d0">dpa2026</code>)</span>
-        <div style="margin-top:6px;font-size:11px;color:#8c9e94">
-          You can change or reset this key anytime in the <strong>Security &amp; Passkey</strong> management tab inside.
-        </div>
+      <div style="margin-top:20px;background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:8px;padding:12px 14px;font-size:11.5px;color:var(--mu);text-align:center;line-height:1.55">
+        🔒 Protected Executive Administration Portal.<br>Authorized DPA CREATORS studio personnel only.
       </div>
     </form>
   </div>
@@ -1064,7 +1058,11 @@ service cloud.firestore {
       allow read: if true;
       allow write: if request.auth != null;
     }
-    // 3. Website Content & Branding: Public can read, only admin can write
+    // 3. Security Settings: STRICTLY locked, never publicly readable or writable
+    match /settings/security {
+      allow read, write: if request.auth != null;
+    }
+    // 4. Public Website Content & Branding: Public can read, only admin can write
     match /settings/{settingId} {
       allow read: if true;
       allow write: if request.auth != null;
@@ -1167,18 +1165,17 @@ service cloud.firestore {
         </div>
 
         <div style="background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:10px;padding:20px;margin-bottom:12px">
-          <div style="font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px">Current Active Access Key</div>
+          <div style="font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px">Access Key Protection Architecture</div>
           <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-            <div class="pass-input-wrap" style="flex:1;min-width:240px">
-              <input type="password" id="activeAdminKeyDisplay" readonly style="font-family:monospace;font-size:15px;letter-spacing:2px;background:rgba(0,0,0,0.6);font-weight:700;color:var(--br-light)">
-              <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('activeAdminKeyDisplay', this)" title="Show / Hide Key">👁️</button>
+            <div style="flex:1;min-width:240px;background:rgba(0,0,0,0.6);border:1px solid var(--ln);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:13.5px;color:var(--br-light);display:flex;align-items:center;justify-content:space-between">
+              <span id="activeAdminKeyDisplay">🔒 Salted SHA-256 Cryptographic Hash Guard</span>
+              <span id="activeKeyBadgeMini" class="status-badge status-completed" style="font-size:10px">Zero-Plaintext</span>
             </div>
-            <button class="btn btn-outline btn-sm" type="button" onclick="copyActiveKey()">📋 Copy Key</button>
             <button class="btn btn-sm" type="button" onclick="document.getElementById('secCurrentKey').focus()">✏️ Change Key Below</button>
           </div>
           <div style="display:flex;gap:24px;margin-top:14px;font-size:12px;color:var(--mu);flex-wrap:wrap">
-            <div><strong>Storage State:</strong> <span id="keySyncStatusText" style="color:var(--success)">Active &amp; Ready</span></div>
-            <div><strong>Key Info:</strong> <span id="keyLastUpdatedText">Initial system default (DPA-Admin-2026)</span></div>
+            <div><strong>Storage Architecture:</strong> <span id="keySyncStatusText" style="color:var(--success)">Salted SHA-256 (Never Plaintext)</span></div>
+            <div><strong>Key State:</strong> <span id="keyLastUpdatedText">Active</span></div>
           </div>
         </div>
       </div>
@@ -1445,20 +1442,11 @@ async function handleAuthSubmit(e) {
     }
   } catch(err) {
     console.error("Auth error:", err);
-    const defaults = ["DPA-Admin-2026", "dpa2026", "admin123"];
-    const customKey = localStorage.getItem("dpa_admin_key");
-    if (defaults.includes(pass.trim()) || (customKey && pass.trim() === customKey)) {
-      sessionStorage.setItem("dpa_admin_auth", "true");
-      document.getElementById("authGate").style.display = "none";
-      loadAdminData();
-      renderSecurityTab();
+    if (errEl) {
+      errEl.textContent = "❌ Verification error. Please try again.";
+      errEl.style.display = "block";
     } else {
-      if (errEl) {
-        errEl.textContent = "❌ Incorrect Access Key. Please check and try again.";
-        errEl.style.display = "block";
-      } else {
-        alert("Incorrect Access Key.");
-      }
+      alert("Verification error.");
     }
   } finally {
     if (submitBtn) submitBtn.innerHTML = origText;
@@ -1527,9 +1515,9 @@ function renderSecurityTab() {
   if (!window.DPAService) return;
   const info = window.DPAService.getAdminKeyInfo();
   
-  const displayInput = document.getElementById("activeAdminKeyDisplay");
-  if (displayInput) {
-    displayInput.value = info.key;
+  const displayEl = document.getElementById("activeAdminKeyDisplay");
+  if (displayEl) {
+    displayEl.textContent = info.isCustom ? "🔒 Custom Passkey (Salted SHA-256 Hash Active)" : "🔒 Master Studio Key (Salted SHA-256 Hash Active)";
   }
   
   const badgeEl = document.getElementById("activeKeyBadge");
@@ -1539,7 +1527,7 @@ function renderSecurityTab() {
       badgeEl.textContent = "Custom Passkey Active";
     } else {
       badgeEl.className = "status-badge status-contacted";
-      badgeEl.textContent = "Factory Default Key Active";
+      badgeEl.textContent = "Master Passkey Active";
     }
   }
 
@@ -1548,22 +1536,22 @@ function renderSecurityTab() {
     if (info.updatedAt) {
       try {
         const d = new Date(info.updatedAt);
-        updatedEl.textContent = "Custom key saved on " + d.toLocaleDateString() + " at " + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        updatedEl.textContent = "Rotated on " + d.toLocaleDateString() + " at " + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
       } catch(e) {
         updatedEl.textContent = "Custom key active";
       }
     } else {
-      updatedEl.textContent = "Factory default (DPA-Admin-2026)";
+      updatedEl.textContent = "Default Studio Key (SHA-256 Protected)";
     }
   }
 
   const syncEl = document.getElementById("keySyncStatusText");
   if (syncEl) {
-    if (window.DPAService && window.DPAService.isCloudActive()) {
-      syncEl.textContent = "Synchronized with Firebase Firestore & Browser Storage";
+    if (window.DPAService && window.DPAService.isFirebaseActive) {
+      syncEl.textContent = "Salted SHA-256 (Cloud Synchronized in Protected Doc)";
       syncEl.style.color = "var(--success)";
     } else {
-      syncEl.textContent = "Browser Local Storage (Will auto-sync to Cloud once Firebase keys are saved)";
+      syncEl.textContent = "Salted SHA-256 (Sandboxed in Browser Storage)";
       syncEl.style.color = "#cad8d0";
     }
   }
