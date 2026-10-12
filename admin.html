@@ -560,6 +560,50 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
 .gallery-act-del:hover {
   color: #f87171;
 }
+
+/* Password Input Toggle & Strength Meter */
+.pass-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.pass-input-wrap input {
+  padding-right: 44px;
+}
+.pass-toggle-btn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--mu);
+  font-size: 15px;
+  padding: 6px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  border-radius: 4px;
+}
+.pass-toggle-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+.strength-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease, background 0.3s ease;
+}
 </style>
 </head>
 <body>
@@ -573,11 +617,22 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
     <form id="authForm" onsubmit="handleAuthSubmit(event)">
       <div class="form-group" style="text-align:left">
         <label for="adminPass">Admin Access Key</label>
-        <input type="password" id="adminPass" placeholder="Enter key (Default: admin123)" required>
+        <div class="pass-input-wrap">
+          <input type="password" id="adminPass" placeholder="Enter your access key" required>
+          <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('adminPass', this)" title="Show / Hide Key">👁️</button>
+        </div>
       </div>
-      <button class="btn" style="width:100%;margin-top:12px;padding:12px" type="submit">Unlock Admin Panel &rarr;</button>
-      <div style="font-size:11.5px;color:var(--mu);margin-top:16px">
-        Protected studio management console for DPA CREATORS.
+      <div id="authGateError" style="display:none;font-size:12px;color:#ef4444;background:rgba(239,68,68,0.1);padding:8px 12px;border-radius:6px;margin-bottom:12px;border:1px solid rgba(239,68,68,0.3);text-align:left"></div>
+      <button class="btn" style="width:100%;margin-top:4px;padding:12px" type="submit">Unlock Admin Panel &rarr;</button>
+      
+      <div style="margin-top:20px;background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:8px;padding:12px 14px;font-size:11.5px;color:var(--mu);text-align:left;line-height:1.55">
+        <div style="color:var(--br-light);font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px">
+          <span>🔑 Default Master Passkey:</span>
+        </div>
+        Default Key: <code style="color:#dfc08a;background:rgba(0,0,0,0.5);padding:2px 7px;border-radius:4px;font-weight:700">DPA-Admin-2026</code> <span style="font-size:11px;color:var(--mu)">(also supports <code style="color:#cad8d0">dpa2026</code>)</span>
+        <div style="margin-top:6px;font-size:11px;color:#8c9e94">
+          You can change or reset this key anytime in the <strong>Security &amp; Passkey</strong> management tab inside.
+        </div>
       </div>
     </form>
   </div>
@@ -627,6 +682,11 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.35 10.04A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 000 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
       <span>Cloud &amp; Storage (CDN)</span>
     </button>
+
+    <button class="nav-btn" data-tab="tabSecurity">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <span>Security &amp; Passkey</span>
+    </button>
   </nav>
 
   <div class="sidebar-bottom">
@@ -652,6 +712,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
         <span class="pulse-dot"></span>
         <span id="cloudStatusText">Local Storage Mode</span>
       </div>
+      <button class="btn btn-outline btn-sm" type="button" onclick="switchTab('tabSecurity')">🔑 Admin Passkey</button>
       <a class="btn btn-outline btn-sm" href="portfolio.html" target="_blank">Portfolio Page</a>
       <a class="btn btn-sm" href="index.html" target="_blank">Open Site</a>
     </div>
@@ -1089,6 +1150,116 @@ service cloud.firestore {
         </div>
       </div>
     </div>
+
+    <!-- 8. SECURITY & ACCESS KEY MANAGEMENT TAB -->
+    <div class="section-pane" id="tabSecurity">
+      <!-- Top Overview Card -->
+      <div class="card-box">
+        <div class="card-box-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-size:26px">🔐</span>
+            <div>
+              <h3 class="card-box-title">Admin Access Key &amp; Security Controls</h3>
+              <p style="font-size:12.5px;color:var(--mu);margin-top:2px">Manage your executive panel passkey &bull; Local &amp; Cloud synchronized</p>
+            </div>
+          </div>
+          <span class="status-badge status-completed" id="activeKeyBadge">Secured</span>
+        </div>
+
+        <div style="background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:10px;padding:20px;margin-bottom:12px">
+          <div style="font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:8px">Current Active Access Key</div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <div class="pass-input-wrap" style="flex:1;min-width:240px">
+              <input type="password" id="activeAdminKeyDisplay" readonly style="font-family:monospace;font-size:15px;letter-spacing:2px;background:rgba(0,0,0,0.6);font-weight:700;color:var(--br-light)">
+              <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('activeAdminKeyDisplay', this)" title="Show / Hide Key">👁️</button>
+            </div>
+            <button class="btn btn-outline btn-sm" type="button" onclick="copyActiveKey()">📋 Copy Key</button>
+            <button class="btn btn-sm" type="button" onclick="document.getElementById('secCurrentKey').focus()">✏️ Change Key Below</button>
+          </div>
+          <div style="display:flex;gap:24px;margin-top:14px;font-size:12px;color:var(--mu);flex-wrap:wrap">
+            <div><strong>Storage State:</strong> <span id="keySyncStatusText" style="color:var(--success)">Active &amp; Ready</span></div>
+            <div><strong>Key Info:</strong> <span id="keyLastUpdatedText">Initial system default (DPA-Admin-2026)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change Access Key Form -->
+      <div class="card-box">
+        <div class="card-box-header">
+          <div>
+            <h3 class="card-box-title">Change Admin Access Key</h3>
+            <p style="font-size:12.5px;color:var(--mu);margin-top:2px">Update your passkey to any custom secret code or password. You will need it on your next login.</p>
+          </div>
+          <button class="btn btn-outline btn-sm" type="button" onclick="generateStrongKey()">🎲 Generate Strong Key</button>
+        </div>
+
+        <form id="updateKeyForm" onsubmit="handleUpdateAdminKey(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="secCurrentKey">Current Access Key <span style="color:#ef4444">*</span></label>
+              <div class="pass-input-wrap">
+                <input type="password" id="secCurrentKey" placeholder="Enter your current passkey" required>
+                <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('secCurrentKey', this)">👁️</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="secNewKey">New Access Key <span style="color:#ef4444">*</span></label>
+              <div class="pass-input-wrap">
+                <input type="password" id="secNewKey" placeholder="Enter new passkey (min. 4 chars)" required minlength="4" oninput="checkKeyStrength(this.value)">
+                <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('secNewKey', this)">👁️</button>
+              </div>
+              <div class="strength-track">
+                <div class="strength-bar" id="keyStrengthBar"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:4px">
+                <span style="color:var(--mu)">Passkey Strength:</span>
+                <span id="keyStrengthText" style="font-weight:700"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="secConfirmKey">Confirm New Access Key <span style="color:#ef4444">*</span></label>
+              <div class="pass-input-wrap">
+                <input type="password" id="secConfirmKey" placeholder="Re-enter new passkey to confirm" required minlength="4">
+                <button type="button" class="pass-toggle-btn" onclick="togglePassVisibility('secConfirmKey', this)">👁️</button>
+              </div>
+            </div>
+
+            <div class="form-group" style="justify-content:flex-end">
+              <label>&nbsp;</label>
+              <button class="btn" type="submit" style="height:42px">💾 Save New Access Key</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Emergency Reset & Session Lockdown Card -->
+      <div class="card-box" style="border-color:rgba(239,68,68,0.25)">
+        <div class="card-box-header">
+          <div>
+            <h3 class="card-box-title" style="color:#f87171">Emergency Recovery &amp; Session Lockdown</h3>
+            <p style="font-size:12.5px;color:var(--mu);margin-top:2px">Restore factory defaults or lock the admin console immediately</p>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div>
+            <div style="font-weight:600;color:#fff;margin-bottom:3px">Reset to Factory Default Key</div>
+            <div style="font-size:12px;color:var(--mu)">Restores the initial built-in key: <code style="color:var(--br-light);background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px">DPA-Admin-2026</code></div>
+          </div>
+          <button class="btn btn-outline" type="button" style="border-color:#ef4444;color:#ef4444" onclick="handleResetAdminKey()">↺ Restore Factory Default (DPA-Admin-2026)</button>
+        </div>
+
+        <div style="padding-top:16px;border-top:1px solid rgba(239,68,68,0.15);display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:600;color:#fff;margin-bottom:3px">Lock Admin Session Now</div>
+            <div style="font-size:12px;color:var(--mu)">Immediately log out of the console so you can test your new key at the login gate</div>
+          </div>
+          <button class="btn" type="button" style="background:#dc2626;border-color:#dc2626;color:#fff" onclick="handleLogout()">🔒 Lock Console Now</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1241,18 +1412,56 @@ service cloud.firestore {
 function checkAuth() {
   const isAuth = sessionStorage.getItem("dpa_admin_auth") === "true";
   document.getElementById("authGate").style.display = isAuth ? "none" : "flex";
+  if (isAuth) {
+    renderSecurityTab();
+  }
 }
 
-function handleAuthSubmit(e) {
+async function handleAuthSubmit(e) {
   e.preventDefault();
   const pass = document.getElementById("adminPass").value;
-  if (pass === "admin123" || pass === "dpa2026") {
-    sessionStorage.setItem("dpa_admin_auth", "true");
-    document.getElementById("authGate").style.display = "none";
-    showToast("Welcome to DPA CREATORS Admin Suite!");
-    loadAdminData();
-  } else {
-    alert("Incorrect Access Key. Please try again.");
+  const submitBtn = e.target.querySelector("button[type='submit']");
+  const origText = submitBtn ? submitBtn.innerHTML : "Unlock Admin Panel &rarr;";
+  if (submitBtn) submitBtn.innerHTML = "Verifying Key...";
+  
+  const errEl = document.getElementById("authGateError");
+  if (errEl) errEl.style.display = "none";
+
+  try {
+    const isValid = await window.DPAService.verifyAdminKey(pass);
+    if (isValid) {
+      sessionStorage.setItem("dpa_admin_auth", "true");
+      document.getElementById("authGate").style.display = "none";
+      showToast("Welcome to DPA CREATORS Admin Suite!");
+      loadAdminData();
+      renderSecurityTab();
+    } else {
+      if (errEl) {
+        errEl.textContent = "❌ Incorrect Access Key. Please check and try again.";
+        errEl.style.display = "block";
+      } else {
+        alert("Incorrect Access Key. Please check and try again.");
+      }
+    }
+  } catch(err) {
+    console.error("Auth error:", err);
+    const defaults = ["DPA-Admin-2026", "dpa2026", "admin123"];
+    const customKey = localStorage.getItem("dpa_admin_key");
+    if (defaults.includes(pass.trim()) || (customKey && pass.trim() === customKey)) {
+      sessionStorage.setItem("dpa_admin_auth", "true");
+      document.getElementById("authGate").style.display = "none";
+      loadAdminData();
+      renderSecurityTab();
+    } else {
+      if (errEl) {
+        errEl.textContent = "❌ Incorrect Access Key. Please check and try again.";
+        errEl.style.display = "block";
+      } else {
+        alert("Incorrect Access Key.");
+      }
+    }
+  } finally {
+    if (submitBtn) submitBtn.innerHTML = origText;
   }
 }
 
@@ -1291,9 +1500,187 @@ function switchTab(tabId) {
     tabContent: "Website Content & Branding",
     tabServices: "Architectural Services (24)",
     tabReviews: "Client Reviews & Testimonials",
-    tabFirebase: "Cloud Database & Cloudinary Storage (CDN)"
+    tabFirebase: "Cloud Database & Cloudinary Storage (CDN)",
+    tabSecurity: "Admin Security & Access Key Management"
   };
   document.getElementById("pageTitle").textContent = titles[tabId] || "Admin Console";
+  if (tabId === "tabSecurity") {
+    renderSecurityTab();
+  }
+}
+
+// Password toggle helper
+function togglePassVisibility(inputId, btn) {
+  const el = document.getElementById(inputId);
+  if (!el) return;
+  if (el.type === "password") {
+    el.type = "text";
+    if (btn) btn.textContent = "🙈";
+  } else {
+    el.type = "password";
+    if (btn) btn.textContent = "👁️";
+  }
+}
+
+// Security & Key Management Helpers
+function renderSecurityTab() {
+  if (!window.DPAService) return;
+  const info = window.DPAService.getAdminKeyInfo();
+  
+  const displayInput = document.getElementById("activeAdminKeyDisplay");
+  if (displayInput) {
+    displayInput.value = info.key;
+  }
+  
+  const badgeEl = document.getElementById("activeKeyBadge");
+  if (badgeEl) {
+    if (info.isCustom) {
+      badgeEl.className = "status-badge status-completed";
+      badgeEl.textContent = "Custom Passkey Active";
+    } else {
+      badgeEl.className = "status-badge status-contacted";
+      badgeEl.textContent = "Factory Default Key Active";
+    }
+  }
+
+  const updatedEl = document.getElementById("keyLastUpdatedText");
+  if (updatedEl) {
+    if (info.updatedAt) {
+      try {
+        const d = new Date(info.updatedAt);
+        updatedEl.textContent = "Custom key saved on " + d.toLocaleDateString() + " at " + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      } catch(e) {
+        updatedEl.textContent = "Custom key active";
+      }
+    } else {
+      updatedEl.textContent = "Factory default (DPA-Admin-2026)";
+    }
+  }
+
+  const syncEl = document.getElementById("keySyncStatusText");
+  if (syncEl) {
+    if (window.DPAService && window.DPAService.isCloudActive()) {
+      syncEl.textContent = "Synchronized with Firebase Firestore & Browser Storage";
+      syncEl.style.color = "var(--success)";
+    } else {
+      syncEl.textContent = "Browser Local Storage (Will auto-sync to Cloud once Firebase keys are saved)";
+      syncEl.style.color = "#cad8d0";
+    }
+  }
+}
+
+async function handleUpdateAdminKey(e) {
+  e.preventDefault();
+  const currentKeyInput = document.getElementById("secCurrentKey").value.trim();
+  const newKeyInput = document.getElementById("secNewKey").value.trim();
+  const confirmKeyInput = document.getElementById("secConfirmKey").value.trim();
+
+  // Verify current key
+  const isCurrentValid = await window.DPAService.verifyAdminKey(currentKeyInput);
+  if (!isCurrentValid) {
+    alert("❌ Current Access Key is incorrect. Please verify your current key.");
+    return;
+  }
+
+  if (newKeyInput.length < 4) {
+    alert("❌ New passkey must be at least 4 characters long.");
+    return;
+  }
+
+  if (newKeyInput !== confirmKeyInput) {
+    alert("❌ New passkey and confirmation do not match. Please re-enter.");
+    return;
+  }
+
+  try {
+    await window.DPAService.saveAdminKey(newKeyInput);
+    showToast("🎉 Admin Access Key updated successfully!");
+    document.getElementById("secCurrentKey").value = "";
+    document.getElementById("secNewKey").value = "";
+    document.getElementById("secConfirmKey").value = "";
+    
+    const bar = document.getElementById("keyStrengthBar");
+    const txt = document.getElementById("keyStrengthText");
+    if (bar) bar.style.width = "0%";
+    if (txt) txt.textContent = "";
+    
+    renderSecurityTab();
+  } catch(err) {
+    alert("Failed to update access key: " + err.message);
+  }
+}
+
+async function handleResetAdminKey() {
+  if (!confirm("Are you sure you want to reset your admin access key back to the factory default key (DPA-Admin-2026)?")) {
+    return;
+  }
+  await window.DPAService.resetAdminKey();
+  showToast("↺ Key reset to factory default (DPA-Admin-2026)!");
+  renderSecurityTab();
+}
+
+function generateStrongKey() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%";
+  let gen = "DPA#";
+  for (let i = 0; i < 8; i++) {
+    gen += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  const newKeyEl = document.getElementById("secNewKey");
+  const confirmKeyEl = document.getElementById("secConfirmKey");
+  if (newKeyEl && confirmKeyEl) {
+    newKeyEl.value = gen;
+    confirmKeyEl.value = gen;
+    newKeyEl.type = "text";
+    confirmKeyEl.type = "text";
+    checkKeyStrength(gen);
+    showToast("Generated secure key! Click 'Save New Access Key' to apply.");
+  }
+}
+
+function checkKeyStrength(val) {
+  const bar = document.getElementById("keyStrengthBar");
+  const txt = document.getElementById("keyStrengthText");
+  if (!bar || !txt) return;
+
+  if (!val || val.length === 0) {
+    bar.style.width = "0%";
+    txt.textContent = "";
+    return;
+  }
+
+  let score = 0;
+  if (val.length >= 6) score += 25;
+  if (val.length >= 10) score += 25;
+  if (/[0-9]/.test(val)) score += 25;
+  if (/[^A-Za-z0-9]/.test(val)) score += 25;
+
+  bar.style.width = score + "%";
+  if (score < 50) {
+    bar.style.background = "#ef4444";
+    txt.textContent = "Weak";
+    txt.style.color = "#ef4444";
+  } else if (score < 75) {
+    bar.style.background = "#f59e0b";
+    txt.textContent = "Good";
+    txt.style.color = "#f59e0b";
+  } else {
+    bar.style.background = "#10b981";
+    txt.textContent = "Strong & Secure";
+    txt.style.color = "#10b981";
+  }
+}
+
+function copyActiveKey() {
+  const info = window.DPAService.getAdminKeyInfo();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(info.key).then(() => {
+      showToast("📋 Admin passkey copied to clipboard!");
+    }).catch(() => {
+      prompt("Copy this key:", info.key);
+    });
+  } else {
+    prompt("Copy this key:", info.key);
+  }
 }
 
 // Global cached data

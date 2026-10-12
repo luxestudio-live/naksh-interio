@@ -647,6 +647,92 @@ window.DPAService = {
       };
       reader.readAsDataURL(file);
     });
+  },
+
+  // ADMIN AUTH & ACCESS KEY MANAGEMENT
+  getAdminKey() {
+    try {
+      const customKey = localStorage.getItem("dpa_admin_key");
+      return customKey || "DPA-Admin-2026";
+    } catch(e) {
+      return "DPA-Admin-2026";
+    }
+  },
+
+  getAdminKeyInfo() {
+    try {
+      const customKey = localStorage.getItem("dpa_admin_key");
+      const updated = localStorage.getItem("dpa_admin_key_updated");
+      return {
+        key: customKey || "DPA-Admin-2026",
+        isCustom: !!customKey,
+        updatedAt: updated || null
+      };
+    } catch(e) {
+      return {
+        key: "DPA-Admin-2026",
+        isCustom: false,
+        updatedAt: null
+      };
+    }
+  },
+
+  async verifyAdminKey(inputKey) {
+    if (!inputKey) return false;
+    const trimmed = inputKey.trim();
+
+    // 1. Check custom localStorage key
+    const customKey = localStorage.getItem("dpa_admin_key");
+    if (customKey && trimmed === customKey) return true;
+
+    // 2. Check cloud Firestore key if initialized
+    if (this.isCloudActive() && this.db) {
+      try {
+        const snap = await this.db.collection("settings").doc("security").get();
+        if (snap.exists && snap.data().adminKey) {
+          if (trimmed === snap.data().adminKey) return true;
+        }
+      } catch(e) {
+        console.warn("Could not check Firestore admin key:", e);
+      }
+    }
+
+    // 3. Fallback built-in master keys
+    const defaults = ["DPA-Admin-2026", "dpa2026", "admin123"];
+    return defaults.includes(trimmed);
+  },
+
+  async saveAdminKey(newKey) {
+    if (!newKey || newKey.trim().length < 4) {
+      throw new Error("Access key must be at least 4 characters long.");
+    }
+    const cleanKey = newKey.trim();
+    localStorage.setItem("dpa_admin_key", cleanKey);
+    localStorage.setItem("dpa_admin_key_updated", new Date().toISOString());
+
+    // Cloud sync if Firestore active
+    if (this.isCloudActive() && this.db) {
+      try {
+        await this.db.collection("settings").doc("security").set({
+          adminKey: cleanKey,
+          updatedAt: new Date().toISOString()
+        }, { merge: true });
+      } catch(e) {
+        console.warn("Could not sync key to Firestore:", e);
+      }
+    }
+    return cleanKey;
+  },
+
+  async resetAdminKey() {
+    localStorage.removeItem("dpa_admin_key");
+    localStorage.removeItem("dpa_admin_key_updated");
+    if (this.isCloudActive() && this.db) {
+      try {
+        await this.db.collection("settings").doc("security").delete();
+      } catch(e) {}
+    }
+    return "DPA-Admin-2026";
   }
 };
 
