@@ -114,6 +114,11 @@
 }
 </script>
 
+<!-- Firebase SDKs & DPA Service -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -2177,7 +2182,7 @@ footer {
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services (24)</a></li>
     <li><a href="#case">Before &amp; After</a></li>
-    <li><a href="#work">Portfolio</a></li>
+    <li><a href="portfolio.html">All Projects</a></li>
     <li><a href="#estimator">Estimator</a></li>
     <li><a href="#reviews">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -2206,7 +2211,7 @@ footer {
     <li><a href="#services" class="mob-item">All 24 Services</a></li>
     <li><a href="#case" class="mob-item">Before &amp; After Spotlight</a></li>
     <li><a href="#estimator" class="mob-item">Cost Estimator</a></li>
-    <li><a href="#work" class="mob-item">Architectural Portfolio</a></li>
+    <li><a href="portfolio.html" class="mob-item">All Projects (Archive)</a></li>
     <li><a href="#process" class="mob-item">Execution Process</a></li>
     <li><a href="#reviews" class="mob-item">Google Reviews (5.0★)</a></li>
     <li><a href="#contact" class="mob-item">Contact Us</a></li>
@@ -2679,6 +2684,7 @@ footer {
     <span class="sec-tag">Architectural Portfolio</span>
     <h2 class="rise">Featured Projects by DPA CREATORS</h2>
     <p class="lead rise">Discover our signature 3D renderings, custom residences, commercial facilities, and turnkey interior design construction executed across Ravindrapuri and Uttar Pradesh.</p>
+    <div style="margin:16px 0 24px"><a class="btn btn-sm" href="portfolio.html">Browse Extended Dedicated Portfolio &rarr;</a></div>
 
     <div class="fl" id="fl">
       <!-- Filter buttons rendered dynamically -->
@@ -2687,6 +2693,7 @@ footer {
     <div class="gr" id="gr">
       <!-- High-Res Projects Injected Here -->
     </div>
+    <div style="text-align:center;margin-top:36px"><a class="btn" href="portfolio.html">Explore All Projects &amp; Dedicated Archive (3D Walkthroughs) &rarr;</a></div>
   </div>
 </section>
 
@@ -2892,7 +2899,7 @@ footer {
 <footer>
   <div class="wrap footer-wrap">
     <div>
-      <strong>&copy; DPA CREATORS, Ravindrapuri, Uttar Pradesh 233001.</strong> All Rights Reserved.
+      <strong>&copy; DPA CREATORS, Ravindrapuri, Uttar Pradesh 233001.</strong> All Rights Reserved. <a href="admin.html" style="color:var(--br-light);font-size:12px;margin-left:14px;border:1px solid rgba(184,141,77,0.3);padding:3px 8px;border-radius:4px">Admin Portal 🔒</a>
     </div>
     <div class="footer-credit">
       Dreamed, designed, and brought to life by <a href="https://www.theluxestudio.in/" target="_blank" rel="noopener" class="luxe-link">LuxeStudio</a> &mdash; where ideas find their elegance.
@@ -3273,13 +3280,49 @@ if (selectTrigger && customSelect) {
   });
 }
 
-// CONTACT FORM SUBMISSION
-$('fm').onsubmit = e => {
+// CONTACT FORM SUBMISSION WITH FIREBASE REALTIME WRITE
+$('fm').onsubmit = async e => {
   e.preventDefault();
   const submitBtn = e.target.querySelector('button[type="submit"]');
+  const name = $('fName').value.trim();
+  const phone = $('fPhone').value.trim();
+  const service = $('fService').value;
+  const message = $('fMsg').value.trim();
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting to Studio...';
+  }
+
+  // Real-time write to Firebase Firestore & local leads inbox
+  if (window.DPAService) {
+    try {
+      await window.DPAService.submitInquiry({ name, phone, service, message });
+    } catch (err) {
+      console.warn("Inquiry submission fallback:", err);
+    }
+  }
+
   if (submitBtn) submitBtn.style.display = 'none';
   $('ok').style.display = 'block';
 };
+
+// DYNAMIC SYNC: Load projects & settings from Firebase/Admin service
+async function syncFromAdminService() {
+  if (window.DPAService) {
+    try {
+      const liveProjects = await window.DPAService.getProjects();
+      if (liveProjects && liveProjects.length) {
+        projectsData.length = 0;
+        liveProjects.forEach(p => projectsData.push(p));
+        renderGallery();
+      }
+    } catch(err) {
+      console.warn("Live projects sync:", err);
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', syncFromAdminService);
 
 // SCROLL ANIMATIONS OBSERVER
 const observer = new IntersectionObserver((entries, obs) => {

@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DPA CREATORS | Executive Cloud Admin Panel</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1713'/%3E%3Ccircle cx='32' cy='32' r='28' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.4'/%3E%3Cpath d='M32 12L48 48H16L32 12Z' stroke='%23dfc08a' stroke-width='2.2' stroke-linejoin='round' fill='none'/%3E%3Cline x1='21' y1='36' x2='43' y2='36' stroke='%23dfc08a' stroke-width='1.8' stroke-linecap='round'/%3E%3Ctext x='32' y='32' font-family='system-ui,-apple-system,sans-serif' font-size='10' font-weight='800' fill='%23dfc08a' text-anchor='middle'%3EDPA%3C/text%3E%3Ccircle cx='32' cy='12' r='2.5' fill='%23dfc08a'/%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<style>
+:root {
+  --g: #08120e;
+  --g2: #0f1f19;
+  --g3: #182d24;
+  --panel: #13241d;
+  --br: #b88d4d;
+  --br-light: #dfc08a;
+  --br-glow: rgba(184, 141, 77, 0.28);
+  --tx: #e6eee9;
+  --mu: #8c9e94;
+  --ln: rgba(223, 192, 138, 0.16);
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --gold-grad: linear-gradient(135deg, #dfc08a 0%, #b88d4d 50%, #9a6f33 100%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--g);
+  color: var(--tx);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  color: #fff;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #fff;
+  background: rgba(8, 18, 14, 0.85);
+  border: 1px solid rgba(184, 141, 77, 0.28);
+  border-radius: 6px;
+  padding: 9px 13px;
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--br-light);
+  box-shadow: 0 0 10px var(--br-glow);
+}
+
+/* Layout */
+.sidebar {
+  width: 270px;
+  background: var(--g2);
+  border-right: 1px solid var(--ln);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.brand-box {
+  padding: 24px 22px;
+  border-bottom: 1px solid var(--ln);
+}
+.brand-lg {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+.brand-sub {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mu);
+  font-weight: 700;
+  display: block;
+  margin-top: 2px;
+}
+
+.nav-menu {
+  flex: 1;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+}
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  color: #cad8d0;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+.nav-btn svg { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.8; }
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+.nav-btn.active {
+  background: rgba(184, 141, 77, 0.16);
+  color: var(--br-light);
+  border: 1px solid rgba(184, 141, 77, 0.3);
+}
+.nav-btn.active svg { opacity: 1; color: var(--br-light); }
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--br);
+  color: #0b1713;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.sidebar-bottom {
+  padding: 16px 20px;
+  border-top: 1px solid var(--ln);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--mu);
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--g);
+}
+
+/* Top App Header */
+.top-header {
+  height: 68px;
+  background: var(--g2);
+  border-bottom: 1px solid var(--ln);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.top-title { font-size: 20px; font-weight: 600; }
+.top-actions { display: flex; align-items: center; gap: 16px; }
+
+.cloud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+  font-weight: 600;
+}
+.cloud-pill.offline {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: var(--gold-grad);
+  color: #0b1713;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--br-glow);
+}
+.btn-sm { padding: 5px 12px; font-size: 12px; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-outline {
+  background: transparent;
+  color: var(--br-light);
+  border: 1px solid rgba(184, 141, 77, 0.4);
+}
+.btn-outline:hover { background: rgba(184, 141, 77, 0.15); border-color: var(--br-light); }
+
+/* Scrollable View Container */
+.view-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+}
+.section-pane { display: none; }
+.section-pane.active { display: block; }
+
+/* Dashboard KPI Cards */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+@media (max-width: 1100px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi-card {
+  background: var(--panel);
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(184, 141, 77, 0.14);
+  color: var(--br-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.kpi-num { font-size: 28px; font-weight: 800; color: #fff; line-height: 1.1; }
+.kpi-label { font-size: 12.5px; color: var(--mu); font-weight: 500; margin-top: 2px; }
+
+/* Tables & Lists */
+.card-box {
+  background: var(--panel);
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 28px;
+}
+.card-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card-box-title { font-size: 20px; font-weight: 600; }
+
+.table-wrap { overflow-x: auto; width: 100%; }
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th {
+  padding: 12px 14px;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--mu);
+  border-bottom: 1px solid var(--ln);
+}
+td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.08);
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.status-new { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+.status-contacted { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+.status-completed { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+/* Form Grids */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 800px) { .form-grid { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+.form-group label { font-size: 12.5px; font-weight: 600; color: #cad8d0; }
+.form-group.full { grid-column: 1 / -1; }
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.active { display: flex; }
+.modal-window {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.modal-header h3 { font-size: 24px; }
+.modal-close { font-size: 20px; color: var(--mu); }
+.modal-close:hover { color: #fff; }
+
+/* Login Modal */
+#authGate {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #10241c 0%, #050d0a 100%);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.auth-card {
+  background: var(--panel);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  max-width: 420px;
+  width: 100%;
+  padding: 38px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--g2);
+  border: 1px solid var(--br-light);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  z-index: 3000;
+  display: none;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- Authentication Gate -->
+<div id="authGate">
+  <div class="auth-card">
+    <div style="font-size:36px;margin-bottom:8px">🏛️</div>
+    <span class="brand-lg" style="font-size:26px">DPA CREATORS</span>
+    <span class="brand-sub" style="margin-bottom:24px">Executive Admin Portal</span>
+    <form id="authForm" onsubmit="handleAuthSubmit(event)">
+      <div class="form-group" style="text-align:left">
+        <label for="adminPass">Admin Access Key</label>
+        <input type="password" id="adminPass" placeholder="Enter key (Default: admin123)" required>
+      </div>
+      <button class="btn" style="width:100%;margin-top:12px;padding:12px" type="submit">Unlock Admin Panel &rarr;</button>
+      <div style="font-size:11.5px;color:var(--mu);margin-top:16px">
+        Protected studio management console for DPA CREATORS.
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Left Sidebar Navigation -->
+<aside class="sidebar">
+  <div class="brand-box">
+    <span class="brand-lg">DPA CREATORS</span>
+    <span class="brand-sub">Management Suite</span>
+  </div>
+
+  <nav class="nav-menu">
+    <button class="nav-btn active" data-tab="tabDashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Dashboard Overview</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabProjects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <span>Portfolio Projects</span>
+      <span class="nav-badge" id="badgeProjCount">0</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabInquiries">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <span>Contact Inquiries</span>
+      <span class="nav-badge" id="badgeInqCount" style="background:#3b82f6;color:#fff">0</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabContent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      <span>Website Content</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabServices">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>Services (24)</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabReviews">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      <span>Reviews &amp; Ratings</span>
+    </button>
+
+    <button class="nav-btn" data-tab="tabFirebase">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.35 10.04A7.49 7.49 0 0012 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 000 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+      <span>Firebase Cloud Config</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a href="index.html" target="_blank" style="color:var(--br-light);display:flex;align-items:center;gap:6px">
+      <span>↗ View Live Website</span>
+    </a>
+    <a href="portfolio.html" target="_blank" style="color:var(--mu);display:flex;align-items:center;gap:6px">
+      <span>↗ View Dedicated Portfolio</span>
+    </a>
+    <button onclick="handleLogout()" style="text-align:left;color:#ef4444;font-size:12px;margin-top:6px">
+      🔒 Lock Admin Session
+    </button>
+  </div>
+</aside>
+
+<!-- Right Main Area -->
+<section class="main-content">
+  <!-- Top App Header -->
+  <header class="top-header">
+    <div class="top-title" id="pageTitle">Dashboard Overview</div>
+    <div class="top-actions">
+      <div class="cloud-pill" id="cloudStatusBadge">
+        <span class="pulse-dot"></span>
+        <span id="cloudStatusText">Local Storage Mode</span>
+      </div>
+      <a class="btn btn-outline btn-sm" href="portfolio.html" target="_blank">Portfolio Page</a>
+      <a class="btn btn-sm" href="index.html" target="_blank">Open Site</a>
+    </div>
+  </header>
+
+  <div class="view-body">
+    <!-- 1. DASHBOARD OVERVIEW TAB -->
+    <div class="section-pane active" id="tabDashboard">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon">🏛️</div>
+          <div>
+            <div class="kpi-num" id="kpiProjects">0</div>
+            <div class="kpi-label">Active Portfolio Projects</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">📥</div>
+          <div>
+            <div class="kpi-num" id="kpiInquiries">0</div>
+            <div class="kpi-label">Total Leads Received</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">📐</div>
+          <div>
+            <div class="kpi-num" id="kpiServices">24</div>
+            <div class="kpi-label">Architecture Services</div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon">★</div>
+          <div>
+            <div class="kpi-num" id="kpiRating">5.0</div>
+            <div class="kpi-label">Google Rating (25 Reviews)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Recent Client Inquiries</h3>
+          <button class="btn btn-sm" onclick="switchTab('tabInquiries')">View All Leads &rarr;</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Requested Service</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="dashboardInqTable">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Quick Actions</h3>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <button class="btn" onclick="openNewProjectModal()">+ Add New Project</button>
+          <button class="btn btn-outline" onclick="switchTab('tabContent')">Edit Hero Headline</button>
+          <button class="btn btn-outline" onclick="switchTab('tabFirebase')">Firebase Cloud Settings</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. PROJECTS & PORTFOLIO TAB -->
+    <div class="section-pane" id="tabProjects">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Portfolio Projects Manager</h3>
+          <div style="display:flex;gap:12px">
+            <button class="btn" onclick="openNewProjectModal()">+ Add New Project</button>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap">
+          <input type="text" id="projectSearch" placeholder="Search projects by title, category, or location..." style="max-width:320px" oninput="renderProjectsTable()">
+          <select id="projectCatFilter" style="max-width:200px" onchange="renderProjectsTable()">
+            <option value="All">All Categories</option>
+            <option value="3D Renderings">3D Renderings</option>
+            <option value="Architecture">Architecture</option>
+            <option value="Interior Design">Interior Design</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Residential">Residential</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Year</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. INQUIRIES & CONTACT LEADS TAB -->
+    <div class="section-pane" id="tabInquiries">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Client Leads &amp; Contact Inbox</h3>
+          <div style="display:flex;gap:12px">
+            <select id="inquiryFilter" style="max-width:180px" onchange="renderInquiriesTable()">
+              <option value="All">All Statuses</option>
+              <option value="New">New (Unread)</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Phone</th>
+                <th>Service Needed</th>
+                <th>Message Excerpt</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Connect / Action</th>
+              </tr>
+            </thead>
+            <tbody id="inquiriesTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. WEBSITE CONTENT & BRANDING TAB -->
+    <div class="section-pane" id="tabContent">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Website Content &amp; Branding Manager</h3>
+          <button class="btn" onclick="saveSiteContentForm()">Save All Changes</button>
+        </div>
+
+        <form id="contentForm" onsubmit="event.preventDefault(); saveSiteContentForm();">
+          <h4 style="margin:16px 0 10px;color:var(--br-light)">Hero &amp; Identity</h4>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Brand Name</label>
+              <input type="text" id="fBrandName" required>
+            </div>
+            <div class="form-group">
+              <label>Location Badge / Subtitle</label>
+              <input type="text" id="fBrandSub" required>
+            </div>
+            <div class="form-group full">
+              <label>Hero Headline Tag</label>
+              <input type="text" id="fHeroTag" required>
+            </div>
+            <div class="form-group full">
+              <label>Hero Main Heading (H1)</label>
+              <textarea id="fHeroTitle" rows="2" required></textarea>
+            </div>
+            <div class="form-group full">
+              <label>Hero Description Paragraph</label>
+              <textarea id="fHeroDesc" rows="3" required></textarea>
+            </div>
+          </div>
+
+          <h4 style="margin:24px 0 10px;color:var(--br-light)">Contact Details &amp; Business Hours</h4>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Phone Number (Display)</label>
+              <input type="text" id="fPhone" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Tel Link (International)</label>
+              <input type="text" id="fPhoneTel" required>
+            </div>
+            <div class="form-group">
+              <label>Studio Address</label>
+              <input type="text" id="fAddress" required>
+            </div>
+            <div class="form-group">
+              <label>Operating Hours</label>
+              <input type="text" id="fHours" required>
+            </div>
+            <div class="form-group">
+              <label>Google Rating Score</label>
+              <input type="text" id="fRating" required>
+            </div>
+            <div class="form-group">
+              <label>Review Count</label>
+              <input type="text" id="fReviewCount" required>
+            </div>
+          </div>
+
+          <div style="margin-top:24px">
+            <button class="btn" type="submit">Save All Website Content</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 5. SERVICES TAB -->
+    <div class="section-pane" id="tabServices">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Architecture &amp; Interior Services (24)</h3>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Service Name</th>
+                <th>Specialization Scope</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. REVIEWS & RATINGS TAB -->
+    <div class="section-pane" id="tabReviews">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Client Reviews &amp; Testimonials</h3>
+          <button class="btn" onclick="openNewReviewModal()">+ Add Client Review</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Client Name</th>
+                <th>Location</th>
+                <th>Stars</th>
+                <th>Testimonial Quote</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. FIREBASE CLOUD CONFIG TAB -->
+    <div class="section-pane" id="tabFirebase">
+      <div class="card-box">
+        <div class="card-box-header">
+          <h3 class="card-box-title">Google Firebase Cloud Configuration</h3>
+          <div class="cloud-pill" id="fbStatusBadgeTab">
+            <span class="pulse-dot"></span>
+            <span id="fbStatusTextTab">Status Check</span>
+          </div>
+        </div>
+
+        <p style="color:var(--mu);margin-bottom:20px;line-height:1.6">
+          Connect your Google Firebase project to store all portfolio projects, client inquiries, site content, and reviews directly in cloud <strong>Firestore</strong> in real-time.
+        </p>
+
+        <form id="fbConfigForm" onsubmit="handleSaveFirebaseConfig(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>API Key (apiKey)</label>
+              <input type="text" id="fbApiKey" placeholder="AIzaSy...">
+            </div>
+            <div class="form-group">
+              <label>Auth Domain (authDomain)</label>
+              <input type="text" id="fbAuthDomain" placeholder="your-app.firebaseapp.com">
+            </div>
+            <div class="form-group">
+              <label>Project ID (projectId)</label>
+              <input type="text" id="fbProjectId" placeholder="dpa-creators">
+            </div>
+            <div class="form-group">
+              <label>Storage Bucket (storageBucket)</label>
+              <input type="text" id="fbStorageBucket" placeholder="your-app.appspot.com">
+            </div>
+            <div class="form-group">
+              <label>Messaging Sender ID (messagingSenderId)</label>
+              <input type="text" id="fbSenderId" placeholder="123456789">
+            </div>
+            <div class="form-group">
+              <label>App ID (appId)</label>
+              <input type="text" id="fbAppId" placeholder="1:123456:web:abcd">
+            </div>
+          </div>
+
+          <div style="display:flex;gap:14px;margin-top:20px;flex-wrap:wrap">
+            <button class="btn" type="submit">Save &amp; Connect Firebase</button>
+            <button class="btn btn-outline" type="button" onclick="seedToFirestoreCloud()">
+              🚀 Push All Demo Data to Cloud Firestore
+            </button>
+            <button class="btn btn-outline" type="button" onclick="exportDataJson()">
+              📥 Export Data (JSON)
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Add / Edit Modal -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3 id="projModalTitle">Add New Architectural Project</h3>
+      <button class="modal-close" onclick="closeProjectModal()">✕</button>
+    </div>
+    <form id="projectForm" onsubmit="handleProjectSave(event)">
+      <input type="hidden" id="editProjId">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label>Project Title</label>
+          <input type="text" id="pTitle" required placeholder="e.g. Luxury 3D Villa Rendering">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="pCategory">
+            <option value="3D Renderings">3D Renderings</option>
+            <option value="Architecture">Architecture</option>
+            <option value="Interior Design">Interior Design</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Residential">Residential</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="pLoc" placeholder="e.g. Ravindrapuri, UP" required>
+        </div>
+        <div class="form-group">
+          <label>Completion Year</label>
+          <input type="text" id="pYear" placeholder="2026">
+        </div>
+        <div class="form-group">
+          <label>Featured Project?</label>
+          <select id="pFeatured">
+            <option value="true">Yes (Show on Homepage &amp; Top)</option>
+            <option value="false">No (Standard Portfolio)</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>High-Resolution Image URL</label>
+          <input type="url" id="pImg" required placeholder="https://images.unsplash.com/...">
+          <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
+            <button type="button" class="btn btn-outline btn-sm" onclick="setPresetImg('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80')">Villa Preset</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="setPresetImg('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80')">Hospital Preset</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="setPresetImg('images/living_tv_unit.jpg')">Living Room</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="setPresetImg('images/kitchen_walnut.jpg')">Kitchen</button>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Tags (comma separated)</label>
+          <input type="text" id="pTags" placeholder="e.g. 3D CGI, Villa Architecture, Landscape">
+        </div>
+        <div class="form-group full">
+          <label>Architectural Scope &amp; Description</label>
+          <textarea id="pDesc" rows="3" placeholder="Describe the structural planning, finishes, and design execution..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:20px">
+        <button type="button" class="btn btn-outline" onclick="closeProjectModal()">Cancel</button>
+        <button type="submit" class="btn">Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3 id="revModalTitle">Add Client Review</h3>
+      <button class="modal-close" onclick="closeReviewModal()">✕</button>
+    </div>
+    <form id="reviewForm" onsubmit="handleReviewSave(event)">
+      <input type="hidden" id="editRevId">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Client Name</label>
+          <input type="text" id="rAuthor" required placeholder="e.g. Rajeshwar Tripathi">
+        </div>
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="rLoc" required placeholder="e.g. Ravindrapuri, Uttar Pradesh">
+        </div>
+        <div class="form-group full">
+          <label>Testimonial Quote</label>
+          <textarea id="rQuote" rows="3" required placeholder="Write the client's feedback..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:20px">
+        <button type="button" class="btn btn-outline" onclick="closeReviewModal()">Cancel</button>
+        <button type="submit" class="btn">Save Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Notification Toast -->
+<div id="toast">Changes saved successfully!</div>
+
+<script>
+// Authentication check
+function checkAuth() {
+  const isAuth = sessionStorage.getItem("dpa_admin_auth") === "true";
+  document.getElementById("authGate").style.display = isAuth ? "none" : "flex";
+}
+
+function handleAuthSubmit(e) {
+  e.preventDefault();
+  const pass = document.getElementById("adminPass").value;
+  if (pass === "admin123" || pass === "dpa2026") {
+    sessionStorage.setItem("dpa_admin_auth", "true");
+    document.getElementById("authGate").style.display = "none";
+    showToast("Welcome to DPA CREATORS Admin Suite!");
+    loadAdminData();
+  } else {
+    alert("Incorrect Access Key. Please try again.");
+  }
+}
+
+function handleLogout() {
+  sessionStorage.removeItem("dpa_admin_auth");
+  checkAuth();
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.display = "block";
+  setTimeout(() => t.style.display = "none", 3000);
+}
+
+// Tab Switching
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.onclick = () => {
+    switchTab(btn.dataset.tab);
+  };
+});
+
+function switchTab(tabId) {
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".section-pane").forEach(p => p.classList.remove("active"));
+  
+  const targetBtn = document.querySelector(`.nav-btn[data-tab="${tabId}"]`);
+  if (targetBtn) targetBtn.classList.add("active");
+  const targetPane = document.getElementById(tabId);
+  if (targetPane) targetPane.classList.add("active");
+
+  const titles = {
+    tabDashboard: "Dashboard Overview",
+    tabProjects: "Portfolio Projects Manager",
+    tabInquiries: "Client Leads & Inquiries Inbox",
+    tabContent: "Website Content & Branding",
+    tabServices: "Architectural Services (24)",
+    tabReviews: "Client Reviews & Testimonials",
+    tabFirebase: "Firebase Cloud Settings"
+  };
+  document.getElementById("pageTitle").textContent = titles[tabId] || "Admin Console";
+}
+
+// Global cached data
+let siteSettings = {};
+let projectsList = [];
+let inquiriesList = [];
+let servicesList = [];
+let reviewsList = [];
+
+async function loadAdminData() {
+  updateCloudBadge();
+
+  // Load all resources in parallel
+  [siteSettings, projectsList, inquiriesList, servicesList, reviewsList] = await Promise.all([
+    window.DPAService.getSettings(),
+    window.DPAService.getProjects(),
+    window.DPAService.getInquiries(),
+    window.DPAService.getServices(),
+    window.DPAService.getReviews()
+  ]);
+
+  // KPIs
+  document.getElementById("kpiProjects").textContent = projectsList.length;
+  document.getElementById("kpiInquiries").textContent = inquiriesList.length;
+  document.getElementById("kpiServices").textContent = servicesList.length;
+  document.getElementById("kpiRating").textContent = siteSettings.rating || "5.0";
+  document.getElementById("badgeProjCount").textContent = projectsList.length;
+  document.getElementById("badgeInqCount").textContent = inquiriesList.filter(i => i.status === "New").length;
+
+  // Render components
+  renderDashboardInquiries();
+  renderProjectsTable();
+  renderInquiriesTable();
+  renderContentForm();
+  renderServicesTable();
+  renderReviewsTable();
+  renderFirebaseConfigForm();
+}
+
+function updateCloudBadge() {
+  const isFb = window.DPAService.isFirebaseActive;
+  const cfg = window.DPAService.getFirebaseConfig();
+  const text = isFb && cfg ? `Firebase Live (${cfg.projectId})` : "Local Offline Cloud";
+  
+  const badge1 = document.getElementById("cloudStatusBadge");
+  const text1 = document.getElementById("cloudStatusText");
+  const badge2 = document.getElementById("fbStatusBadgeTab");
+  const text2 = document.getElementById("fbStatusTextTab");
+
+  if (badge1) {
+    badge1.className = isFb ? "cloud-pill" : "cloud-pill offline";
+    text1.textContent = text;
+  }
+  if (badge2) {
+    badge2.className = isFb ? "cloud-pill" : "cloud-pill offline";
+    text2.textContent = text;
+  }
+}
+
+// 1. Dashboard Inquiries Table
+function renderDashboardInquiries() {
+  const tbody = document.getElementById("dashboardInqTable");
+  const recent = inquiriesList.slice(0, 5);
+  if (!recent.length) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--mu);padding:24px">No inquiries received yet.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = recent.map(inq => `
+    <tr>
+      <td><strong>${inq.name}</strong></td>
+      <td><a href="tel:${inq.phone}" style="color:var(--br-light)">${inq.phone}</a></td>
+      <td>${inq.service}</td>
+      <td style="color:var(--mu);font-size:12px">${new Date(inq.timestamp).toLocaleDateString()}</td>
+      <td><span class="status-badge status-${(inq.status || 'new').toLowerCase()}">${inq.status || 'New'}</span></td>
+      <td>
+        <a class="btn btn-outline btn-sm" href="https://wa.me/${(inq.phone || '').replace(/[^0-9]/g, '')}" target="_blank">WhatsApp</a>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// 2. Projects Manager
+function renderProjectsTable() {
+  const tbody = document.getElementById("projectsTableBody");
+  const q = (document.getElementById("projectSearch").value || "").toLowerCase().trim();
+  const cat = document.getElementById("projectCatFilter").value;
+
+  const filtered = projectsList.filter(p => {
+    const matchCat = cat === "All" || p.category === cat;
+    const matchSearch = !q || p.title.toLowerCase().includes(q) || (p.loc && p.loc.toLowerCase().includes(q));
+    return matchCat && matchSearch;
+  });
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:24px">No projects found.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(p => `
+    <tr>
+      <td><img src="${p.img}" style="width:54px;height:38px;object-fit:cover;border-radius:4px"></td>
+      <td><strong>${p.title}</strong></td>
+      <td><span style="color:var(--br-light)">${p.category}</span></td>
+      <td>📍 ${p.loc || 'Ravindrapuri, UP'}</td>
+      <td>${p.year || '2026'}</td>
+      <td>${p.featured ? '★ Yes' : 'No'}</td>
+      <td>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="editProject('${p.id}')">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteProject('${p.id}')">Delete</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openNewProjectModal() {
+  document.getElementById("editProjId").value = "";
+  document.getElementById("projModalTitle").textContent = "Add New Architectural Project";
+  document.getElementById("projectForm").reset();
+  document.getElementById("projectModal").classList.add("active");
+}
+
+function closeProjectModal() {
+  document.getElementById("projectModal").classList.remove("active");
+}
+
+function setPresetImg(url) {
+  document.getElementById("pImg").value = url;
+}
+
+function editProject(id) {
+  const p = projectsList.find(item => item.id === id);
+  if (!p) return;
+  document.getElementById("editProjId").value = p.id;
+  document.getElementById("projModalTitle").textContent = "Edit Project: " + p.title;
+  document.getElementById("pTitle").value = p.title;
+  document.getElementById("pCategory").value = p.category;
+  document.getElementById("pLoc").value = p.loc || "Ravindrapuri, UP";
+  document.getElementById("pYear").value = p.year || "2026";
+  document.getElementById("pFeatured").value = p.featured ? "true" : "false";
+  document.getElementById("pImg").value = p.img;
+  document.getElementById("pTags").value = (p.tags || []).join(", ");
+  document.getElementById("pDesc").value = p.desc || "";
+  document.getElementById("projectModal").classList.add("active");
+}
+
+async function handleProjectSave(e) {
+  e.preventDefault();
+  const id = document.getElementById("editProjId").value;
+  const proj = {
+    id: id || undefined,
+    title: document.getElementById("pTitle").value,
+    category: document.getElementById("pCategory").value,
+    loc: document.getElementById("pLoc").value,
+    year: document.getElementById("pYear").value,
+    featured: document.getElementById("pFeatured").value === "true",
+    img: document.getElementById("pImg").value,
+    tags: document.getElementById("pTags").value.split(",").map(t => t.trim()).filter(Boolean),
+    desc: document.getElementById("pDesc").value
+  };
+
+  await window.DPAService.saveProject(proj);
+  closeProjectModal();
+  showToast("Project saved successfully!");
+  loadAdminData();
+}
+
+async function deleteProject(id) {
+  if (confirm("Are you sure you want to delete this project?")) {
+    await window.DPAService.deleteProject(id);
+    showToast("Project deleted.");
+    loadAdminData();
+  }
+}
+
+// 3. Inquiries Inbox
+function renderInquiriesTable() {
+  const tbody = document.getElementById("inquiriesTableBody");
+  const filter = document.getElementById("inquiryFilter").value;
+  const filtered = inquiriesList.filter(i => filter === "All" || i.status === filter);
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:24px">No inquiries found for this filter.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(inq => {
+    const cleanPhone = (inq.phone || '').replace(/[^0-9]/g, '');
+    return `
+      <tr>
+        <td><strong>${inq.name}</strong></td>
+        <td><a href="tel:${inq.phone}" style="color:var(--br-light);font-weight:600">${inq.phone}</a></td>
+        <td>${inq.service}</td>
+        <td style="max-width:240px;color:#9cb0a6">${inq.message || '—'}</td>
+        <td style="font-size:12px;color:var(--mu)">${new Date(inq.timestamp).toLocaleString()}</td>
+        <td>
+          <select style="padding:4px 8px;font-size:11.5px;width:auto" onchange="changeInquiryStatus('${inq.id}', this.value)">
+            <option value="New" ${inq.status === 'New' ? 'selected' : ''}>New</option>
+            <option value="Contacted" ${inq.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+            <option value="Completed" ${inq.status === 'Completed' ? 'selected' : ''}>Completed</option>
+          </select>
+        </td>
+        <td>
+          <div style="display:flex;gap:6px">
+            <a class="btn btn-outline btn-sm" href="https://wa.me/${cleanPhone}?text=Hi%20${encodeURIComponent(inq.name)},%20this%20is%20DPA%20CREATORS%20regarding%20your%20inquiry%20for%20${encodeURIComponent(inq.service)}" target="_blank">WhatsApp</a>
+            <button class="btn btn-sm btn-danger" onclick="deleteInquiryItem('${inq.id}')">✕</button>
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+async function changeInquiryStatus(id, newStatus) {
+  await window.DPAService.updateInquiryStatus(id, newStatus);
+  showToast(`Inquiry status updated to ${newStatus}`);
+  loadAdminData();
+}
+
+async function deleteInquiryItem(id) {
+  if (confirm("Delete this inquiry from inbox?")) {
+    await window.DPAService.deleteInquiry(id);
+    showToast("Inquiry deleted.");
+    loadAdminData();
+  }
+}
+
+// 4. Content Manager Form
+function renderContentForm() {
+  document.getElementById("fBrandName").value = siteSettings.brandName || "DPA CREATORS";
+  document.getElementById("fBrandSub").value = siteSettings.brandSubtitle || "ARCHITECT · RAVINDRAPURI, UP 233001";
+  document.getElementById("fHeroTag").value = siteSettings.tagline || "5.0 ★ (25 Reviews) Top Rated Architect · Ravindrapuri, UP";
+  document.getElementById("fHeroTitle").value = siteSettings.heroTitle || "";
+  document.getElementById("fHeroDesc").value = siteSettings.heroDesc || "";
+  document.getElementById("fPhone").value = siteSettings.phone || "088967 61919";
+  document.getElementById("fPhoneTel").value = siteSettings.phoneTel || "+918896761919";
+  document.getElementById("fAddress").value = siteSettings.address || "Ravindrapuri, Uttar Pradesh 233001";
+  document.getElementById("fHours").value = siteSettings.hours || "Open · Closes 8 PM";
+  document.getElementById("fRating").value = siteSettings.rating || "5.0";
+  document.getElementById("fReviewCount").value = siteSettings.reviewCount || "25";
+}
+
+async function saveSiteContentForm() {
+  siteSettings.brandName = document.getElementById("fBrandName").value;
+  siteSettings.brandSubtitle = document.getElementById("fBrandSub").value;
+  siteSettings.tagline = document.getElementById("fHeroTag").value;
+  siteSettings.heroTitle = document.getElementById("fHeroTitle").value;
+  siteSettings.heroDesc = document.getElementById("fHeroDesc").value;
+  siteSettings.phone = document.getElementById("fPhone").value;
+  siteSettings.phoneTel = document.getElementById("fPhoneTel").value;
+  siteSettings.address = document.getElementById("fAddress").value;
+  siteSettings.hours = document.getElementById("fHours").value;
+  siteSettings.rating = document.getElementById("fRating").value;
+  siteSettings.reviewCount = document.getElementById("fReviewCount").value;
+
+  await window.DPAService.saveSettings(siteSettings);
+  showToast("Website content updated successfully!");
+  loadAdminData();
+}
+
+// 5. Services Table
+function renderServicesTable() {
+  const tbody = document.getElementById("servicesTableBody");
+  tbody.innerHTML = servicesList.map((s, idx) => `
+    <tr>
+      <td style="font-size:20px">${s.icon}</td>
+      <td><strong>${s.name}</strong></td>
+      <td style="color:#9eb0a7">${s.desc}</td>
+    </tr>
+  `).join('');
+}
+
+// 6. Reviews Table
+function renderReviewsTable() {
+  const tbody = document.getElementById("reviewsTableBody");
+  tbody.innerHTML = reviewsList.map(r => `
+    <tr>
+      <td><strong>${r.author}</strong></td>
+      <td>📍 ${r.loc}</td>
+      <td style="color:#f59e0b">★★★★★</td>
+      <td style="color:#a6b9ae;max-width:320px">${r.quote}</td>
+      <td>
+        <button class="btn btn-sm btn-danger" onclick="deleteReviewItem('${r.id}')">Delete</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openNewReviewModal() {
+  document.getElementById("editRevId").value = "";
+  document.getElementById("reviewForm").reset();
+  document.getElementById("reviewModal").classList.add("active");
+}
+function closeReviewModal() {
+  document.getElementById("reviewModal").classList.remove("active");
+}
+async function handleReviewSave(e) {
+  e.preventDefault();
+  const rev = {
+    id: document.getElementById("editRevId").value || undefined,
+    author: document.getElementById("rAuthor").value,
+    loc: document.getElementById("rLoc").value,
+    quote: document.getElementById("rQuote").value,
+    stars: 5
+  };
+  await window.DPAService.saveReview(rev);
+  closeReviewModal();
+  showToast("Review saved.");
+  loadAdminData();
+}
+async function deleteReviewItem(id) {
+  if (confirm("Delete this review?")) {
+    await window.DPAService.deleteReview(id);
+    showToast("Review deleted.");
+    loadAdminData();
+  }
+}
+
+// 7. Firebase Cloud Form
+function renderFirebaseConfigForm() {
+  const cfg = window.DPAService.getFirebaseConfig();
+  if (cfg) {
+    document.getElementById("fbApiKey").value = cfg.apiKey || "";
+    document.getElementById("fbAuthDomain").value = cfg.authDomain || "";
+    document.getElementById("fbProjectId").value = cfg.projectId || "";
+    document.getElementById("fbStorageBucket").value = cfg.storageBucket || "";
+    document.getElementById("fbSenderId").value = cfg.messagingSenderId || "";
+    document.getElementById("fbAppId").value = cfg.appId || "";
+  }
+}
+
+function handleSaveFirebaseConfig(e) {
+  e.preventDefault();
+  const cfg = {
+    apiKey: document.getElementById("fbApiKey").value.trim(),
+    authDomain: document.getElementById("fbAuthDomain").value.trim(),
+    projectId: document.getElementById("fbProjectId").value.trim(),
+    storageBucket: document.getElementById("fbStorageBucket").value.trim(),
+    messagingSenderId: document.getElementById("fbSenderId").value.trim(),
+    appId: document.getElementById("fbAppId").value.trim()
+  };
+
+  window.DPAService.saveFirebaseConfig(cfg);
+  updateCloudBadge();
+  showToast("Firebase configuration saved! Attempting live connection...");
+}
+
+async function seedToFirestoreCloud() {
+  if (!window.DPAService.isFirebaseActive) {
+    alert("Please enter and save your Firebase API Key and Project ID first so Firestore can be accessed.");
+    return;
+  }
+  try {
+    showToast("Pushing all projects, services, settings & reviews to Firestore...");
+    await window.DPAService.seedAllToFirestore();
+    showToast("🎉 All data successfully populated in Google Firebase Firestore!");
+    loadAdminData();
+  } catch (e) {
+    alert("Error writing to Firestore: " + e.message);
+  }
+}
+
+function exportDataJson() {
+  const exportPayload = {
+    siteSettings,
+    projects: projectsList,
+    services: servicesList,
+    reviews: reviewsList,
+    inquiries: inquiriesList,
+    exportedAt: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(exportPayload, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `dpa-creators-backup-${Date.now()}.json`;
+  a.click();
+}
+
+// Initialize on page load
+document.addEventListener("DOMContentLoaded", () => {
+  checkAuth();
+  if (sessionStorage.getItem("dpa_admin_auth") === "true") {
+    loadAdminData();
+  }
+});
+</script>
+</body>
+</html>

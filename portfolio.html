@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architectural Portfolio &amp; 3D Renderings Archive | DPA CREATORS</title>
+<meta name="description" content="Explore the comprehensive architectural, 3D rendering, and luxury interior design portfolio by DPA CREATORS in Ravindrapuri, Uttar Pradesh 233001. Filter by 3D CGI, commercial, residential villas, and healthcare architecture.">
+<meta name="author" content="DPA CREATORS">
+<link rel="canonical" href="https://dpa-creators.vercel.app/portfolio.html">
+
+<!-- DPA Creators Architectural Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1713'/%3E%3Ccircle cx='32' cy='32' r='28' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.4'/%3E%3Ccircle cx='32' cy='32' r='24' stroke='%23dfc08a' stroke-width='0.75' fill='none' stroke-dasharray='2 2' stroke-opacity='0.4'/%3E%3Cpath d='M32 12L48 48H16L32 12Z' stroke='%23dfc08a' stroke-width='2.2' stroke-linejoin='round' fill='none'/%3E%3Cline x1='21' y1='36' x2='43' y2='36' stroke='%23dfc08a' stroke-width='1.8' stroke-linecap='round'/%3E%3Ctext x='32' y='32' font-family='system-ui,-apple-system,sans-serif' font-size='10' font-weight='800' fill='%23dfc08a' text-anchor='middle' letter-spacing='0.5'%3EDPA%3C/text%3E%3Ccircle cx='32' cy='12' r='2.5' fill='%23dfc08a'/%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<style>
+:root {
+  --g: #0b1713;
+  --g2: #12221b;
+  --g3: #1b2f26;
+  --g-glass: rgba(11, 23, 19, 0.94);
+  --br: #b88d4d;
+  --br-light: #dfc08a;
+  --br-glow: rgba(184, 141, 77, 0.28);
+  --m: #f8f6f2;
+  --m2: #eeeae0;
+  --st: #cfc9bd;
+  --ink: #101c17;
+  --bg: var(--g);
+  --tx: #e7ece9;
+  --mu: #93a39b;
+  --ln: rgba(223, 192, 138, 0.15);
+  --card-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.45);
+  --gold-grad: linear-gradient(135deg, #dfc08a 0%, #b88d4d 50%, #9a6f33 100%);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--tx);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  color: #fff;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+
+/* Sticky Header */
+#nv {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: var(--g-glass);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--ln);
+  transition: all 0.3s ease;
+}
+.brand { display: flex; flex-direction: column; }
+.brand .lg {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+.brand .loc {
+  font-size: 9.5px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--mu);
+  font-weight: 600;
+  margin-top: 1px;
+}
+.brand .loc-badge { color: var(--br-light); font-size: 7px; vertical-align: middle; }
+
+.nav-links { display: flex; gap: 26px; list-style: none; align-items: center; }
+.nav-links a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #cad6d0;
+  transition: color 0.2s ease;
+  letter-spacing: 0.3px;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--br-light); }
+
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--br-light);
+  background: rgba(184, 141, 77, 0.1);
+  border: 1px solid rgba(184, 141, 77, 0.28);
+  padding: 7px 14px;
+  border-radius: 30px;
+  transition: all 0.2s ease;
+}
+.nav-phone:hover {
+  background: rgba(184, 141, 77, 0.2);
+  border-color: var(--br-light);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--gold-grad);
+  color: #0b1713;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--br-glow);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--br-light);
+  border: 1px solid rgba(184, 141, 77, 0.4);
+}
+.btn-outline:hover {
+  background: rgba(184, 141, 77, 0.15);
+  border-color: var(--br-light);
+}
+
+/* Portfolio Hero */
+.pt-hero {
+  padding: 72px 0 40px;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(184, 141, 77, 0.12) 0%, transparent 70%);
+}
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--br-light);
+  background: rgba(184, 141, 77, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(184, 141, 77, 0.2);
+  margin-bottom: 16px;
+}
+.pt-hero h1 {
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.pt-hero h1 em { font-style: italic; color: var(--br-light); }
+.pt-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: var(--mu);
+  line-height: 1.65;
+}
+
+/* Controls Bar */
+.pt-controls {
+  margin: 40px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.pt-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pt-search-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+.pt-search-box input {
+  width: 100%;
+  padding: 11px 16px 11px 40px;
+  background: rgba(11, 23, 19, 0.85);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.pt-search-box input:focus { border-color: var(--br-light); box-shadow: 0 0 12px var(--br-glow); }
+.pt-search-box svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--mu);
+}
+.pt-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--mu);
+}
+.pt-sort select {
+  background: rgba(11, 23, 19, 0.85);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  border-radius: 6px;
+  color: #cad6d0;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Category Filters */
+.pt-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pt-filter-btn {
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #a6b8b0;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+}
+.pt-filter-btn:hover {
+  background: rgba(184, 141, 77, 0.15);
+  color: #fff;
+  border-color: rgba(184, 141, 77, 0.3);
+}
+.pt-filter-btn.active {
+  background: var(--gold-grad);
+  color: #0b1713;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+/* Portfolio Grid */
+.pt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 72px;
+}
+@media (max-width: 1024px) {
+  .pt-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .pt-grid { grid-template-columns: 1fr; }
+}
+
+.pt-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
+}
+.pt-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(223, 192, 138, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px var(--br-glow);
+}
+
+.pt-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: #111e19;
+}
+.pt-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.pt-card:hover .pt-card-img {
+  transform: scale(1.06);
+}
+.pt-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(11, 23, 19, 0.85);
+  border: 1px solid rgba(184, 141, 77, 0.4);
+  color: var(--br-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+}
+.pt-card-featured {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--gold-grad);
+  color: #0b1713;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.pt-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.pt-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--mu);
+  margin-bottom: 8px;
+}
+.pt-card-loc { display: flex; align-items: center; gap: 4px; }
+.pt-card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.pt-card-desc {
+  font-size: 13.5px;
+  color: #9cb0a6;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pt-card-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.pt-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  color: #8da398;
+}
+.pt-card-action {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--br-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  border-top: 1px solid var(--ln);
+  padding-top: 14px;
+}
+
+/* Lightbox Modal */
+.lb-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(5, 12, 10, 0.92);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+.lb-modal.active { display: flex; }
+.lb-dialog {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+.lb-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.2s;
+}
+.lb-close-btn:hover { background: var(--br); color: #000; }
+.lb-hero-img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  background: #000;
+}
+.lb-content { padding: 32px; }
+.lb-tag-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.lb-title { font-size: 32px; font-weight: 600; margin-bottom: 12px; }
+.lb-meta { display: flex; gap: 20px; font-size: 13px; color: var(--mu); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--ln); }
+.lb-desc { font-size: 15px; color: #b7c7be; line-height: 1.7; margin-bottom: 24px; }
+.lb-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Empty state */
+.pt-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--mu);
+  grid-column: 1 / -1;
+}
+
+/* Bottom CTA Strip */
+.pt-cta-strip {
+  background: radial-gradient(circle at 50% 50%, rgba(184, 141, 77, 0.18) 0%, rgba(18, 34, 27, 0.8) 100%);
+  border: 1px solid var(--ln);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+.pt-cta-strip h2 { font-size: 38px; margin-bottom: 14px; }
+.pt-cta-strip p { max-width: 600px; margin: 0 auto 24px; color: var(--mu); font-size: 16px; }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--ln);
+  padding: 32px 0;
+  font-size: 13px;
+  color: var(--mu);
+}
+.footer-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.admin-link {
+  color: var(--br-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  font-size: 12px;
+}
+.admin-link:hover { background: rgba(184, 141, 77, 0.15); border-color: var(--br-light); }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="nv">
+  <div class="brand">
+    <a class="lg" href="index.html">DPA CREATORS</a>
+    <span class="loc"><span class="loc-badge">●</span> ARCHITECT &middot; RAVINDRAPURI, UP 233001</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#services">Services (24)</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio &amp; Projects</a></li>
+    <li><a href="index.html#case">Before &amp; After</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-phone" href="tel:+918896761919">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <span>088967 61919</span>
+    </a>
+    <a class="btn" href="index.html#contact">Book Consultation</a>
+  </div>
+</nav>
+
+<!-- Main Container -->
+<main class="wrap">
+  <!-- Portfolio Hero -->
+  <header class="pt-hero">
+    <span class="sec-tag">Architectural Masterworks Archive</span>
+    <h1>Featured Architectural &amp; <em>3D Rendering Projects</em></h1>
+    <p>
+      An extensive showcase of our ground-up custom residences, commercial healthcare developments, photorealistic 3D elevations, and turnkey interior design construction executed with divine precision.
+    </p>
+  </header>
+
+  <!-- Controls Bar -->
+  <section class="pt-controls">
+    <div class="pt-top-bar">
+      <div class="pt-search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search projects by keyword, room type, or location...">
+      </div>
+      <div class="pt-sort">
+        <label for="sortSelect">Sort By:</label>
+        <select id="sortSelect">
+          <option value="featured">Featured First</option>
+          <option value="latest">Newest First</option>
+          <option value="alpha">Alphabetical (A-Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="pt-filters" id="filtersWrap">
+      <button class="pt-filter-btn active" data-cat="All">All Projects</button>
+      <button class="pt-filter-btn" data-cat="3D Renderings">3D Renderings &amp; CGI</button>
+      <button class="pt-filter-btn" data-cat="Architecture">Architecture</button>
+      <button class="pt-filter-btn" data-cat="Interior Design">Interior Design</button>
+      <button class="pt-filter-btn" data-cat="Commercial">Commercial &amp; Healthcare</button>
+      <button class="pt-filter-btn" data-cat="Residential">Residential Villas</button>
+    </div>
+  </section>
+
+  <!-- Project Grid -->
+  <div class="pt-grid" id="projectsGrid">
+    <!-- Rendered dynamically -->
+  </div>
+
+  <!-- Bottom CTA Strip -->
+  <section class="pt-cta-strip">
+    <h2>Envisioning an architectural landmark?</h2>
+    <p>
+      Connect directly with DPA CREATORS in Ravindrapuri, Uttar Pradesh. From site master planning to photorealistic 3D visualization and turnkey execution, our architects are ready.
+    </p>
+    <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+      <a class="btn" href="index.html#contact">Schedule Studio Consultation &rarr;</a>
+      <a class="btn btn-outline" href="https://wa.me/918896761919?text=Hi%20DPA%20CREATORS,%20I%20am%20interested%20in%20discussing%20an%20architectural%20project" target="_blank" rel="noopener">
+        Chat with Architect on WhatsApp
+      </a>
+    </div>
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lb-modal" id="lbModal" role="dialog" aria-modal="true">
+  <div class="lb-dialog">
+    <button class="lb-close-btn" id="lbClose" aria-label="Close dialog">✕</button>
+    <img id="lbModalImg" class="lb-hero-img" src="" alt="Project Preview">
+    <div class="lb-content">
+      <div class="lb-tag-row" id="lbModalTags"></div>
+      <h2 class="lb-title" id="lbModalTitle">Project Title</h2>
+      <div class="lb-meta" id="lbModalMeta"></div>
+      <p class="lb-desc" id="lbModalDesc">Detailed project description</p>
+      <div class="lb-actions">
+        <a class="btn" id="lbWaBtn" href="#" target="_blank" rel="noopener">
+          Inquire About This Design on WhatsApp &rarr;
+        </a>
+        <a class="btn btn-outline" href="index.html#contact">Book Site Consultation</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap footer-wrap">
+    <div>
+      <strong>&copy; DPA CREATORS, Ravindrapuri, Uttar Pradesh 233001.</strong> All Rights Reserved.
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <a class="admin-link" href="admin.html">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        Admin Portal
+      </a>
+      <span>Design &amp; Technology by <a href="https://www.theluxestudio.in/" target="_blank" rel="noopener" style="color:var(--br-light)">LuxeStudio</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let allProjects = [];
+let currentCategory = 'All';
+let searchQuery = '';
+let currentSort = 'featured';
+
+async function initPortfolio() {
+  allProjects = await window.DPAService.getProjects();
+  renderProjects();
+}
+
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  let filtered = allProjects.filter(p => {
+    const matchesCat = currentCategory === 'All' || p.category.toLowerCase() === currentCategory.toLowerCase();
+    const query = searchQuery.toLowerCase().trim();
+    const matchesSearch = !query || 
+      p.title.toLowerCase().includes(query) || 
+      (p.desc && p.desc.toLowerCase().includes(query)) ||
+      (p.loc && p.loc.toLowerCase().includes(query)) ||
+      (p.tags && p.tags.some(t => t.toLowerCase().includes(query)));
+    return matchesCat && matchesSearch;
+  });
+
+  // Sort
+  if (currentSort === 'featured') {
+    filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+  } else if (currentSort === 'latest') {
+    filtered.sort((a, b) => (b.year || '0').localeCompare(a.year || '0'));
+  } else if (currentSort === 'alpha') {
+    filtered.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="pt-empty">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:12px;opacity:0.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>No projects found matching "${searchQuery}"</h3>
+        <p style="margin-top:6px">Try clearing search filters or selecting another category.</p>
+        <button class="btn btn-outline" style="margin-top:16px" onclick="clearFilters()">Reset Filters</button>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <article class="pt-card" onclick="openProjectModal('${p.id}')">
+      <div class="pt-card-img-wrap">
+        <img class="pt-card-img" src="${p.img}" alt="${p.title}" loading="lazy">
+        <span class="pt-card-badge">${p.category}</span>
+        ${p.featured ? '<span class="pt-card-featured">★ Featured</span>' : ''}
+      </div>
+      <div class="pt-card-body">
+        <div class="pt-card-meta">
+          <span class="pt-card-loc">📍 ${p.loc || 'Ravindrapuri, UP'}</span>
+          <span>${p.year ? '• ' + p.year : ''}</span>
+        </div>
+        <h3 class="pt-card-title">${p.title}</h3>
+        <p class="pt-card-desc">${p.desc || 'Turnkey architectural planning, structural engineering, and luxury finish execution by DPA CREATORS.'}</p>
+        <div class="pt-card-tags">
+          ${(p.tags || []).map(t => `<span class="pt-tag">${t}</span>`).join('')}
+        </div>
+        <div class="pt-card-action">
+          <span>View Blueprint &amp; 3D Walkthrough</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function clearFilters() {
+  document.getElementById('searchInput').value = '';
+  searchQuery = '';
+  currentCategory = 'All';
+  document.querySelectorAll('.pt-filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === 'All');
+  });
+  renderProjects();
+}
+
+// Filters Click
+document.getElementById('filtersWrap').addEventListener('click', e => {
+  if (e.target.classList.contains('pt-filter-btn')) {
+    document.querySelectorAll('.pt-filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentCategory = e.target.dataset.cat;
+    renderProjects();
+  }
+});
+
+// Search Input
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderProjects();
+});
+
+// Sort Select
+document.getElementById('sortSelect').addEventListener('change', e => {
+  currentSort = e.target.value;
+  renderProjects();
+});
+
+// Modal Logic
+function openProjectModal(id) {
+  const p = allProjects.find(item => item.id === id);
+  if (!p) return;
+
+  document.getElementById('lbModalImg').src = p.img;
+  document.getElementById('lbModalTitle').textContent = p.title;
+  document.getElementById('lbModalDesc').textContent = p.desc || 'Custom architectural blueprint and 3D rendering executed with complete supervision by DPA CREATORS.';
+  document.getElementById('lbModalMeta').innerHTML = `
+    <span>📍 Location: <strong>${p.loc || 'Ravindrapuri, UP'}</strong></span>
+    <span>🏛️ Category: <strong>${p.category}</strong></span>
+    <span>📅 Completed: <strong>${p.year || '2026'}</strong></span>
+  `;
+  document.getElementById('lbModalTags').innerHTML = `
+    <span class="pt-card-badge" style="position:static">${p.category}</span>
+    ${p.featured ? '<span class="pt-card-featured" style="position:static">Featured Work</span>' : ''}
+    ${(p.tags || []).map(t => `<span class="pt-tag">${t}</span>`).join('')}
+  `;
+
+  const waMsg = encodeURIComponent(`Hi DPA CREATORS, I am reviewing your portfolio project "${p.title}" (${p.category} in ${p.loc}) and would like to discuss a similar project.`);
+  document.getElementById('lbWaBtn').href = `https://wa.me/918896761919?text=${waMsg}`;
+
+  document.getElementById('lbModal').classList.add('active');
+}
+
+document.getElementById('lbClose').onclick = () => document.getElementById('lbModal').classList.remove('active');
+document.getElementById('lbModal').onclick = e => {
+  if (e.target.id === 'lbModal') document.getElementById('lbModal').classList.remove('active');
+};
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lbModal').classList.remove('active');
+});
+
+document.addEventListener('DOMContentLoaded', initPortfolio);
+</script>
+</body>
+</html>
