@@ -495,6 +495,90 @@ window.DPAService = {
       await this.db.collection("inquiries").doc(inq.id).set(inq);
     }
     return true;
+  },
+
+  // CLOUDINARY CONFIG & DIRECT UPLOAD
+  getCloudinaryConfig() {
+    try {
+      const cfg = localStorage.getItem("dpa_cloudinary_config");
+      return cfg ? JSON.parse(cfg) : { cloudName: "", uploadPreset: "" };
+    } catch(e) {
+      return { cloudName: "", uploadPreset: "" };
+    }
+  },
+
+  saveCloudinaryConfig(cfg) {
+    localStorage.setItem("dpa_cloudinary_config", JSON.stringify(cfg));
+    return cfg;
+  },
+
+  async uploadImage(file, onProgress) {
+    const cfg = this.getCloudinaryConfig();
+    
+    // If Cloudinary credentials are provided, upload directly to Cloudinary
+    if (cfg && cfg.cloudName && cfg.uploadPreset) {
+      const url = `https://api.cloudinary.com/v1_1/${cfg.cloudName.trim()}/image/upload`;
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", cfg.uploadPreset.trim());
+      formData.append("folder", "dpa_creators_portfolio");
+
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        
+        if (xhr.upload && onProgress) {
+          xhr.upload.onprogress = e => {
+            if (e.lengthComputable) {
+              const percent = Math.round((e.loaded / e.total) * 100);
+              onProgress(percent);
+            }
+          };
+        }
+
+        xhr.onload = () => {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            try {
+              const res = JSON.parse(xhr.responseText);
+              // Automatic Cloudinary optimization: f_auto,q_auto for fastest loading
+              const optimizedUrl = res.secure_url.replace("/upload/", "/upload/f_auto,q_auto/");
+              resolve({
+                url: optimizedUrl,
+                rawUrl: res.secure_url,
+                publicId: res.public_id,
+                source: "cloudinary"
+              });
+            } catch(err) {
+              reject(new Error("Invalid response from Cloudinary"));
+            }
+          } else {
+            let errMsg = "Cloudinary upload failed";
+            try {
+              const errData = JSON.parse(xhr.responseText);
+              if (errData.error && errData.error.message) errMsg = errData.error.message;
+            } catch(e) {}
+            reject(new Error(errMsg));
+          }
+        };
+
+        xhr.onerror = () => reject(new Error("Network error during Cloudinary upload"));
+        xhr.send(formData);
+      });
+    }
+
+    // Fallback if Cloudinary credentials not yet entered
+    return new Promise((resolve) => {
+      if (onProgress) onProgress(100);
+      const reader = new FileReader();
+      reader.onload = e => {
+        resolve({
+          url: e.target.result,
+          source: "local_preview",
+          note: "Cloudinary credentials not set yet. Saved as local preview. Once you add your Cloud Name & Upload Preset in Cloud Settings, future uploads will stream directly to Cloudinary CDN!"
+        });
+      };
+      reader.readAsDataURL(file);
+    });
   }
 };
 
