@@ -11,7 +11,7 @@ const VJI_INITIAL_DATA = {
     brandSubtitle: "INTERIOR DESIGNER · TELIYAGANJ, MIRZAPUR, UP 231001",
     tagline: "5.0 ★ (21 Reviews) Top Rated Interior Designer · Mirzapur, UP",
     heroTitle: "Exquisite interior spaces crafted with dedication, premium quality & timeless elegance.",
-    heroDesc: "Vishwakarma Ji Interiors delivers end-to-end luxury interior design, bespoke bedroom suites, modular kitchens, artistic false ceilings, and turnkey execution in Mirzapur, Uttar Pradesh 231001 and Mumbai. Led with devotion by founder Shivam.",
+    heroDesc: "Vishwakarma Ji Interiors delivers end-to-end luxury interior design, bespoke bedroom suites, modular kitchens, artistic false ceilings, and turnkey execution in Mirzapur and across all of Uttar Pradesh. Studio located in Teliyaganj, Mirzapur, UP 231001, led with devotion by founder Shivam.",
     phone: "079052 02019",
     phoneTel: "+917905202019",
     address: "Sadbhavna nagar, Surekapuram Colony, Teliyaganj, Mirzapur, Uttar Pradesh 231001",
@@ -143,7 +143,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_8",
       title: "Turnkey Luxury Villa Interior & Complete Home Decor",
       category: "Turnkey Interior",
-      loc: "Serves Mumbai & Mirzapur",
+      loc: "Mirzapur & All Uttar Pradesh",
       img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
