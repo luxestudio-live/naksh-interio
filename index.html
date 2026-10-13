@@ -2163,6 +2163,21 @@ footer {
   </div>
 </div>
 
+<script>
+  (function() {
+    function hideLd() {
+      var el = document.getElementById('ld');
+      if (el && !el.classList.contains('go')) {
+        el.classList.add('go');
+        setTimeout(function() { el.style.display = 'none'; }, 600);
+      }
+    }
+    if (document.readyState === 'complete') hideLd();
+    else window.addEventListener('load', hideLd);
+    setTimeout(hideLd, 1200);
+  })();
+</script>
+
 <!-- Header Navigation -->
 <nav id="nv">
   <div class="brand">
@@ -3000,27 +3015,6 @@ document.querySelectorAll('#estHdw button').forEach(btn => {
   };
 });
 updateEstimator();
-  };
-});
-
-document.querySelectorAll('#estTier button').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('#estTier button').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    curTierMult = parseFloat(btn.dataset.tierMult);
-    updateEstimator();
-  };
-});
-
-document.querySelectorAll('#estHdw button').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('#estHdw button').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    curHdwAdd = parseFloat(btn.dataset.hdwAdd);
-    updateEstimator();
-  };
-});
-updateEstimator();
 
 // PORTFOLIO GALLERY & LIGHTBOX
 const projectsData = [
@@ -3076,7 +3070,6 @@ const projectsData = [
 ];
 
 const categories = ['All', 'Bedroom Design', 'False Ceiling & Decor', 'Living Room', 'Modular Kitchen', 'Wardrobes & Decor', 'Turnkey Interior'];
-const categoriesTemp = ['All', 'Architecture', '3D Renderings', 'Interior Design', 'Commercial', 'Residential'];
 let currentCat = 'All';
 
 function renderGallery() {
@@ -3253,6 +3246,21 @@ const observer = new IntersectionObserver((entries, obs) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.rise').forEach(el => observer.observe(el));
+</script>
+<script>
+// Immediate inline preloader dismiss failsafe
+(function() {
+  function dismiss() {
+    var l = document.getElementById('ld');
+    if (l) {
+      l.classList.add('go');
+      setTimeout(function() { l.style.display = 'none'; }, 500);
+    }
+  }
+  if (document.readyState === 'complete') dismiss();
+  else window.addEventListener('load', dismiss);
+  setTimeout(dismiss, 1200);
+})();
 </script>
 </body>
 </html>
