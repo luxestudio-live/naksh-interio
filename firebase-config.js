@@ -245,7 +245,7 @@ window.DPAService = {
     }
 
     // Ensure Local Storage has initial seed data with new Vishwakarma Ji Interiors branding
-    if (!localStorage.getItem("vji_data_seeded_v1")) {
+    if (!localStorage.getItem("vji_data_seeded_v2")) {
       this.seedLocalData();
     }
   },
@@ -279,7 +279,7 @@ window.DPAService = {
     localStorage.setItem("dpa_reviews", JSON.stringify(VJI_INITIAL_DATA.reviews));
     localStorage.setItem("dpa_inquiries", JSON.stringify(VJI_INITIAL_DATA.inquiries));
 
-    localStorage.setItem("vji_data_seeded_v1", "true");
+    localStorage.setItem("vji_data_seeded_v2", "true");
     localStorage.setItem("dpa_data_seeded", "true");
   },
 
@@ -337,8 +337,11 @@ window.DPAService = {
       if (!gallery) {
         gallery = p.img ? [p.img] : [];
       }
+      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Mirzapur, UP');
+      if (/mumbai/i.test(loc)) loc = 'Mirzapur & All Uttar Pradesh';
       return {
         ...p,
+        loc: loc,
         images: gallery,
         img: p.img || (gallery[0] || "")
       };

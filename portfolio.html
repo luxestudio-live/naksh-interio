@@ -772,6 +772,11 @@ async function initPortfolio() {
   setupTouchSwipe();
 }
 
+function formatLocation(loc) {
+  if (!loc) return 'Teliyaganj, Mirzapur';
+  return loc.replace(/mumbai/gi, 'All Uttar Pradesh').replace(/Serves All Uttar Pradesh & Mirzapur/gi, 'Mirzapur & All Uttar Pradesh');
+}
+
 function renderProjects() {
   const grid = document.getElementById('projectsGrid');
   let filtered = allProjects.filter(p => {
@@ -816,7 +821,7 @@ function renderProjects() {
       </div>
       <div class="pt-card-body">
         <div class="pt-card-meta">
-          <span class="pt-card-loc">📍 ${p.loc || 'Teliyaganj, Mirzapur'}</span>
+          <span class="pt-card-loc">📍 ${formatLocation(p.loc)}</span>
           <span>${p.year ? '• ' + p.year : ''}</span>
         </div>
         <h3 class="pt-card-title">${p.title}</h3>
@@ -876,7 +881,7 @@ function openProjectModal(id) {
   document.getElementById('lbModalTitle').textContent = p.title;
   document.getElementById('lbModalDesc').textContent = p.desc || 'Custom interior plan and finish executed with complete personal supervision by Shivam at Vishwakarma Ji Interiors.';
   document.getElementById('lbModalMeta').innerHTML = `
-    <span>📍 Location: <strong>${p.loc || 'Teliyaganj, Mirzapur'}</strong></span>
+    <span>📍 Location: <strong>${formatLocation(p.loc)}</strong></span>
     <span>🏛️ Category: <strong>${p.category}</strong></span>
     <span>📅 Completed: <strong>${p.year || '2026'}</strong></span>
   `;
@@ -886,7 +891,7 @@ function openProjectModal(id) {
     ${(p.tags || []).map(t => `<span class="pt-tag">${t}</span>`).join('')}
   `;
 
-  const waMsg = encodeURIComponent(`Hi Vishwakarma Ji Interiors, I am reviewing your portfolio project "${p.title}" (${p.category} in ${p.loc}) and would like to discuss a similar project.`);
+  const waMsg = encodeURIComponent(`Hi Vishwakarma Ji Interiors, I am reviewing your portfolio project "${p.title}" (${p.category} in ${formatLocation(p.loc)}) and would like to discuss a similar project.`);
   document.getElementById('lbWaBtn').href = `https://wa.me/917905202019?text=${waMsg}`;
 
   renderModalCarousel();
