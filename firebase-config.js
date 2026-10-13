@@ -1,70 +1,70 @@
 /**
- * DPA CREATORS - Firebase Cloud Integration & Data Service
+ * Vishwakarma Ji Interiors - Firebase Cloud Integration & Data Service
  * Provides Firestore sync, Firebase Auth, and robust local caching for all website components.
+ * Led by founder Shivam · Sadbhavna nagar, Surekapuram Colony, Teliyaganj, Mirzapur, UP 231001
  */
 
-// Default Seed Data for DPA CREATORS
-const DPA_INITIAL_DATA = {
+// Default Seed Data for Vishwakarma Ji Interiors
+const VJI_INITIAL_DATA = {
   siteSettings: {
-    brandName: "DPA CREATORS",
-    brandSubtitle: "ARCHITECT · RAVINDRAPURI, UP 233001",
-    tagline: "5.0 ★ (25 Reviews) Top Rated Architect · Ravindrapuri, UP",
-    heroTitle: "Visionary architecture & interiors crafted with structural mastery & elegance.",
-    heroDesc: "DPA CREATORS delivers end-to-end architectural engineering, photorealistic 3D renderings, turnkey interior design construction, and city planning in Ravindrapuri, Uttar Pradesh 233001. From custom home design and building code analysis to adaptive reuse and commercial developments.",
-    phone: "088967 61919",
-    phoneTel: "+918896761919",
-    address: "Ravindrapuri, Uttar Pradesh 233001 (Lanka area)",
-    mapsQuery: "DPA+Creators+Ravindrapuri+Uttar+Pradesh+233001",
-    hours: "Open · Closes 8 PM",
+    brandName: "Vishwakarma Ji Interiors",
+    brandSubtitle: "INTERIOR DESIGNER · TELIYAGANJ, MIRZAPUR, UP 231001",
+    tagline: "5.0 ★ (21 Reviews) Top Rated Interior Designer · Mirzapur, UP",
+    heroTitle: "Exquisite interior spaces crafted with dedication, premium quality & timeless elegance.",
+    heroDesc: "Vishwakarma Ji Interiors delivers end-to-end luxury interior design, bespoke bedroom suites, modular kitchens, artistic false ceilings, and turnkey execution in Mirzapur, Uttar Pradesh 231001 and Mumbai. Led with devotion by founder Shivam.",
+    phone: "079052 02019",
+    phoneTel: "+917905202019",
+    address: "Sadbhavna nagar, Surekapuram Colony, Teliyaganj, Mirzapur, Uttar Pradesh 231001",
+    mapsQuery: "Vishwakarma+Ji+Interiors+Sadbhavna+nagar+Surekapuram+Colony+Teliyaganj+Mirzapur+Uttar+Pradesh+231001",
+    hours: "Open · Closes 10 pm",
     rating: "5.0",
-    reviewCount: "25",
+    reviewCount: "21",
     stats: [
-      { num: "5.0", sup: "★", label: "Google Rating from 25 Verified Clients" },
-      { num: "24", sup: "+", label: "Architectural, 3D & Interior Services" },
-      { num: "8", sup: "PM", label: "Open Daily · Closes 8 PM for Consultations" },
-      { num: "100", sup: "%", label: "3D Photoreal to Construction Fidelity" },
-      { num: "A-Z", sup: "", label: "Zoning, Permitting, Engineering & Build" }
+      { num: "5.0", sup: "★", label: "Google Rating from 21 Verified Reviews" },
+      { num: "12", sup: "+", label: "Specialized Interior Design Services" },
+      { num: "10", sup: "PM", label: "Open Daily · Closes 10 PM for Consultations" },
+      { num: "100", sup: "%", label: "Dedication, Punctuality & Superior Quality" },
+      { num: "A-Z", sup: "", label: "Design, False Ceiling, Woodwork & Styling" }
     ]
   },
   projects: [
     {
       id: "proj_1",
-      title: "Photorealistic 3D Villa Rendering & Elevation",
-      category: "3D Renderings",
-      loc: "Ravindrapuri, UP",
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+      title: "Designer Gypsum False Ceiling & Backlit CNC Jali",
+      category: "False Ceiling & Decor",
+      loc: "Teliyaganj, Mirzapur",
+      img: "images/living_tv_unit.jpg",
       images: [
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1400&q=80"
+        "images/living_tv_unit.jpg",
+        "images/bedroom_suite.jpg",
+        "images/kitchen_walnut.jpg"
       ],
       featured: true,
       year: "2026",
-      desc: "Ultra-luxury modern residence featuring cantilevered steel volumes, expansive double-height glazing, dynamic solar shading louvers, and bespoke exterior landscape architecture designed and rendered in photorealistic CGI.",
-      tags: ["3D CGI", "Villa Architecture", "Daylight Simulation"]
+      desc: "Artistic multi-tier wooden and gypsum false ceiling featuring precision laser-cut geometric CNC jali fretwork with cobalt blue ambient backlighting, warm 3000K peripheral cove illumination, and gold ceiling fans.",
+      tags: ["False Ceiling", "CNC Jali Lighting", "Ambient Cove"]
     },
     {
       id: "proj_2",
-      title: "Modern Healthcare Suite & Architectural Interior",
-      category: "Commercial",
-      loc: "Lanka, Ravindrapuri, UP",
-      img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80",
+      title: "Master Bedroom Suite with Painted Botanical Mural & Curved Headboard",
+      category: "Bedroom Design",
+      loc: "Sadbhavna Nagar, Mirzapur",
+      img: "images/bedroom_suite.jpg",
       images: [
-        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=1400&q=80"
+        "images/bedroom_suite.jpg",
+        "images/walkin_wardrobe.jpg",
+        "images/living_tv_unit.jpg"
       ],
       featured: true,
       year: "2026",
-      desc: "Comprehensive hospital suite architectural design with medical gas conduit integration, antibacterial surfaces, acoustic isolation walls, ergonomic doctor stations, and serene patient recovery spaces.",
-      tags: ["Healthcare", "Commercial Project", "Acoustic MEP"]
+      desc: "Bespoke master suite with arched wall niche featuring vibrant hand-painted botanical murals, plush dual-tone upholstered headboard, integrated LED perimeter mood lighting, and tailored soft furnishings.",
+      tags: ["Bedroom Design", "Custom Wall Art", "Mood Lighting"]
     },
     {
       id: "proj_3",
-      title: "Italian Statuario Marble TV Lounge & Living Architecture",
-      category: "Interior Design",
-      loc: "Ravindrapuri, Uttar Pradesh",
+      title: "Italian Statuario Marble TV Lounge & Fluted Paneling",
+      category: "Living Room",
+      loc: "Surekapuram Colony, Mirzapur",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -72,16 +72,16 @@ const DPA_INITIAL_DATA = {
         "images/bedroom_suite.jpg",
         "images/walkin_wardrobe.jpg"
       ],
-      featured: false,
+      featured: true,
       year: "2026",
-      desc: "Seamless full-height Statuario marble book-matched wall paneling, acoustic fluted timber battens, integrated 3000K indirect LED profiles, and bespoke walnut media cabinetry.",
-      tags: ["Living Room", "Statuario Marble", "Acoustic Paneling"]
+      desc: "Seamless full-height Statuario marble book-matched feature wall, acoustic fluted timber louvers, integrated 3000K indirect LED profiles, and floating smoked walnut entertainment cabinetry.",
+      tags: ["Living Room", "Statuario Marble", "TV Console"]
     },
     {
       id: "proj_4",
-      title: "Contemporary Walnut & Quartz Modular Kitchen",
-      category: "Interior Design",
-      loc: "Ravindrapuri, UP",
+      title: "Contemporary Smoked Walnut & Quartz Modular Kitchen",
+      category: "Modular Kitchen",
+      loc: "Mirzapur, UP",
       img: "images/kitchen_walnut.jpg",
       images: [
         "images/kitchen_walnut.jpg",
@@ -95,41 +95,25 @@ const DPA_INITIAL_DATA = {
     },
     {
       id: "proj_5",
-      title: "Custom Luxury Villa & Landscape Architecture",
-      category: "Architecture",
-      loc: "Uttar Pradesh 233001",
-      img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
-      images: [
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=80"
-      ],
-      featured: true,
-      year: "2025",
-      desc: "Ground-up contemporary architectural construction with climate-responsive orientation, RCC frame engineering, rooftop terrace gardens, and seamless indoor-outdoor courtyards.",
-      tags: ["Custom Home", "General Construction", "Zoning Sanctions"]
-    },
-    {
-      id: "proj_6",
-      title: "Master Bedroom Suite with Fluted Architectural Paneling",
-      category: "Residential",
-      loc: "Ravindrapuri, UP",
+      title: "Luxury Bedroom Suite with Halo Mirror & Fluted Vanity",
+      category: "Bedroom Design",
+      loc: "Teliyaganj, Mirzapur",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
         "images/walkin_wardrobe.jpg",
         "images/living_tv_unit.jpg"
       ],
-      featured: false,
+      featured: true,
       year: "2025",
-      desc: "Bespoke master suite with fluted wood headboard wall, acoustic fabric paneling, cove lighting controls, and dedicated reading nook overlooking private garden greenery.",
-      tags: ["Master Suite", "Residential A/C", "Custom Joinery"]
+      desc: "Elegantly detailed bedroom sanctuary with vertical fluted wall paneling, halo illuminated vanity ring mirror, integrated floating dressing table, and ambient warm ceiling cove illumination.",
+      tags: ["Bedroom Design", "Vanity Station", "Fluted Paneling"]
     },
     {
-      id: "proj_7",
-      title: "Floor-to-Ceiling Tinted Glass Wardrobes & Dressing Suite",
-      category: "Interior Design",
-      loc: "Ravindrapuri, UP",
+      id: "proj_6",
+      title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes",
+      category: "Wardrobes & Decor",
+      loc: "Surekapuram Colony, Mirzapur",
       img: "images/walkin_wardrobe.jpg",
       images: [
         "images/walkin_wardrobe.jpg",
@@ -141,91 +125,98 @@ const DPA_INITIAL_DATA = {
       tags: ["Walk-in Closet", "Glass Wardrobe", "LED Joinery"]
     },
     {
-      id: "proj_8",
-      title: "Civic Masterplan & Commercial Retail Complex",
-      category: "Commercial",
-      loc: "Ravindrapuri Commercial Corridor, UP",
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
+      id: "proj_7",
+      title: "Sophisticated Dining Suite & Luxury Chandeliers",
+      category: "Dining Room Design",
+      loc: "Mirzapur, UP",
+      img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
       images: [
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
-        "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1400&q=80"
+        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
+        "images/kitchen_walnut.jpg"
+      ],
+      featured: false,
+      year: "2025",
+      desc: "Opulent dining room design with sintered stone dining table, sculptural brass pendant lighting, custom bar buffet credenza, and curated artwork.",
+      tags: ["Dining Room", "Custom Art", "Pendant Lighting"]
+    },
+    {
+      id: "proj_8",
+      title: "Turnkey Luxury Villa Interior & Complete Home Decor",
+      category: "Turnkey Interior",
+      loc: "Serves Mumbai & Mirzapur",
+      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+      images: [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+        "images/living_tv_unit.jpg",
+        "images/bedroom_suite.jpg"
       ],
       featured: true,
       year: "2026",
-      desc: "Site master planning and commercial facade engineering for a multi-story retail and corporate business center featuring high-performance double glazed curtain walls and pedestrian plazas.",
-      tags: ["Commercial", "City Planning", "Site Masterplan"]
+      desc: "Full turnkey interior transformation featuring complete false ceilings, customized modular carpentry, designer bathrooms, luxury curtains, and personalized styling executed on schedule.",
+      tags: ["Turnkey Interior", "Home Decor", "Luxury Residence"]
     }
   ],
   services: [
-    { name: "Architect", icon: "🏛️", desc: "Registered architectural leadership, comprehensive blueprint development & master design" },
-    { name: "3D architectural renderings", icon: "📐", desc: "Photorealistic 3D exterior elevations, interior renders & virtual CGI walkthroughs" },
-    { name: "Architectural design services", icon: "📏", desc: "Concept schematics, detailed spatial layouts to structural working blueprints" },
-    { name: "Architectural engineering services", icon: "⚙️", desc: "Civil calculations, MEP engineering, structural integrity & safety analyses" },
-    { name: "Adaptive reuse and historical renovation services", icon: "🏺", desc: "Preserving heritage facades while transforming structures for contemporary utility" },
-    { name: "Interior design", icon: "✨", desc: "Bespoke aesthetic curation, material palettes, millwork & sensory spatial styling" },
-    { name: "Home building and renovations", icon: "🏡", desc: "Turnkey residential construction, structural expansions & high-end remodeling" },
-    { name: "Residential A/C", icon: "❄️", desc: "Seamless climate control engineering, VRV/VRF ducting & concealed ventilation" },
-    { name: "Supervision of design execution", icon: "🔍", desc: "Meticulous on-site architectural audits ensuring 100% fidelity to blueprints" },
-    { name: "Custom home design", icon: "🏰", desc: "Tailor-made luxury residences crafted to personal lifestyle, sunlight & ergonomics" },
-    { name: "Project management", icon: "📊", desc: "Turnkey timeline stewardship, procurement coordination & budget control" },
-    { name: "Planning and zoning approval assistance", icon: "📑", desc: "Municipal documentation, zoning compliance & regulatory body approvals" },
-    { name: "Building code analysis and permit coordination", icon: "📋", desc: "Comprehensive safety bylaws analysis, sanctions & municipal permit filings" },
-    { name: "Architectural consultation", icon: "🤝", desc: "Expert advisory, site feasibility analysis & spatial optimization sessions" },
-    { name: "Site master planning", icon: "🗺️", desc: "Macro land-use strategy, vehicular circulation, topography & landscape integration" },
-    { name: "General construction", icon: "🏗️", desc: "End-to-end civil masonry, RCC framing, premium material sourcing & build execution" },
-    { name: "Architectural Projects", icon: "🏢", desc: "Turnkey commercial, institutional, residential & healthcare design complexes" },
-    { name: "Architecture Interior", icon: "🛋️", desc: "Seamless harmony fusing external structural forms with intimate interior spaces" },
-    { name: "Architecture Interior Design", icon: "🎨", desc: "Holistic architectural discipline blending structure, joinery, lighting & art" },
-    { name: "City Planning", icon: "🏙️", desc: "Urban density planning, community layout, infrastructure & civic zoning strategies" },
-    { name: "Commercial Projects", icon: "🏬", desc: "Corporate headquarters, retail flagships, medical clinics & hospitality venues" },
-    { name: "Design Construction", icon: "🛠️", desc: "Unified design-build methodology with zero friction between sketch and build" },
-    { name: "Interior Design Construction", icon: "🔨", desc: "Civil alterations, bespoke cabinetry, flooring, electrical & final detailing" },
-    { name: "Interior Designing", icon: "🪄", desc: "Mood curation, custom furniture, lighting accents, textures & refined ambiance" }
+    { name: "Bathroom design", icon: "🛁", desc: "Luxury sanitary fittings, designer wall tiles, custom vanity counters & ambient illumination" },
+    { name: "Bedroom design", icon: "🛏️", desc: "Bespoke upholstered headboards, fluted wall accents, warm cove lighting & cozy layouts" },
+    { name: "Custom art selection", icon: "🎨", desc: "Curated wall murals, bespoke art installations, custom textures & refined styling" },
+    { name: "Dining room design", icon: "🍷", desc: "Sophisticated dining concepts, luxury pendant chandeliers & tailored buffet credenzas" },
+    { name: "Home decor & styling", icon: "✨", desc: "Comprehensive soft furnishings, artifact curation, sensory palettes & harmonious decor" },
+    { name: "False ceiling & CNC Jali lighting", icon: "💡", desc: "Artistic gypsum ceilings, backlit laser-cut CNC jali work & ambient cove profiles" },
+    { name: "Modular kitchen design", icon: "🍳", desc: "Boiling-water-proof HDHMR joinery, quartz stone countertops & German soft-close fittings" },
+    { name: "Living room & TV unit architecture", icon: "🛋️", desc: "Statuario marble feature walls, vertical fluted acoustic louvers & floating consoles" },
+    { name: "Wardrobes & walk-in dressing suites", icon: "👗", desc: "Bronze profile glass wardrobes, motion-sensor LED strips & integrated dressing vanities" },
+    { name: "Turnkey interior execution", icon: "🛠️", desc: "Unified turnkey craftsmanship from initial 3D blueprint to flawless on-site handover" },
+    { name: "3D interior rendering & walkthroughs", icon: "📐", desc: "Photorealistic 3D elevations, CGI perspectives and virtual visual walkthroughs" },
+    { name: "Interior consultation", icon: "🤝", desc: "Personalized spatial audits, material selection guidance & budget-optimized planning" }
   ],
   reviews: [
     {
       id: "rev_1",
-      author: "Rajeshwar Tripathi",
-      loc: "Ravindrapuri, Uttar Pradesh",
+      author: "S. K. Sharma",
+      loc: "Mirzapur, Uttar Pradesh",
       stars: 5,
-      quote: "DPA CREATORS transformed our property with extraordinary 3D architectural renderings and flawless interior design construction. Their attention to structural engineering and municipal planning made the entire build effortless. 5.0-star experience!"
+      quote: "Best interior work best date best quality! Vishwakarma Ji Interiors completed our false ceiling, cove lighting, and modular woodwork with unmatched precision and perfection."
     },
     {
       id: "rev_2",
-      author: "Dr. V. K. Maurya",
-      loc: "Lanka, Ravindrapuri",
+      author: "Abhishek Verma",
+      loc: "Teliyaganj, Mirzapur",
       stars: 5,
-      quote: "The best architects in the region! From building code analysis and zoning approvals to complete turnkey execution and residential A/C integration, their supervision was immaculate."
+      quote: "Shivam, the owner, is very gentle and has great dedication towards his work. He personally oversaw every single detail of our home interior and delivered beyond expectations. 5.0-star experience!"
     },
     {
       id: "rev_3",
-      author: "Anand Singhania",
-      loc: "Uttar Pradesh 233001",
+      author: "Rohit Yadav",
+      loc: "Surekapuram Colony, Mirzapur",
       stars: 5,
-      quote: "Exceptional architectural consultation and bespoke custom home design. Their 3D walkthrough was 100% matched in the final construction. Highly recommended for anyone seeking top-tier architectural mastery."
+      quote: "Excellent work done by Shivam and his team! Transformed our master bedroom suite and living room TV unit into a luxury haven. Best interior designer in Mirzapur."
     }
   ],
   inquiries: [
     {
       id: "inq_demo_1",
-      name: "Virendra Pratap Singh",
+      name: "Amitabh Singh",
       phone: "098391 44521",
-      service: "Custom home design",
-      message: "Looking for an architect to design a modern 3-floor luxury villa in Ravindrapuri. Need 3D elevations and municipal permit drawings.",
+      service: "Bedroom design",
+      message: "Looking for complete bedroom interior with fluted paneling, backlit false ceiling and custom wardrobe in Mirzapur.",
       timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
       status: "New"
     },
     {
       id: "inq_demo_2",
-      name: "Dr. Sunita Agarwal",
+      name: "Pooja Mishra",
       phone: "094152 77123",
-      service: "Commercial Projects",
-      message: "Planning a healthcare clinic interior renovation with acoustic partition walls and residential A/C ducting. Please share estimate.",
+      service: "Modular kitchen design",
+      message: "Planning modern modular kitchen with quartz countertop and acrylic cabinets in Teliyaganj. Please share estimate.",
       timestamp: new Date(Date.now() - 3600000 * 28).toISOString(),
       status: "Contacted"
     }
   ]
 };
+
+// Aliasing for compatibility
+const DPA_INITIAL_DATA = VJI_INITIAL_DATA;
 
 // Data Service Singleton
 window.DPAService = {
@@ -253,15 +244,15 @@ window.DPAService = {
       this.isFirebaseActive = false;
     }
 
-    // Ensure Local Storage has initial seed data
-    if (!localStorage.getItem("dpa_data_seeded")) {
+    // Ensure Local Storage has initial seed data with new Vishwakarma Ji Interiors branding
+    if (!localStorage.getItem("vji_data_seeded_v1")) {
       this.seedLocalData();
     }
   },
 
   getFirebaseConfig() {
     try {
-      const cfg = localStorage.getItem("dpa_firebase_config");
+      const cfg = localStorage.getItem("vji_firebase_config") || localStorage.getItem("dpa_firebase_config");
       return cfg ? JSON.parse(cfg) : null;
     } catch (e) {
       return null;
@@ -269,16 +260,26 @@ window.DPAService = {
   },
 
   saveFirebaseConfig(cfg) {
+    localStorage.setItem("vji_firebase_config", JSON.stringify(cfg));
     localStorage.setItem("dpa_firebase_config", JSON.stringify(cfg));
     this.init();
   },
 
   seedLocalData() {
-    localStorage.setItem("dpa_site_settings", JSON.stringify(DPA_INITIAL_DATA.siteSettings));
-    localStorage.setItem("dpa_projects", JSON.stringify(DPA_INITIAL_DATA.projects));
-    localStorage.setItem("dpa_services", JSON.stringify(DPA_INITIAL_DATA.services));
-    localStorage.setItem("dpa_reviews", JSON.stringify(DPA_INITIAL_DATA.reviews));
-    localStorage.setItem("dpa_inquiries", JSON.stringify(DPA_INITIAL_DATA.inquiries));
+    localStorage.setItem("vji_site_settings", JSON.stringify(VJI_INITIAL_DATA.siteSettings));
+    localStorage.setItem("vji_projects", JSON.stringify(VJI_INITIAL_DATA.projects));
+    localStorage.setItem("vji_services", JSON.stringify(VJI_INITIAL_DATA.services));
+    localStorage.setItem("vji_reviews", JSON.stringify(VJI_INITIAL_DATA.reviews));
+    localStorage.setItem("vji_inquiries", JSON.stringify(VJI_INITIAL_DATA.inquiries));
+
+    // Overwrite legacy keys as well to ensure immediate update across any cached sessions
+    localStorage.setItem("dpa_site_settings", JSON.stringify(VJI_INITIAL_DATA.siteSettings));
+    localStorage.setItem("dpa_projects", JSON.stringify(VJI_INITIAL_DATA.projects));
+    localStorage.setItem("dpa_services", JSON.stringify(VJI_INITIAL_DATA.services));
+    localStorage.setItem("dpa_reviews", JSON.stringify(VJI_INITIAL_DATA.reviews));
+    localStorage.setItem("dpa_inquiries", JSON.stringify(VJI_INITIAL_DATA.inquiries));
+
+    localStorage.setItem("vji_data_seeded_v1", "true");
     localStorage.setItem("dpa_data_seeded", "true");
   },
 
@@ -292,11 +293,12 @@ window.DPAService = {
         console.warn("Firestore getSettings failed:", e);
       }
     }
-    const local = localStorage.getItem("dpa_site_settings");
-    return local ? JSON.parse(local) : DPA_INITIAL_DATA.siteSettings;
+    const local = localStorage.getItem("vji_site_settings") || localStorage.getItem("dpa_site_settings");
+    return local ? JSON.parse(local) : VJI_INITIAL_DATA.siteSettings;
   },
 
   async saveSettings(settings) {
+    localStorage.setItem("vji_site_settings", JSON.stringify(settings));
     localStorage.setItem("dpa_site_settings", JSON.stringify(settings));
     if (this.isFirebaseActive && this.db) {
       try {
@@ -322,12 +324,12 @@ window.DPAService = {
       }
     }
     if (!list.length) {
-      const local = localStorage.getItem("dpa_projects");
-      list = local ? JSON.parse(local) : DPA_INITIAL_DATA.projects;
+      const local = localStorage.getItem("vji_projects") || localStorage.getItem("dpa_projects");
+      list = local ? JSON.parse(local) : VJI_INITIAL_DATA.projects;
     }
     // Normalize gallery images for every project
     return list.map(p => {
-      const initialMatch = DPA_INITIAL_DATA.projects.find(init => init.id === p.id);
+      const initialMatch = VJI_INITIAL_DATA.projects.find(init => init.id === p.id);
       let gallery = Array.isArray(p.images) && p.images.length > 0 ? p.images : null;
       if (!gallery && initialMatch && Array.isArray(initialMatch.images)) {
         gallery = initialMatch.images;
@@ -364,6 +366,7 @@ window.DPAService = {
     } else {
       list.unshift(proj);
     }
+    localStorage.setItem("vji_projects", JSON.stringify(list));
     localStorage.setItem("dpa_projects", JSON.stringify(list));
 
     if (this.isFirebaseActive && this.db) {
@@ -379,6 +382,7 @@ window.DPAService = {
   async deleteProject(id) {
     let list = await this.getProjects();
     list = list.filter(p => p.id !== id);
+    localStorage.setItem("vji_projects", JSON.stringify(list));
     localStorage.setItem("dpa_projects", JSON.stringify(list));
 
     if (this.isFirebaseActive && this.db) {
@@ -401,11 +405,12 @@ window.DPAService = {
         console.warn("Firestore getServices failed:", e);
       }
     }
-    const local = localStorage.getItem("dpa_services");
-    return local ? JSON.parse(local) : DPA_INITIAL_DATA.services;
+    const local = localStorage.getItem("vji_services") || localStorage.getItem("dpa_services");
+    return local ? JSON.parse(local) : VJI_INITIAL_DATA.services;
   },
 
   async saveServices(services) {
+    localStorage.setItem("vji_services", JSON.stringify(services));
     localStorage.setItem("dpa_services", JSON.stringify(services));
     if (this.isFirebaseActive && this.db) {
       try {
@@ -429,8 +434,8 @@ window.DPAService = {
         console.warn("Firestore getInquiries failed:", e);
       }
     }
-    const local = localStorage.getItem("dpa_inquiries");
-    return local ? JSON.parse(local) : DPA_INITIAL_DATA.inquiries;
+    const local = localStorage.getItem("vji_inquiries") || localStorage.getItem("dpa_inquiries");
+    return local ? JSON.parse(local) : VJI_INITIAL_DATA.inquiries;
   },
 
   async submitInquiry(inquiry) {
@@ -439,7 +444,7 @@ window.DPAService = {
       id,
       name: inquiry.name,
       phone: inquiry.phone,
-      service: inquiry.service || "General Architectural Consultation",
+      service: inquiry.service || "General Interior Design Consultation",
       message: inquiry.message || "",
       timestamp: new Date().toISOString(),
       status: "New"
@@ -447,10 +452,11 @@ window.DPAService = {
 
     let list = [];
     try {
-      const local = localStorage.getItem("dpa_inquiries");
+      const local = localStorage.getItem("vji_inquiries") || localStorage.getItem("dpa_inquiries");
       list = local ? JSON.parse(local) : [];
     } catch(e) {}
     list.unshift(docData);
+    localStorage.setItem("vji_inquiries", JSON.stringify(list));
     localStorage.setItem("dpa_inquiries", JSON.stringify(list));
 
     if (this.isFirebaseActive && this.db) {
@@ -468,6 +474,7 @@ window.DPAService = {
     const item = list.find(i => i.id === id);
     if (item) {
       item.status = newStatus;
+      localStorage.setItem("vji_inquiries", JSON.stringify(list));
       localStorage.setItem("dpa_inquiries", JSON.stringify(list));
       if (this.isFirebaseActive && this.db) {
         try {
@@ -483,6 +490,7 @@ window.DPAService = {
   async deleteInquiry(id) {
     let list = await this.getInquiries();
     list = list.filter(i => i.id !== id);
+    localStorage.setItem("vji_inquiries", JSON.stringify(list));
     localStorage.setItem("dpa_inquiries", JSON.stringify(list));
     if (this.isFirebaseActive && this.db) {
       try {
@@ -508,8 +516,8 @@ window.DPAService = {
         console.warn("Firestore getReviews failed:", e);
       }
     }
-    const local = localStorage.getItem("dpa_reviews");
-    return local ? JSON.parse(local) : DPA_INITIAL_DATA.reviews;
+    const local = localStorage.getItem("vji_reviews") || localStorage.getItem("dpa_reviews");
+    return local ? JSON.parse(local) : VJI_INITIAL_DATA.reviews;
   },
 
   async saveReview(review) {
@@ -519,6 +527,7 @@ window.DPAService = {
     const idx = list.findIndex(r => r.id === id);
     if (idx >= 0) list[idx] = review;
     else list.push(review);
+    localStorage.setItem("vji_reviews", JSON.stringify(list));
     localStorage.setItem("dpa_reviews", JSON.stringify(list));
 
     if (this.isFirebaseActive && this.db) {
@@ -532,6 +541,7 @@ window.DPAService = {
   async deleteReview(id) {
     let list = await this.getReviews();
     list = list.filter(r => r.id !== id);
+    localStorage.setItem("vji_reviews", JSON.stringify(list));
     localStorage.setItem("dpa_reviews", JSON.stringify(list));
     if (this.isFirebaseActive && this.db) {
       try {
@@ -547,19 +557,19 @@ window.DPAService = {
       throw new Error("Firebase is not connected. Please save your Firebase Config first.");
     }
     // 1. Settings
-    await this.db.collection("settings").doc("site").set(DPA_INITIAL_DATA.siteSettings);
+    await this.db.collection("settings").doc("site").set(VJI_INITIAL_DATA.siteSettings);
     // 2. Services
-    await this.db.collection("settings").doc("services").set({ list: DPA_INITIAL_DATA.services });
+    await this.db.collection("settings").doc("services").set({ list: VJI_INITIAL_DATA.services });
     // 3. Projects
-    for (const proj of DPA_INITIAL_DATA.projects) {
+    for (const proj of VJI_INITIAL_DATA.projects) {
       await this.db.collection("projects").doc(proj.id).set(proj);
     }
     // 4. Reviews
-    for (const rev of DPA_INITIAL_DATA.reviews) {
+    for (const rev of VJI_INITIAL_DATA.reviews) {
       await this.db.collection("reviews").doc(rev.id).set(rev);
     }
     // 5. Inquiries
-    for (const inq of DPA_INITIAL_DATA.inquiries) {
+    for (const inq of VJI_INITIAL_DATA.inquiries) {
       await this.db.collection("inquiries").doc(inq.id).set(inq);
     }
     return true;
@@ -568,7 +578,7 @@ window.DPAService = {
   // CLOUDINARY CONFIG & DIRECT UPLOAD
   getCloudinaryConfig() {
     try {
-      const cfg = localStorage.getItem("dpa_cloudinary_config");
+      const cfg = localStorage.getItem("vji_cloudinary_config") || localStorage.getItem("dpa_cloudinary_config");
       return cfg ? JSON.parse(cfg) : { cloudName: "", uploadPreset: "" };
     } catch(e) {
       return { cloudName: "", uploadPreset: "" };
@@ -576,6 +586,7 @@ window.DPAService = {
   },
 
   saveCloudinaryConfig(cfg) {
+    localStorage.setItem("vji_cloudinary_config", JSON.stringify(cfg));
     localStorage.setItem("dpa_cloudinary_config", JSON.stringify(cfg));
     return cfg;
   },
@@ -589,7 +600,7 @@ window.DPAService = {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", cfg.uploadPreset.trim());
-      formData.append("folder", "dpa_creators_portfolio");
+      formData.append("folder", "vji_portfolio");
 
       return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -654,6 +665,10 @@ window.DPAService = {
   
   // SHA-256 Hashes of authorized factory keys (Irreversible one-way hashes, zero plaintext)
   _FACTORY_HASHES: [
+    "f4500ab5b79cdb4edaa63423cd30a6af14f78d8a6b2b917fe9d81b0a182d94df", // Vishwakarma-Admin-2026
+    "0b02d7454cbcd95f8cc4b6baecc2bdc6da2ff2ca6ef0b11e307e7150f0d9631d", // VJI-Admin-2026
+    "526746f09d2d4a65c3b9e006fb5b7278c718fd69942b1aef14a6941230110085", // vji2026
+    "6e3dc16bfd97d49457ec77229dc3ca7e7cd568e0f31227a0f4d5785141869061", // shivam2026
     "6059f85534d7c3347f8a268ec858692c7d586507bd2633db5d47941e7d961965", // DPA-Admin-2026
     "ac4080297d1632bda4127cde4f089c783daa4aaa2514a25d7623986380d84206", // dpa2026
     "b4fcbfa958d909237b165cb685d00105e4bdc8c95f05d31cd52666332aa7ee85"  // admin123
@@ -680,8 +695,8 @@ window.DPAService = {
 
   getAdminKeyInfo() {
     try {
-      const customHash = localStorage.getItem("dpa_admin_hash");
-      const updated = localStorage.getItem("dpa_admin_key_updated");
+      const customHash = localStorage.getItem("vji_admin_hash") || localStorage.getItem("dpa_admin_hash");
+      const updated = localStorage.getItem("vji_admin_key_updated") || localStorage.getItem("dpa_admin_key_updated");
       return {
         isCustom: !!customHash,
         updatedAt: updated || null,
@@ -701,7 +716,7 @@ window.DPAService = {
     const inputHash = await this.hashPasskey(inputKey);
 
     // 1. Check custom browser hash
-    const customHash = localStorage.getItem("dpa_admin_hash");
+    const customHash = localStorage.getItem("vji_admin_hash") || localStorage.getItem("dpa_admin_hash");
     if (customHash && inputHash === customHash) return true;
 
     // 2. Check cloud Firestore hash if initialized
@@ -726,6 +741,8 @@ window.DPAService = {
     }
     const cleanKey = newKey.trim();
     const newHash = await this.hashPasskey(cleanKey);
+    localStorage.setItem("vji_admin_hash", newHash);
+    localStorage.setItem("vji_admin_key_updated", new Date().toISOString());
     localStorage.setItem("dpa_admin_hash", newHash);
     localStorage.setItem("dpa_admin_key_updated", new Date().toISOString());
 
@@ -744,6 +761,8 @@ window.DPAService = {
   },
 
   async resetAdminKey() {
+    localStorage.removeItem("vji_admin_hash");
+    localStorage.removeItem("vji_admin_key_updated");
     localStorage.removeItem("dpa_admin_hash");
     localStorage.removeItem("dpa_admin_key_updated");
     if (this.isFirebaseActive && this.db) {
@@ -754,6 +773,9 @@ window.DPAService = {
     return true;
   }
 };
+
+// Aliasing for compatibility
+window.VJIService = window.DPAService;
 
 // Automatically run initialization
 document.addEventListener("DOMContentLoaded", () => {
