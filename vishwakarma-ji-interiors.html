@@ -377,7 +377,7 @@ nav.s {
   flex-shrink: 0;
 }
 .brand .lg {
-  font: 600 clamp(18px, 1.7vw, 22px) 'Cormorant Garamond', Georgia, serif;
+  font: 600 clamp(15px, 1.4vw, 18px) 'Cormorant Garamond', Georgia, serif;
   letter-spacing: 0.15em;
   background: linear-gradient(135deg, #ffffff 0%, #dfc08a 60%, #b88d4d 100%);
   -webkit-background-clip: text;
@@ -465,60 +465,132 @@ nav ul a:hover:after, nav ul a.active:after {
   color: #ffffff;
   border-color: var(--br-light);
 }
-.nav-consult-btn {
-  padding: 7px 16px;
+.nav-consult-btn, .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
   font-size: 12.5px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   white-space: nowrap;
+  background: var(--gold-grad);
+  color: #0f1d18 !important;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(184, 141, 77, 0.25);
+}
+.nav-consult-btn:hover, .nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(184, 141, 77, 0.4);
+}
+.loc-mob { display: none; }
+.nav-mob-call {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--br-light);
+  background: rgba(223, 192, 138, 0.12);
+  border: 1px solid rgba(184, 141, 77, 0.4);
+  padding: 6px 11px;
+  border-radius: 8px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.nav-mob-call:active {
+  background: rgba(184, 141, 77, 0.28);
+  color: #ffffff;
 }
 .mob-toggle {
   display: none;
-  background: transparent;
-  border: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(223, 192, 138, 0.12);
+  border: 1.5px solid rgba(184, 141, 77, 0.45);
   color: var(--br-light);
-  font-size: 24px;
   cursor: pointer;
-  padding: 4px;
-  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+.mob-toggle:hover, .mob-toggle:active {
+  background: rgba(184, 141, 77, 0.25);
+  border-color: var(--br-light);
+  color: #ffffff;
 }
 
 /* Mobile Menu Drawer */
 #mobMenu {
   position: fixed;
   inset: 0;
-  background: rgba(15, 29, 24, 0.98);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  z-index: 1000;
+  background: rgba(11, 23, 19, 0.985);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  z-index: 99999;
   display: flex;
   flex-direction: column;
-  padding: 24px 20px;
+  padding: 20px 18px 24px 18px;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-sizing: border-box;
 }
 #mobMenu.open { transform: translateX(0); }
 .mob-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.18);
+}
+.mob-rating-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--br-light);
+  background: rgba(223, 192, 138, 0.08);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin: 14px 0 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
 }
 .mob-links {
   list-style: none;
-  margin: 24px 0;
+  margin: 10px 0 auto 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
+  padding-right: 4px;
+}
+.mob-links li {
+  border-bottom: 1px solid rgba(223, 192, 138, 0.08);
+  padding-bottom: 8px;
 }
 .mob-links a {
-  font: 500 22px 'Cormorant Garamond', serif;
-  color: #ffffff;
-  display: block;
+  font: 500 18px 'Cormorant Garamond', Georgia, serif;
+  color: #f7f5f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
-.mob-links a:hover { color: var(--br-light); }
+.mob-links a:hover, .mob-links a:active {
+  color: var(--br-light);
+  padding-left: 6px;
+}
 
 /* ==================== HERO SECTION ==================== */
 .hero {
@@ -1920,24 +1992,90 @@ footer {
 }
 
 /* ==================== COMPREHENSIVE RESPONSIVE DESIGN ==================== */
-@media(max-width: 960px) {
+@media(min-width: 1025px) {
+  .mob-toggle, .nav-mob-call { display: none !important; }
+}
+
+@media(max-width: 1024px) {
   .wrap { padding: 0 16px; width: 100%; box-sizing: border-box; }
   
-  nav {
-    padding: 6px 16px;
-    height: 54px;
+  nav#nv {
+    padding: 0 16px !important;
+    height: 58px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    box-sizing: border-box !important;
   }
-  nav.s {
-    padding: 6px 16px;
-    height: 54px;
+  nav#nv.s {
+    padding: 0 16px !important;
+    height: 54px !important;
   }
-  nav ul { display: none; }
-  .nav-phone { display: none; }
-  .nav-consult-btn { display: none !important; }
-  .mob-toggle { display: block; }
-  .brand .lg { font-size: 17px; letter-spacing: 0.12em; }
-  .brand .loc { font-size: 8px; letter-spacing: 0.18em; }
+  nav#nv ul { display: none !important; }
+  .nav-phone { display: none !important; }
+  .nav-cta, .nav-consult-btn { display: none !important; }
+  .nav-mob-call { display: inline-flex !important; }
+  .mob-toggle { display: inline-flex !important; }
+  .loc-desk { display: none !important; }
+  .loc-mob { display: inline !important; }
+  .brand {
+    min-width: 0 !important;
+    flex: 1 !important;
+    overflow: hidden !important;
+  }
+  .brand .lg {
+    font-size: 14px !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+  }
+  .brand .loc {
+    font-size: 7.2px !important;
+    letter-spacing: 0.08em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-shrink: 0 !important;
+  }
+}
 
+@media(max-width: 480px) {
+  nav#nv {
+    padding: 0 12px !important;
+    height: 54px !important;
+    gap: 6px !important;
+  }
+  .brand .lg {
+    font-size: 13px !important;
+    letter-spacing: 0.04em !important;
+  }
+  .brand .loc {
+    font-size: 6.8px !important;
+    letter-spacing: 0.06em !important;
+  }
+  .nav-mob-call span { display: none !important; }
+  .nav-mob-call {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 8px !important;
+  }
+  .mob-toggle {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+@media(max-width: 960px) {
   .hero {
     padding-top: 68px;
     padding-bottom: 24px;
@@ -2184,7 +2322,7 @@ footer {
 <nav id="nv">
   <div class="brand">
     <a class="lg" href="#top">VISHWAKARMA JI INTERIORS</a>
-    <span class="loc"><span class="loc-badge">●</span> INTERIOR DESIGNER &middot; TELIYAGANJ, MIRZAPUR, UP 231001</span>
+    <span class="loc"><span class="loc-badge">●</span> <span class="loc-desk">INTERIOR DESIGNER &middot; TELIYAGANJ, MIRZAPUR, UP 231001</span><span class="loc-mob">MIRZAPUR &middot; TELIYAGANJ, UP</span></span>
   </div>
   <ul>
     <li><a href="#about">About</a></li>
@@ -2201,7 +2339,13 @@ footer {
       <span>079052 02019</span>
     </a>
     <a class="nav-cta" href="#contact">Book Consultation</a>
-    <button class="mob-toggle" id="mobOpen" aria-label="Open Navigation Menu">☰</button>
+    <a class="nav-mob-call" href="tel:+917905202019" aria-label="Call Shivam 079052 02019">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <span>Call</span>
+    </a>
+    <button class="mob-toggle" id="mobOpen" aria-label="Open Navigation Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    </button>
   </div>
 </nav>
 
@@ -2210,22 +2354,37 @@ footer {
   <div class="mob-header">
     <div class="brand">
       <span class="lg">Vishwakarma Ji Interiors</span>
-      <span class="loc">INTERIOR DESIGNER &middot; TELIYAGANJ, MIRZAPUR, UP</span>
+      <span class="loc"><span class="loc-badge">●</span> TELIYAGANJ, MIRZAPUR &middot; UP 231001</span>
     </div>
-    <button class="mob-toggle" id="mobClose" aria-label="Close Menu">✕</button>
+    <button class="mob-toggle" id="mobClose" aria-label="Close Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="mob-rating-pill">
+    <span style="color:#f59e0b">★ 5.0</span> &middot; 21 Verified Client Reviews &middot; Mirzapur, UP
   </div>
   <ul class="mob-links">
-    <li><a href="#about" class="mob-item">About Studio</a></li>
-    <li><a href="#services" class="mob-item">All 12 Services</a></li>
-    <li><a href="#case" class="mob-item">Before &amp; After Spotlight</a></li>
-    <li><a href="#estimator" class="mob-item">Cost Estimator</a></li>
-    <li><a href="portfolio.html" class="mob-item">All Projects (Archive)</a></li>
-    <li><a href="#process" class="mob-item">Execution Process</a></li>
-    <li><a href="#reviews" class="mob-item">Google Reviews (5.0★)</a></li>
-    <li><a href="#contact" class="mob-item">Contact Us</a></li>
+    <li><a href="#about" class="mob-item">About Studio <span>&rarr;</span></a></li>
+    <li><a href="#services" class="mob-item">Specialized Services (12) <span>&rarr;</span></a></li>
+    <li><a href="#case" class="mob-item">Before &amp; After Spotlight <span>&rarr;</span></a></li>
+    <li><a href="#estimator" class="mob-item">Cost Estimator <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html" class="mob-item">Project Portfolio &amp; Archive <span>&rarr;</span></a></li>
+    <li><a href="#process" class="mob-item">Execution Process <span>&rarr;</span></a></li>
+    <li><a href="#reviews" class="mob-item">Client Feedback &amp; Reviews <span>&rarr;</span></a></li>
+    <li><a href="#contact" class="mob-item">Contact &amp; Studio Location <span>&rarr;</span></a></li>
   </ul>
-  <div style="margin-top:auto">
-    <a class="btn" href="tel:+917905202019" style="width:100%;text-align:center">Call Studio: 079052 02019</a>
+  <div style="margin-top:auto;padding-top:14px;border-top:1px solid rgba(223,192,138,0.15)">
+    <a class="btn" href="#contact" class="mob-item" onclick="$('mobMenu').classList.remove('open')" style="display:block;width:100%;text-align:center;padding:12px;font-size:14px;font-weight:700;box-sizing:border-box;border-radius:8px">Book Consultation &rarr;</a>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+      <a class="nav-phone" href="tel:+917905202019" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border-radius:8px;font-size:12px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+        <span>Call Studio</span>
+      </a>
+      <a class="nav-phone" href="https://wa.me/917905202019?text=Hi%20Vishwakarma%20Ji%20Interiors%2C%20I%20would%20like%20to%20discuss%20an%20interior%20project." target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:9px;border-radius:8px;font-size:12px;color:#25d366;border-color:rgba(37,211,102,0.35)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.05 3.67C16.58 3.67 20.28 7.37 20.28 11.9C20.28 16.43 16.58 20.13 12.05 20.13C10.56 20.13 9.13 19.73 7.89 18.99L7.56 18.8L4.44 19.62L5.27 16.57L5.05 16.22C4.24 14.93 3.8 13.44 3.8 11.9C3.8 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -2848,11 +3007,33 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // Mobile Navigation
-$('mobOpen').onclick = () => $('mobMenu').classList.add('open');
-$('mobClose').onclick = () => $('mobMenu').classList.remove('open');
-document.querySelectorAll('.mob-item').forEach(el => {
-  el.onclick = () => $('mobMenu').classList.remove('open');
-});
+(function() {
+  const mobOpen = document.getElementById('mobOpen');
+  const mobClose = document.getElementById('mobClose');
+  const mobMenu = document.getElementById('mobMenu');
+  if (mobOpen && mobMenu) {
+    mobOpen.onclick = function(e) {
+      e.preventDefault();
+      mobMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+  }
+  if (mobClose && mobMenu) {
+    mobClose.onclick = function(e) {
+      e.preventDefault();
+      mobMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+  }
+  document.querySelectorAll('#mobMenu .mob-item').forEach(function(el) {
+    el.onclick = function() {
+      if (mobMenu) {
+        mobMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    };
+  });
+})();
 
 // HERO LIVE TAB SWITCHER
 const heroTabs = document.querySelectorAll('.hero-tab-btn');
