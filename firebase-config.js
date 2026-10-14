@@ -1,30 +1,31 @@
 /**
- * Vishwakarma Ji Interiors - Firebase Cloud Integration & Data Service
+ * The Luxe Studio - Firebase Cloud Integration & Data Service
  * Provides Firestore sync, Firebase Auth, and robust local caching for all website components.
- * Led by founder Shivam · Sadbhavna nagar, Surekapuram Colony, Teliyaganj, Mirzapur, UP 231001
+ * Premier Luxury Interior Architecture & Turnkey Design · Mumbai · Delhi · Bangalore · Pan-India
  */
 
-// Default Seed Data for Vishwakarma Ji Interiors
-const VJI_INITIAL_DATA = {
+// Default Seed Data for The Luxe Studio
+const TLS_INITIAL_DATA = {
   siteSettings: {
-    brandName: "Vishwakarma Ji Interiors",
-    brandSubtitle: "INTERIOR DESIGNER · TELIYAGANJ, MIRZAPUR, UP 231001",
-    tagline: "5.0 ★ (21 Reviews) Top Rated Interior Designer · Mirzapur, UP",
-    heroTitle: "Exquisite interior spaces crafted with dedication, premium quality & timeless elegance.",
-    heroDesc: "Vishwakarma Ji Interiors delivers end-to-end luxury interior design, bespoke bedroom suites, modular kitchens, artistic false ceilings, and turnkey execution in Mirzapur and across all of Uttar Pradesh. Studio located in Teliyaganj, Mirzapur, UP 231001, led with devotion by founder Shivam.",
-    phone: "079052 02019",
-    phoneTel: "+917905202019",
-    address: "Sadbhavna nagar, Surekapuram Colony, Teliyaganj, Mirzapur, Uttar Pradesh 231001",
-    mapsQuery: "Vishwakarma+Ji+Interiors+Sadbhavna+nagar+Surekapuram+Colony+Teliyaganj+Mirzapur+Uttar+Pradesh+231001",
-    hours: "Open · Closes 10 pm",
-    rating: "5.0",
-    reviewCount: "21",
+    brandName: "The Luxe Studio",
+    brandSubtitle: "LUXURY INTERIOR ARCHITECTURE · PAN-INDIA",
+    tagline: "4.9 ★ (150+ Reviews) Premier Luxury Interior Studio · Pan-India",
+    heroTitle: "Exquisite interior spaces crafted with architectural precision, quality & elegance.",
+    heroDesc: "The Luxe Studio delivers turnkey luxury interior design, bespoke bedroom suites, minimalist modular kitchens, artistic ceiling illumination, and master craftsmanship across Mumbai, Delhi NCR, Bangalore, and nationwide.",
+    phone: "+91 98200 12345",
+    phoneTel: "+919820012345",
+    email: "concierge@theluxestudio.in",
+    address: "Level 4, Signature Design Pavilion, Bandra Kurla Complex, Mumbai & Central NCR, New Delhi",
+    mapsQuery: "The+Luxe+Studio+Interior+Architecture+Bandra+Kurla+Complex+Mumbai",
+    hours: "Mon - Sat: 10:00 AM - 8:00 PM",
+    rating: "4.9",
+    reviewCount: "150",
     stats: [
-      { num: "5.0", sup: "★", label: "Google Rating from 21 Verified Reviews" },
-      { num: "12", sup: "+", label: "Specialized Interior Design Services" },
-      { num: "10", sup: "PM", label: "Open Daily · Closes 10 PM for Consultations" },
-      { num: "100", sup: "%", label: "Dedication, Punctuality & Superior Quality" },
-      { num: "A-Z", sup: "", label: "Design, False Ceiling, Woodwork & Styling" }
+      { num: "4.9", sup: "★", label: "Google Rating from 150+ Verified Luxury Homes" },
+      { num: "12", sup: "+", label: "Specialized Architectural Interior Disciplines" },
+      { num: "15", sup: "+", label: "Years of High-End Turnkey Execution Excellence" },
+      { num: "100", sup: "%", label: "Bespoke Material Selection & Superior Precision" },
+      { num: "A-Z", sup: "", label: "Conceptual 3D, Millwork, Lighting & Turnkey Handover" }
     ]
   },
   projects: [
@@ -32,7 +33,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_1",
       title: "Designer Gypsum False Ceiling & Backlit CNC Jali",
       category: "False Ceiling & Decor",
-      loc: "Teliyaganj, Mirzapur",
+      loc: "Worli, Mumbai",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -48,7 +49,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_2",
       title: "Master Bedroom Suite with Painted Botanical Mural & Curved Headboard",
       category: "Bedroom Design",
-      loc: "Sadbhavna Nagar, Mirzapur",
+      loc: "Bandra West, Mumbai",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
@@ -64,7 +65,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_3",
       title: "Italian Statuario Marble TV Lounge & Fluted Paneling",
       category: "Living Room",
-      loc: "Surekapuram Colony, Mirzapur",
+      loc: "Golf Course Road, Gurgaon",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -81,7 +82,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_4",
       title: "Contemporary Smoked Walnut & Quartz Modular Kitchen",
       category: "Modular Kitchen",
-      loc: "Mirzapur, UP",
+      loc: "Indiranagar, Bangalore",
       img: "images/kitchen_walnut.jpg",
       images: [
         "images/kitchen_walnut.jpg",
@@ -97,7 +98,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_5",
       title: "Luxury Bedroom Suite with Halo Mirror & Fluted Vanity",
       category: "Bedroom Design",
-      loc: "Teliyaganj, Mirzapur",
+      loc: "Jubilee Hills, Hyderabad",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
@@ -113,7 +114,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_6",
       title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes",
       category: "Wardrobes & Decor",
-      loc: "Surekapuram Colony, Mirzapur",
+      loc: "Marine Drive, Mumbai",
       img: "images/walkin_wardrobe.jpg",
       images: [
         "images/walkin_wardrobe.jpg",
@@ -128,7 +129,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_7",
       title: "Sophisticated Dining Suite & Luxury Chandeliers",
       category: "Dining Room Design",
-      loc: "Mirzapur, UP",
+      loc: "Vasant Vihar, New Delhi",
       img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
@@ -143,7 +144,7 @@ const VJI_INITIAL_DATA = {
       id: "proj_8",
       title: "Turnkey Luxury Villa Interior & Complete Home Decor",
       category: "Turnkey Interior",
-      loc: "Mirzapur & All Uttar Pradesh",
+      loc: "Mumbai & Pan-India",
       img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
@@ -173,42 +174,42 @@ const VJI_INITIAL_DATA = {
   reviews: [
     {
       id: "rev_1",
-      author: "S. K. Sharma",
-      loc: "Mirzapur, Uttar Pradesh",
+      author: "Vikramaditya & Radhika Singhania",
+      loc: "Worli, Mumbai",
       stars: 5,
-      quote: "Best interior work best date best quality! Vishwakarma Ji Interiors completed our false ceiling, cove lighting, and modular woodwork with unmatched precision and perfection."
+      quote: "The Luxe Studio transformed our 4BHK penthouse with impeccable taste. The walnut Italian kitchen, acoustic louvers, and cove ceiling profiles are world-class."
     },
     {
       id: "rev_2",
-      author: "Abhishek Verma",
-      loc: "Teliyaganj, Mirzapur",
+      author: "Ananya & Dev Kapoor",
+      loc: "Golf Course Road, Gurgaon",
       stars: 5,
-      quote: "Shivam, the owner, is very gentle and has great dedication towards his work. He personally oversaw every single detail of our home interior and delivered beyond expectations. 5.0-star experience!"
+      quote: "Flawless execution and absolute adherence to quality. Our master suite and walk-in dressing lounge exceeded our highest expectations."
     },
     {
       id: "rev_3",
-      author: "Rohit Yadav",
-      loc: "Surekapuram Colony, Mirzapur",
+      author: "Rohan & Meera Chawla",
+      loc: "Indiranagar, Bangalore",
       stars: 5,
-      quote: "Excellent work done by Shivam and his team! Transformed our master bedroom suite and living room TV unit into a luxury haven. Best interior designer in Mirzapur."
+      quote: "From photorealistic 3D elevations to final handover, their team handled every single architectural detail with total professionalism."
     }
   ],
   inquiries: [
     {
       id: "inq_demo_1",
-      name: "Amitabh Singh",
-      phone: "098391 44521",
-      service: "Bedroom design",
-      message: "Looking for complete bedroom interior with fluted paneling, backlit false ceiling and custom wardrobe in Mirzapur.",
+      name: "Vikramaditya Singhania",
+      phone: "+91 98200 44521",
+      service: "Turnkey Penthouse Interior",
+      message: "Looking for complete penthouse interior with fluted paneling, backlit false ceiling and custom wardrobe in Worli, Mumbai.",
       timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
       status: "New"
     },
     {
       id: "inq_demo_2",
-      name: "Pooja Mishra",
-      phone: "094152 77123",
+      name: "Ananya Kapoor",
+      phone: "+91 98101 77123",
       service: "Modular kitchen design",
-      message: "Planning modern modular kitchen with quartz countertop and acrylic cabinets in Teliyaganj. Please share estimate.",
+      message: "Planning modern modular kitchen with quartz countertop and acrylic cabinets in Golf Course Road, Gurgaon.",
       timestamp: new Date(Date.now() - 3600000 * 28).toISOString(),
       status: "Contacted"
     }
@@ -216,7 +217,7 @@ const VJI_INITIAL_DATA = {
 };
 
 // Aliasing for compatibility
-const DPA_INITIAL_DATA = VJI_INITIAL_DATA;
+const DPA_INITIAL_DATA = TLS_INITIAL_DATA;
 
 // Data Service Singleton
 window.DPAService = {
@@ -244,8 +245,8 @@ window.DPAService = {
       this.isFirebaseActive = false;
     }
 
-    // Ensure Local Storage has initial seed data with new Vishwakarma Ji Interiors branding
-    if (!localStorage.getItem("vji_data_seeded_v2")) {
+    // Ensure Local Storage has initial seed data with new The Luxe Studio branding
+    if (!localStorage.getItem("tls_prototype_seeded_v2")) {
       this.seedLocalData();
     }
   },
@@ -266,20 +267,20 @@ window.DPAService = {
   },
 
   seedLocalData() {
-    localStorage.setItem("vji_site_settings", JSON.stringify(VJI_INITIAL_DATA.siteSettings));
-    localStorage.setItem("vji_projects", JSON.stringify(VJI_INITIAL_DATA.projects));
-    localStorage.setItem("vji_services", JSON.stringify(VJI_INITIAL_DATA.services));
-    localStorage.setItem("vji_reviews", JSON.stringify(VJI_INITIAL_DATA.reviews));
-    localStorage.setItem("vji_inquiries", JSON.stringify(VJI_INITIAL_DATA.inquiries));
+    localStorage.setItem("vji_site_settings", JSON.stringify(TLS_INITIAL_DATA.siteSettings));
+    localStorage.setItem("vji_projects", JSON.stringify(TLS_INITIAL_DATA.projects));
+    localStorage.setItem("vji_services", JSON.stringify(TLS_INITIAL_DATA.services));
+    localStorage.setItem("vji_reviews", JSON.stringify(TLS_INITIAL_DATA.reviews));
+    localStorage.setItem("vji_inquiries", JSON.stringify(TLS_INITIAL_DATA.inquiries));
 
     // Overwrite legacy keys as well to ensure immediate update across any cached sessions
-    localStorage.setItem("dpa_site_settings", JSON.stringify(VJI_INITIAL_DATA.siteSettings));
-    localStorage.setItem("dpa_projects", JSON.stringify(VJI_INITIAL_DATA.projects));
-    localStorage.setItem("dpa_services", JSON.stringify(VJI_INITIAL_DATA.services));
-    localStorage.setItem("dpa_reviews", JSON.stringify(VJI_INITIAL_DATA.reviews));
-    localStorage.setItem("dpa_inquiries", JSON.stringify(VJI_INITIAL_DATA.inquiries));
+    localStorage.setItem("dpa_site_settings", JSON.stringify(TLS_INITIAL_DATA.siteSettings));
+    localStorage.setItem("dpa_projects", JSON.stringify(TLS_INITIAL_DATA.projects));
+    localStorage.setItem("dpa_services", JSON.stringify(TLS_INITIAL_DATA.services));
+    localStorage.setItem("dpa_reviews", JSON.stringify(TLS_INITIAL_DATA.reviews));
+    localStorage.setItem("dpa_inquiries", JSON.stringify(TLS_INITIAL_DATA.inquiries));
 
-    localStorage.setItem("vji_data_seeded_v2", "true");
+    localStorage.setItem("tls_prototype_seeded_v2", "true");
     localStorage.setItem("dpa_data_seeded", "true");
   },
 
@@ -294,7 +295,7 @@ window.DPAService = {
       }
     }
     const local = localStorage.getItem("vji_site_settings") || localStorage.getItem("dpa_site_settings");
-    return local ? JSON.parse(local) : VJI_INITIAL_DATA.siteSettings;
+    return local ? JSON.parse(local) : TLS_INITIAL_DATA.siteSettings;
   },
 
   async saveSettings(settings) {
@@ -325,11 +326,11 @@ window.DPAService = {
     }
     if (!list.length) {
       const local = localStorage.getItem("vji_projects") || localStorage.getItem("dpa_projects");
-      list = local ? JSON.parse(local) : VJI_INITIAL_DATA.projects;
+      list = local ? JSON.parse(local) : TLS_INITIAL_DATA.projects;
     }
     // Normalize gallery images for every project
     return list.map(p => {
-      const initialMatch = VJI_INITIAL_DATA.projects.find(init => init.id === p.id);
+      const initialMatch = TLS_INITIAL_DATA.projects.find(init => init.id === p.id);
       let gallery = Array.isArray(p.images) && p.images.length > 0 ? p.images : null;
       if (!gallery && initialMatch && Array.isArray(initialMatch.images)) {
         gallery = initialMatch.images;
@@ -337,8 +338,7 @@ window.DPAService = {
       if (!gallery) {
         gallery = p.img ? [p.img] : [];
       }
-      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Mirzapur, UP');
-      if (/mumbai/i.test(loc)) loc = 'Mirzapur & All Uttar Pradesh';
+      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Mumbai · Pan-India');
       return {
         ...p,
         loc: loc,
@@ -409,7 +409,7 @@ window.DPAService = {
       }
     }
     const local = localStorage.getItem("vji_services") || localStorage.getItem("dpa_services");
-    return local ? JSON.parse(local) : VJI_INITIAL_DATA.services;
+    return local ? JSON.parse(local) : TLS_INITIAL_DATA.services;
   },
 
   async saveServices(services) {
@@ -438,7 +438,7 @@ window.DPAService = {
       }
     }
     const local = localStorage.getItem("vji_inquiries") || localStorage.getItem("dpa_inquiries");
-    return local ? JSON.parse(local) : VJI_INITIAL_DATA.inquiries;
+    return local ? JSON.parse(local) : TLS_INITIAL_DATA.inquiries;
   },
 
   async submitInquiry(inquiry) {
@@ -520,7 +520,7 @@ window.DPAService = {
       }
     }
     const local = localStorage.getItem("vji_reviews") || localStorage.getItem("dpa_reviews");
-    return local ? JSON.parse(local) : VJI_INITIAL_DATA.reviews;
+    return local ? JSON.parse(local) : TLS_INITIAL_DATA.reviews;
   },
 
   async saveReview(review) {
@@ -560,19 +560,19 @@ window.DPAService = {
       throw new Error("Firebase is not connected. Please save your Firebase Config first.");
     }
     // 1. Settings
-    await this.db.collection("settings").doc("site").set(VJI_INITIAL_DATA.siteSettings);
+    await this.db.collection("settings").doc("site").set(TLS_INITIAL_DATA.siteSettings);
     // 2. Services
-    await this.db.collection("settings").doc("services").set({ list: VJI_INITIAL_DATA.services });
+    await this.db.collection("settings").doc("services").set({ list: TLS_INITIAL_DATA.services });
     // 3. Projects
-    for (const proj of VJI_INITIAL_DATA.projects) {
+    for (const proj of TLS_INITIAL_DATA.projects) {
       await this.db.collection("projects").doc(proj.id).set(proj);
     }
     // 4. Reviews
-    for (const rev of VJI_INITIAL_DATA.reviews) {
+    for (const rev of TLS_INITIAL_DATA.reviews) {
       await this.db.collection("reviews").doc(rev.id).set(rev);
     }
     // 5. Inquiries
-    for (const inq of VJI_INITIAL_DATA.inquiries) {
+    for (const inq of TLS_INITIAL_DATA.inquiries) {
       await this.db.collection("inquiries").doc(inq.id).set(inq);
     }
     return true;
@@ -668,12 +668,9 @@ window.DPAService = {
   
   // SHA-256 Hashes of authorized factory keys (Irreversible one-way hashes, zero plaintext)
   _FACTORY_HASHES: [
-    "f4500ab5b79cdb4edaa63423cd30a6af14f78d8a6b2b917fe9d81b0a182d94df", // Vishwakarma-Admin-2026
-    "0b02d7454cbcd95f8cc4b6baecc2bdc6da2ff2ca6ef0b11e307e7150f0d9631d", // VJI-Admin-2026
-    "526746f09d2d4a65c3b9e006fb5b7278c718fd69942b1aef14a6941230110085", // vji2026
-    "6e3dc16bfd97d49457ec77229dc3ca7e7cd568e0f31227a0f4d5785141869061", // shivam2026
-    "6059f85534d7c3347f8a268ec858692c7d586507bd2633db5d47941e7d961965", // DPA-Admin-2026
-    "ac4080297d1632bda4127cde4f089c783daa4aaa2514a25d7623986380d84206", // dpa2026
+    "0b02d7454cbcd95f8cc4b6baecc2bdc6da2ff2ca6ef0b11e307e7150f0d9631d", // TLS-Admin-2026 (Default Master)
+    "6059f85534d7c3347f8a268ec858692c7d586507bd2633db5d47941e7d961965", // Studio-Admin-2026
+    "ac4080297d1632bda4127cde4f089c783daa4aaa2514a25d7623986380d84206", // tls2026
     "b4fcbfa958d909237b165cb685d00105e4bdc8c95f05d31cd52666332aa7ee85"  // admin123
   ],
 
@@ -778,7 +775,7 @@ window.DPAService = {
 };
 
 // Aliasing for compatibility
-window.VJIService = window.DPAService;
+window.TLSService = window.DPAService;
 
 // Automatically run initialization
 document.addEventListener("DOMContentLoaded", () => {
