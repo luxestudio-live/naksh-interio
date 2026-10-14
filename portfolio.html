@@ -32,7 +32,9 @@
 <meta name="twitter:image:alt" content="A&A Architect & Interior Designer Portfolio">
 
 <!-- A&A Architect & Interior Designer Luxury Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1713'/%3E%3Ccircle cx='32' cy='32' r='27' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.45'/%3E%3Ccircle cx='32' cy='32' r='23' stroke='%23dfc08a' stroke-width='0.75' fill='none' stroke-dasharray='2 2' stroke-opacity='0.4'/%3E%3Cpath d='M32 10L33.5 14.5L38 16L33.5 17.5L32 22L30.5 17.5L26 16L30.5 14.5Z' fill='%23dfc08a'/%3E%3Cpath d='M19 46C19 36 25 30 32 30C39 30 45 36 45 46' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.35'/%3E%3Ctext x='32' y='41' font-family='system-ui,-apple-system,sans-serif' font-size='12' font-weight='800' fill='%23dfc08a' text-anchor='middle' letter-spacing='1'%3EA%26A%3C/text%3E%3Ccircle cx='32' cy='49' r='1.8' fill='%23dfc08a'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,8 +99,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(16px, 3.5vw, 36px);
-  height: 68px;
+  padding: 0 clamp(14px, 2.4vw, 36px);
+  height: 64px;
   box-sizing: border-box;
   background: var(--g-glass);
   backdrop-filter: blur(18px);
@@ -109,47 +111,54 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .brand { display: flex; flex-direction: column; }
 .brand .lg {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(15px, 1.4vw, 18px);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font: 600 clamp(12.5px, 1.1vw, 15px) 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.08em;
   background: var(--gold-grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 .brand .loc {
-  font-size: 9.5px;
-  letter-spacing: 1.8px;
+  font-size: 7.8px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--mu);
+  color: var(--br-light);
   font-weight: 600;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 .brand .loc-badge { color: var(--br-light); font-size: 7px; vertical-align: middle; }
 
-.nav-links { display: flex; gap: 26px; list-style: none; align-items: center; }
+.nav-links {
+  display: flex;
+  gap: clamp(6px, 1vw, 14px);
+  list-style: none;
+  align-items: center;
+  font-size: 10.8px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
 .nav-links a {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: #cad6d0;
-  transition: color 0.2s ease;
-  letter-spacing: 0.3px;
+  color: #c7d5cf;
+  transition: all 0.2s ease;
+  padding: 4px 2px;
+  position: relative;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--br-light); }
 
-.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-actions { display: flex; align-items: center; gap: clamp(6px, 1vw, 12px); flex-shrink: 0; }
 .nav-phone {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
+  gap: 5px;
+  font-size: 11.2px;
   font-weight: 600;
   color: var(--br-light);
   background: rgba(184, 141, 77, 0.1);
   border: 1px solid rgba(184, 141, 77, 0.28);
-  padding: 7px 14px;
-  border-radius: 30px;
+  padding: 5px 10px;
+  border-radius: 6px;
   transition: all 0.2s ease;
 }
 .nav-phone:hover {
@@ -847,25 +856,26 @@ footer {
 <!-- Navigation -->
 <nav id="nv">
   <div class="brand">
-    <a class="lg" href="index.html">A&A ARCHITECT & INTERIOR DESIGNER</a>
+    <a class="lg" href="index.html">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</a>
     <span class="loc"><span class="loc-badge">●</span> <span class="loc-desk">ARCHITECT &amp; INTERIOR DESIGNER &middot; GANGA NAGAR, MEERUT 250001</span><span class="loc-mob">MEERUT &middot; UP</span></span>
   </div>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="index.html#services">Services (24)</a></li>
-    <li><a href="portfolio.html" class="active">Portfolio &amp; Projects</a></li>
+    <li><a href="portfolio.html" class="active">All Projects</a></li>
     <li><a href="index.html#case">Before &amp; After</a></li>
-    <li><a href="index.html#reviews">Reviews</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#estimator">Estimator</a></li>
+    <li><a href="index.html#reviews">Reviews (68)</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-actions">
     <a class="nav-phone" href="tel:+916397438387">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
       <span>063974 38387</span>
     </a>
-    <a class="btn" href="index.html#contact">Book Consultation</a>
-    <a class="nav-mob-call" href="tel:+916397438387" aria-label="Call A&A Architect & Interior Designer Concierge 063974 38387">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+    <a class="btn" href="contact.html" style="padding:6px 14px;font-size:11.2px;letter-spacing:0.03em;border-radius:6px">Book Consultation</a>
+    <a class="nav-mob-call" href="tel:+916397438387" aria-label="Call Studio">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
       <span>Call</span>
     </a>
     <button class="mob-toggle" id="mobOpen" aria-label="Open Navigation Menu">
@@ -890,12 +900,13 @@ footer {
   </div>
   <ul class="mob-links">
     <li><a href="index.html" class="mob-item">Home Page <span>&rarr;</span></a></li>
+    <li><a href="about.html" class="mob-item">About Studio <span>&rarr;</span></a></li>
     <li><a href="index.html#services" class="mob-item">Specialized Services (24) <span>&rarr;</span></a></li>
-    <li><a href="portfolio.html" class="mob-item">Project Portfolio &amp; Archive <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html" class="mob-item active">Project Portfolio &amp; Archive <span>&rarr;</span></a></li>
     <li><a href="index.html#case" class="mob-item">Before &amp; After Spotlight <span>&rarr;</span></a></li>
     <li><a href="index.html#estimator" class="mob-item">Cost Estimator <span>&rarr;</span></a></li>
-    <li><a href="index.html#reviews" class="mob-item">Client Feedback &amp; Reviews <span>&rarr;</span></a></li>
-    <li><a href="index.html#contact" class="mob-item">Contact &amp; Studio Location <span>&rarr;</span></a></li>
+    <li><a href="index.html#reviews" class="mob-item">Client Feedback &amp; Reviews (68) <span>&rarr;</span></a></li>
+    <li><a href="contact.html" class="mob-item">Contact &amp; Studio Location <span>&rarr;</span></a></li>
   </ul>
   <div style="margin-top:auto;padding-top:14px;border-top:1px solid rgba(223,192,138,0.15)">
     <a class="btn" href="index.html#contact" style="display:block;width:100%;text-align:center;padding:12px;font-size:14px;font-weight:700;box-sizing:border-box;border-radius:8px">Book Consultation &rarr;</a>

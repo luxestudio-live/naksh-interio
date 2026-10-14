@@ -13,7 +13,9 @@
 <meta name="msapplication-TileColor" content="#0b1713">
 
 <!-- A&A Architect & Interior Designer Luxury Favicon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1713'/%3E%3Ccircle cx='32' cy='32' r='27' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.45'/%3E%3Ccircle cx='32' cy='32' r='23' stroke='%23dfc08a' stroke-width='0.75' fill='none' stroke-dasharray='2 2' stroke-opacity='0.4'/%3E%3Cpath d='M32 10L33.5 14.5L38 16L33.5 17.5L32 22L30.5 17.5L26 16L30.5 14.5Z' fill='%23dfc08a'/%3E%3Cpath d='M19 46C19 36 25 30 32 30C39 30 45 36 45 46' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.35'/%3E%3Ctext x='32' y='41' font-family='system-ui,-apple-system,sans-serif' font-size='12' font-weight='800' fill='%23dfc08a' text-anchor='middle' letter-spacing='1'%3EA%26A%3C/text%3E%3Ccircle cx='32' cy='49' r='1.8' fill='%23dfc08a'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1713'/%3E%3Ccircle cx='32' cy='32' r='27' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.45'/%3E%3Ccircle cx='32' cy='32' r='23' stroke='%23dfc08a' stroke-width='0.75' fill='none' stroke-dasharray='2 2' stroke-opacity='0.4'/%3E%3Cpath d='M32 10L33.5 14.5L38 16L33.5 17.5L32 22L30.5 17.5L26 16L30.5 14.5Z' fill='%23dfc08a'/%3E%3Cpath d='M19 46C19 36 25 30 32 30C39 30 45 36 45 46' stroke='%23dfc08a' stroke-width='1.5' fill='none' stroke-opacity='0.35'/%3E%3Ctext x='32' y='41' font-family='system-ui,-apple-system,sans-serif' font-size='12' font-weight='800' fill='%23dfc08a' text-anchor='middle' letter-spacing='1'%3EA%26A%3C/text%3E%3Ccircle cx='32' cy='49' r='1.8' fill='%23dfc08a'/%3E%3C/svg%3E">
 
 <!-- Open Graph / WhatsApp / Facebook Rich Previews -->
@@ -342,15 +344,15 @@ nav {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 clamp(16px, 3.5vw, 44px);
+  padding: 0 clamp(12px, 2.2vw, 32px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--m);
   transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-  height: 70px;
+  height: 64px;
   box-sizing: border-box;
-  background: rgba(15, 29, 24, 0.92);
+  background: rgba(15, 29, 24, 0.94);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(223, 192, 138, 0.15);
@@ -359,7 +361,7 @@ nav {
 }
 nav.s {
   background: rgba(10, 20, 16, 0.98);
-  height: 60px;
+  height: 56px;
   border-bottom-color: rgba(223, 192, 138, 0.22);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
@@ -369,25 +371,25 @@ nav.s {
   flex-shrink: 0;
 }
 .brand .lg {
-  font: 600 clamp(15px, 1.4vw, 18px) 'Cormorant Garamond', Georgia, serif;
-  letter-spacing: 0.15em;
+  font: 600 clamp(12.5px, 1.1vw, 15px) 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.08em;
   background: linear-gradient(135deg, #ffffff 0%, #dfc08a 60%, #b88d4d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1;
+  line-height: 1.1;
   text-transform: uppercase;
 }
 .brand .loc {
-  font-size: 8.5px;
-  letter-spacing: 0.25em;
+  font-size: 7.8px;
+  letter-spacing: 0.14em;
   color: var(--br-light);
   font-weight: 600;
-  margin-top: 3px;
+  margin-top: 2px;
   text-transform: uppercase;
   opacity: 0.95;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 .brand .loc-badge {
   color: #2ecc71;
@@ -396,21 +398,21 @@ nav.s {
 nav ul {
   display: flex;
   align-items: center;
-  gap: clamp(10px, 1.4vw, 20px);
+  gap: clamp(6px, 0.9vw, 13px);
   list-style: none;
-  font-size: 12px;
+  font-size: 10.8px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   margin: 0;
   padding: 0;
 }
 nav ul a {
-  opacity: 0.85;
+  opacity: 0.88;
   color: #e5ece9;
   transition: all 0.25s ease;
   position: relative;
-  padding: 6px 2px;
+  padding: 4px 2px;
   text-decoration: none;
 }
 nav ul a:after {
@@ -434,18 +436,18 @@ nav ul a:hover:after, nav ul a.active:after {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: clamp(8px, 1.2vw, 16px);
+  gap: clamp(6px, 0.9vw, 11px);
   flex-shrink: 0;
 }
 .nav-phone {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
+  gap: 5px;
+  font-size: 11.2px;
   color: var(--br-light);
   font-weight: 600;
   letter-spacing: 0.02em;
-  padding: 6px 11px;
+  padding: 5px 9px;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(184, 141, 77, 0.25);
@@ -461,10 +463,10 @@ nav ul a:hover:after, nav ul a.active:after {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 18px;
-  font-size: 12.5px;
+  padding: 6px 13px;
+  font-size: 11.2px;
   border-radius: 6px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.03em;
   white-space: nowrap;
   background: var(--gold-grad);
@@ -2007,11 +2009,11 @@ footer {
 }
 
 /* ==================== COMPREHENSIVE RESPONSIVE DESIGN ==================== */
-@media(min-width: 1025px) {
+@media(min-width: 1121px) {
   .mob-toggle, .nav-mob-call { display: none !important; }
 }
 
-@media(max-width: 1024px) {
+@media(max-width: 1120px) {
   .wrap { padding: 0 16px; width: 100%; box-sizing: border-box; }
   
   nav#nv {
@@ -2346,26 +2348,26 @@ footer {
 <!-- Header Navigation -->
 <nav id="nv">
   <div class="brand">
-    <a class="lg" href="#top">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</a>
+    <a class="lg" href="index.html#top">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</a>
     <span class="loc"><span class="loc-badge">●</span> <span class="loc-desk">INTERIOR DESIGNER &middot; GANGA NAGAR, MEERUT &middot; UP 250001</span><span class="loc-mob">MEERUT &middot; UP</span></span>
   </div>
   <ul>
-    <li><a href="#about">About</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="#services">Services (24)</a></li>
     <li><a href="#case">Before &amp; After</a></li>
     <li><a href="portfolio.html">All Projects</a></li>
     <li><a href="#estimator">Estimator</a></li>
     <li><a href="#reviews">Reviews (68)</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-actions">
     <a class="nav-phone" href="tel:+916397438387">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
       <span>063974 38387</span>
     </a>
-    <a class="nav-cta" href="#contact">Book Consultation</a>
+    <a class="nav-cta" href="contact.html">Book Consultation</a>
     <a class="nav-mob-call" href="tel:+916397438387" aria-label="Call A&A Architect & Interior Designer">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
       <span>Call</span>
     </a>
     <button class="mob-toggle" id="mobOpen" aria-label="Open Navigation Menu">
@@ -2389,14 +2391,14 @@ footer {
     <span style="color:#f59e0b">★ 5.0</span> &middot; 68 Verified Google Reviews &middot; Meerut, UP
   </div>
   <ul class="mob-links">
-    <li><a href="#about" class="mob-item">About Studio <span>&rarr;</span></a></li>
+    <li><a href="index.html" class="mob-item">Home Page <span>&rarr;</span></a></li>
+    <li><a href="about.html" class="mob-item">About Studio <span>&rarr;</span></a></li>
     <li><a href="#services" class="mob-item">Specialized Services (24) <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html" class="mob-item">Project Portfolio &amp; Archive <span>&rarr;</span></a></li>
     <li><a href="#case" class="mob-item">Before &amp; After Spotlight <span>&rarr;</span></a></li>
     <li><a href="#estimator" class="mob-item">Cost Estimator <span>&rarr;</span></a></li>
-    <li><a href="portfolio.html" class="mob-item">Project Portfolio &amp; Archive <span>&rarr;</span></a></li>
-    <li><a href="#process" class="mob-item">Execution Process <span>&rarr;</span></a></li>
     <li><a href="#reviews" class="mob-item">Client Feedback &amp; Reviews (68) <span>&rarr;</span></a></li>
-    <li><a href="#contact" class="mob-item">Contact &amp; Studio Location <span>&rarr;</span></a></li>
+    <li><a href="contact.html" class="mob-item">Contact &amp; Studio Location <span>&rarr;</span></a></li>
   </ul>
   <div style="margin-top:auto;padding-top:14px;border-top:1px solid rgba(223,192,138,0.15)">
     <a class="btn" href="#contact" class="mob-item" onclick="$('mobMenu').classList.remove('open')" style="display:block;width:100%;text-align:center;padding:12px;font-size:14px;font-weight:700;box-sizing:border-box;border-radius:8px">Book Consultation &rarr;</a>
