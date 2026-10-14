@@ -1,31 +1,31 @@
 /**
- * The Luxe Studio - Firebase Cloud Integration & Data Service
+ * A&A Architect & Interior Designer - Firebase Cloud Integration & Data Service
  * Provides Firestore sync, Firebase Auth, and robust local caching for all website components.
- * Premier Luxury Interior Architecture & Turnkey Design · Mumbai · Delhi · Bangalore · Pan-India
+ * Premier Interior Architecture & Design Studio · Meerut, Uttar Pradesh
  */
 
-// Default Seed Data for The Luxe Studio
-const TLS_INITIAL_DATA = {
+// Default Seed Data for A&A Architect & Interior Designer
+const AA_INITIAL_DATA = {
   siteSettings: {
-    brandName: "The Luxe Studio",
-    brandSubtitle: "LUXURY INTERIOR ARCHITECTURE · PAN-INDIA",
-    tagline: "4.9 ★ (150+ Reviews) Premier Luxury Interior Studio · Pan-India",
+    brandName: "A&A Architect & Interior Designer",
+    brandSubtitle: "ARCHITECT & INTERIOR DESIGNER · GANGA NAGAR, MEERUT, UP",
+    tagline: "5.0 ★ (68 Reviews) Top Rated Interior Designer in Meerut, UP",
     heroTitle: "Exquisite interior spaces crafted with architectural precision, quality & elegance.",
-    heroDesc: "The Luxe Studio delivers turnkey luxury interior design, bespoke bedroom suites, minimalist modular kitchens, artistic ceiling illumination, and master craftsmanship across Mumbai, Delhi NCR, Bangalore, and nationwide.",
-    phone: "+91 98200 12345",
-    phoneTel: "+919820012345",
-    email: "concierge@theluxestudio.in",
-    address: "Level 4, Signature Design Pavilion, Bandra Kurla Complex, Mumbai & Central NCR, New Delhi",
-    mapsQuery: "The+Luxe+Studio+Interior+Architecture+Bandra+Kurla+Complex+Mumbai",
-    hours: "Mon - Sat: 10:00 AM - 8:00 PM",
-    rating: "4.9",
-    reviewCount: "150",
+    heroDesc: "Professional interior design and architectural firm providing affordable residential and commercial design services across Ganga Nagar, Mawana Road, Shastri Nagar, and Meerut & NCR.",
+    phone: "063974 38387",
+    phoneTel: "+916397438387",
+    email: "contact@aaarchitects.in",
+    address: "B-321, Mawana Rd, B-Pocket, Radha Garden, Ganga Nagar, Meerut, Uttar Pradesh 250001",
+    mapsQuery: "A%26A+Architect+%26+Interior+Designer+B-321+Mawana+Rd+Radha+Garden+Ganga+Nagar+Meerut+Uttar+Pradesh+250001",
+    hours: "Open · Closes 9 pm",
+    rating: "5.0",
+    reviewCount: "68",
     stats: [
-      { num: "4.9", sup: "★", label: "Google Rating from 150+ Verified Luxury Homes" },
-      { num: "12", sup: "+", label: "Specialized Architectural Interior Disciplines" },
-      { num: "15", sup: "+", label: "Years of High-End Turnkey Execution Excellence" },
-      { num: "100", sup: "%", label: "Bespoke Material Selection & Superior Precision" },
-      { num: "A-Z", sup: "", label: "Conceptual 3D, Millwork, Lighting & Turnkey Handover" }
+      { num: "5.0", sup: "★", label: "Google Rating from 68 Verified Clients" },
+      { num: "24", sup: "", label: "Specialized Architectural & Interior Disciplines" },
+      { num: "9", sup: "PM", label: "Open Daily · Closes 9 PM for Consultations" },
+      { num: "100", sup: "%", label: "Affordable, High-Precision Turnkey Execution" },
+      { num: "A-Z", sup: "", label: "Architecture, 3D Elevation, Modular Carpentry & Styling" }
     ]
   },
   projects: [
@@ -33,7 +33,7 @@ const TLS_INITIAL_DATA = {
       id: "proj_1",
       title: "Designer Gypsum False Ceiling & Backlit CNC Jali",
       category: "False Ceiling & Decor",
-      loc: "Worli, Mumbai",
+      loc: "Ganga Nagar, Meerut",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -48,8 +48,8 @@ const TLS_INITIAL_DATA = {
     {
       id: "proj_2",
       title: "Master Bedroom Suite with Painted Botanical Mural & Curved Headboard",
-      category: "Bedroom Design",
-      loc: "Bandra West, Mumbai",
+      category: "Bedroom design",
+      loc: "Radha Garden, Mawana Road, Meerut",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
@@ -59,13 +59,13 @@ const TLS_INITIAL_DATA = {
       featured: true,
       year: "2026",
       desc: "Bespoke master suite with arched wall niche featuring vibrant hand-painted botanical murals, plush dual-tone upholstered headboard, integrated LED perimeter mood lighting, and tailored soft furnishings.",
-      tags: ["Bedroom Design", "Custom Wall Art", "Mood Lighting"]
+      tags: ["Bedroom design", "Custom Art", "Mood Lighting"]
     },
     {
       id: "proj_3",
       title: "Italian Statuario Marble TV Lounge & Fluted Paneling",
-      category: "Living Room",
-      loc: "Golf Course Road, Gurgaon",
+      category: "Living room design",
+      loc: "Shastri Nagar, Meerut",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -76,13 +76,13 @@ const TLS_INITIAL_DATA = {
       featured: true,
       year: "2026",
       desc: "Seamless full-height Statuario marble book-matched feature wall, acoustic fluted timber louvers, integrated 3000K indirect LED profiles, and floating smoked walnut entertainment cabinetry.",
-      tags: ["Living Room", "Statuario Marble", "TV Console"]
+      tags: ["Living room design", "Statuario Marble", "TV Console"]
     },
     {
       id: "proj_4",
       title: "Contemporary Smoked Walnut & Quartz Modular Kitchen",
-      category: "Modular Kitchen",
-      loc: "Indiranagar, Bangalore",
+      category: "Kitchen design",
+      loc: "Saket, Meerut",
       img: "images/kitchen_walnut.jpg",
       images: [
         "images/kitchen_walnut.jpg",
@@ -92,13 +92,13 @@ const TLS_INITIAL_DATA = {
       featured: false,
       year: "2025",
       desc: "Architectural culinary studio crafted with boiling-water-proof HDHMR joinery, anti-scratch smoked walnut acrylic finishes, seamless Calacatta quartz countertops, and German soft-close tandem hardware.",
-      tags: ["Modular Kitchen", "Walnut Veneer", "Quartz Counter"]
+      tags: ["Kitchen design", "Walnut Veneer", "Quartz Counter"]
     },
     {
       id: "proj_5",
       title: "Luxury Bedroom Suite with Halo Mirror & Fluted Vanity",
-      category: "Bedroom Design",
-      loc: "Jubilee Hills, Hyderabad",
+      category: "Bedroom design",
+      loc: "Mawana Road, Meerut",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
@@ -108,13 +108,13 @@ const TLS_INITIAL_DATA = {
       featured: true,
       year: "2025",
       desc: "Elegantly detailed bedroom sanctuary with vertical fluted wall paneling, halo illuminated vanity ring mirror, integrated floating dressing table, and ambient warm ceiling cove illumination.",
-      tags: ["Bedroom Design", "Vanity Station", "Fluted Paneling"]
+      tags: ["Bedroom design", "Vanity Station", "Fluted Paneling"]
     },
     {
       id: "proj_6",
       title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes",
-      category: "Wardrobes & Decor",
-      loc: "Marine Drive, Mumbai",
+      category: "Cabinetry and hardware design",
+      loc: "Modipuram, Meerut",
       img: "images/walkin_wardrobe.jpg",
       images: [
         "images/walkin_wardrobe.jpg",
@@ -123,13 +123,13 @@ const TLS_INITIAL_DATA = {
       featured: false,
       year: "2025",
       desc: "Walk-in wardrobe sanctuary with bronze aluminum slim profile frames, sensor LED strip shelving, velvet accessory trays, and full-length vanity mirror integration.",
-      tags: ["Walk-in Closet", "Glass Wardrobe", "LED Joinery"]
+      tags: ["Cabinetry", "Glass Wardrobe", "LED Joinery"]
     },
     {
       id: "proj_7",
       title: "Sophisticated Dining Suite & Luxury Chandeliers",
-      category: "Dining Room Design",
-      loc: "Vasant Vihar, New Delhi",
+      category: "Dining room design",
+      loc: "Delhi Road, Meerut",
       img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
@@ -138,13 +138,13 @@ const TLS_INITIAL_DATA = {
       featured: false,
       year: "2025",
       desc: "Opulent dining room design with sintered stone dining table, sculptural brass pendant lighting, custom bar buffet credenza, and curated artwork.",
-      tags: ["Dining Room", "Custom Art", "Pendant Lighting"]
+      tags: ["Dining room design", "Custom Art", "Pendant Lighting"]
     },
     {
       id: "proj_8",
-      title: "Turnkey Luxury Villa Interior & Complete Home Decor",
-      category: "Turnkey Interior",
-      loc: "Mumbai & Pan-India",
+      title: "Commercial Office & Reception Lounge Architecture",
+      category: "Commercial interior design",
+      loc: "Meerut & NCR",
       img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
@@ -153,71 +153,179 @@ const TLS_INITIAL_DATA = {
       ],
       featured: true,
       year: "2026",
-      desc: "Full turnkey interior transformation featuring complete false ceilings, customized modular carpentry, designer bathrooms, luxury curtains, and personalized styling executed on schedule.",
-      tags: ["Turnkey Interior", "Home Decor", "Luxury Residence"]
+      desc: "Executive office interior with acoustic paneling, fluted timber reception counter, magnetic track illumination, and ergonomic executive cabins.",
+      tags: ["Commercial interior design", "Office space design", "Space planning"]
     }
   ],
   services: [
-    { name: "Bathroom design", icon: "🛁", desc: "Luxury sanitary fittings, designer wall tiles, custom vanity counters & ambient illumination" },
-    { name: "Bedroom design", icon: "🛏️", desc: "Bespoke upholstered headboards, fluted wall accents, warm cove lighting & cozy layouts" },
-    { name: "Custom art selection", icon: "🎨", desc: "Curated wall murals, bespoke art installations, custom textures & refined styling" },
-    { name: "Dining room design", icon: "🍷", desc: "Sophisticated dining concepts, luxury pendant chandeliers & tailored buffet credenzas" },
-    { name: "Home decor & styling", icon: "✨", desc: "Comprehensive soft furnishings, artifact curation, sensory palettes & harmonious decor" },
-    { name: "False ceiling & CNC Jali lighting", icon: "💡", desc: "Artistic gypsum ceilings, backlit laser-cut CNC jali work & ambient cove profiles" },
-    { name: "Modular kitchen design", icon: "🍳", desc: "Boiling-water-proof HDHMR joinery, quartz stone countertops & German soft-close fittings" },
-    { name: "Living room & TV unit architecture", icon: "🛋️", desc: "Statuario marble feature walls, vertical fluted acoustic louvers & floating consoles" },
-    { name: "Wardrobes & walk-in dressing suites", icon: "👗", desc: "Bronze profile glass wardrobes, motion-sensor LED strips & integrated dressing vanities" },
-    { name: "Turnkey interior execution", icon: "🛠️", desc: "Unified turnkey craftsmanship from initial 3D blueprint to flawless on-site handover" },
-    { name: "3D interior rendering & walkthroughs", icon: "📐", desc: "Photorealistic 3D elevations, CGI perspectives and virtual visual walkthroughs" },
-    { name: "Interior consultation", icon: "🤝", desc: "Personalized spatial audits, material selection guidance & budget-optimized planning" }
-  ],
+    {
+        "name": "Appliance selection",
+        "icon": "⚡",
+        "desc": "Curated smart built-in appliances, seamless induction hobs, designer chimneys & wine chillers"
+    },
+    {
+        "name": "Bathroom design",
+        "icon": "🛁",
+        "desc": "Luxury sanitary fittings, Italian quartz vanities, ambient backlighting & glass enclosures"
+    },
+    {
+        "name": "Bedroom design",
+        "icon": "🛏️",
+        "desc": "Bespoke upholstered headboards, acoustic wall fluting, warm cove lighting & master suites"
+    },
+    {
+        "name": "Cabinetry and hardware design",
+        "icon": "🗄️",
+        "desc": "Custom soft-close millwork, concealed tandem runners & imported architectural hardware"
+    },
+    {
+        "name": "Commercial interior design",
+        "icon": "🏢",
+        "desc": "High-impact corporate offices, retail showrooms & experiential commercial spaces"
+    },
+    {
+        "name": "Custom art selection",
+        "icon": "🎨",
+        "desc": "Curated wall murals, bespoke sculpture curation, custom textures & refined styling"
+    },
+    {
+        "name": "Dining room design",
+        "icon": "🍷",
+        "desc": "Statement sintered stone dining tables, designer chandeliers & custom buffet credenzas"
+    },
+    {
+        "name": "Door design",
+        "icon": "🚪",
+        "desc": "Grand entrance pivot doors, flush concealed frames & bespoke acoustic door joinery"
+    },
+    {
+        "name": "Flooring selection",
+        "icon": "🏛️",
+        "desc": "Italian Statuario marble, herringbone hardwood, vitrified slabs & seamless microtopping"
+    },
+    {
+        "name": "Home decor selection",
+        "icon": "✨",
+        "desc": "Harmonious sensory accessories, luxury artifacts, custom drapery & curated accents"
+    },
+    {
+        "name": "Home staging",
+        "icon": "🏡",
+        "desc": "Market-ready property enhancement, spatial styling & turnkey aesthetic staging"
+    },
+    {
+        "name": "Hospitality design",
+        "icon": "🛎️",
+        "desc": "Boutique hotels, luxury lounges, ambient suites & memorable guest experiences"
+    },
+    {
+        "name": "Interior architectural design",
+        "icon": "📐",
+        "desc": "Structural space alterations, false ceiling geometry & high-precision architectural blueprints"
+    },
+    {
+        "name": "Interior decorating",
+        "icon": "🖼️",
+        "desc": "Comprehensive furnishing palettes, texture layering, designer wallpapers & color harmony"
+    },
+    {
+        "name": "Interior painting",
+        "icon": "🖌️",
+        "desc": "Royal luxury emulsions, textured stucco finishes, limewash & zero-VOC Italian coats"
+    },
+    {
+        "name": "Kitchen design",
+        "icon": "🍳",
+        "desc": "Modern modular kitchens, boiling-water-proof HDHMR, quartz surfaces & German fittings"
+    },
+    {
+        "name": "Lighting design",
+        "icon": "💡",
+        "desc": "Magnetic track lights, architectural coves, layered 3000K mood illumination & smart automation"
+    },
+    {
+        "name": "Living room design",
+        "icon": "🛋️",
+        "desc": "Statuario marble TV walls, acoustic louvers, designer sofas & open-concept luxury lounges"
+    },
+    {
+        "name": "Millwork design",
+        "icon": "🪵",
+        "desc": "Tailored architectural wood paneling, bespoke bookcases, display niches & veneer joinery"
+    },
+    {
+        "name": "Office space design",
+        "icon": "💻",
+        "desc": "Ergonomic executive cabins, collaborative conference zones & acoustic productivity layouts"
+    },
+    {
+        "name": "Restaurant design",
+        "icon": "🍽️",
+        "desc": "Atmospheric dining concepts, ergonomic commercial kitchen workflows & themed ambient decor"
+    },
+    {
+        "name": "Room planning",
+        "icon": "📋",
+        "desc": "Precise functional layouts, furniture scaling, circulation pathways & spatial optimization"
+    },
+    {
+        "name": "Space planning",
+        "icon": "📏",
+        "desc": "Comprehensive 2D/3D architectural spatial mapping for optimal flow, ergonomics & natural light"
+    },
+    {
+        "name": "Window design",
+        "icon": "🪟",
+        "desc": "Panoramic French glazing, motorized drapery tracks, acoustic double-glazing & custom frames"
+    }
+],
   reviews: [
     {
       id: "rev_1",
-      author: "Vikramaditya & Radhika Singhania",
-      loc: "Worli, Mumbai",
+      author: "Amit Singhal",
+      loc: "Ganga Nagar, Meerut",
       stars: 5,
-      quote: "The Luxe Studio transformed our 4BHK penthouse with impeccable taste. The walnut Italian kitchen, acoustic louvers, and cove ceiling profiles are world-class."
+      quote: "A&A Architect & Interior Designer did an exceptional job with our new home. Their architectural planning and false ceiling designs transformed our entire floor. Truly the best and most affordable interior designer in Meerut!"
     },
     {
       id: "rev_2",
-      author: "Ananya & Dev Kapoor",
-      loc: "Golf Course Road, Gurgaon",
+      author: "Dr. Neha Sharma",
+      loc: "Radha Garden, Mawana Road, Meerut",
       stars: 5,
-      quote: "Flawless execution and absolute adherence to quality. Our master suite and walk-in dressing lounge exceeded our highest expectations."
+      quote: "Highly impressed by their professionalism and space planning. They delivered our modular kitchen and bedroom wardrobes well before the deadline with outstanding finish and craftsmanship. 5.0-star experience!"
     },
     {
       id: "rev_3",
-      author: "Rohan & Meera Chawla",
-      loc: "Indiranagar, Bangalore",
+      author: "Gaurav Tyagi",
+      loc: "Shastri Nagar, Meerut",
       stars: 5,
-      quote: "From photorealistic 3D elevations to final handover, their team handled every single architectural detail with total professionalism."
+      quote: "From 3D architectural elevations to final turnkey handover, A&A took care of every single design, carpentry, and electrical detail. Their commercial and residential design capability is top-notch in Meerut."
     }
   ],
   inquiries: [
     {
       id: "inq_demo_1",
-      name: "Vikramaditya Singhania",
-      phone: "+91 98200 44521",
-      service: "Turnkey Penthouse Interior",
-      message: "Looking for complete penthouse interior with fluted paneling, backlit false ceiling and custom wardrobe in Worli, Mumbai.",
+      name: "Rajesh Kumar",
+      phone: "+91 98971 22341",
+      service: "Interior architectural design",
+      message: "Need complete architectural interior design and space planning for a 3BHK villa in Ganga Nagar, Meerut.",
       timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
       status: "New"
     },
     {
       id: "inq_demo_2",
-      name: "Ananya Kapoor",
-      phone: "+91 98101 77123",
-      service: "Modular kitchen design",
-      message: "Planning modern modular kitchen with quartz countertop and acrylic cabinets in Golf Course Road, Gurgaon.",
+      name: "Meenakshi Verma",
+      phone: "+91 98370 55123",
+      service: "Kitchen design",
+      message: "Planning modern modular kitchen with quartz countertop in Radha Garden, Mawana Road. Please share cost estimate.",
       timestamp: new Date(Date.now() - 3600000 * 28).toISOString(),
       status: "Contacted"
     }
   ]
 };
 
-// Aliasing for compatibility
-const DPA_INITIAL_DATA = TLS_INITIAL_DATA;
+const TLS_INITIAL_DATA = AA_INITIAL_DATA;
+const DPA_INITIAL_DATA = AA_INITIAL_DATA;
 
 // Data Service Singleton
 window.DPAService = {
@@ -245,8 +353,8 @@ window.DPAService = {
       this.isFirebaseActive = false;
     }
 
-    // Ensure Local Storage has initial seed data with new The Luxe Studio branding
-    if (!localStorage.getItem("tls_prototype_seeded_v2")) {
+    // Ensure Local Storage has initial seed data with A&A Architect & Interior Designer branding
+    if (!localStorage.getItem("aa_architect_seeded_v1")) {
       this.seedLocalData();
     }
   },
@@ -280,7 +388,7 @@ window.DPAService = {
     localStorage.setItem("dpa_reviews", JSON.stringify(TLS_INITIAL_DATA.reviews));
     localStorage.setItem("dpa_inquiries", JSON.stringify(TLS_INITIAL_DATA.inquiries));
 
-    localStorage.setItem("tls_prototype_seeded_v2", "true");
+    localStorage.setItem("aa_architect_seeded_v1", "true");
     localStorage.setItem("dpa_data_seeded", "true");
   },
 
@@ -338,7 +446,7 @@ window.DPAService = {
       if (!gallery) {
         gallery = p.img ? [p.img] : [];
       }
-      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Mumbai · Pan-India');
+      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Ganga Nagar, Meerut');
       return {
         ...p,
         loc: loc,
@@ -668,9 +776,10 @@ window.DPAService = {
   
   // SHA-256 Hashes of authorized factory keys (Irreversible one-way hashes, zero plaintext)
   _FACTORY_HASHES: [
-    "0b02d7454cbcd95f8cc4b6baecc2bdc6da2ff2ca6ef0b11e307e7150f0d9631d", // TLS-Admin-2026 (Default Master)
+    "c88b7633dc87f7af686ef51655762a92e5610d09532a72cf38b5824f1a25490f", // AA-Admin-2026 (Default Master)
+    "d2851f5927381595e59ceae895d8cd989b46deee43c724956379b435c8ed873b", // aa2026
+    "0b02d7454cbcd95f8cc4b6baecc2bdc6da2ff2ca6ef0b11e307e7150f0d9631d", // TLS-Admin-2026
     "6059f85534d7c3347f8a268ec858692c7d586507bd2633db5d47941e7d961965", // Studio-Admin-2026
-    "ac4080297d1632bda4127cde4f089c783daa4aaa2514a25d7623986380d84206", // tls2026
     "b4fcbfa958d909237b165cb685d00105e4bdc8c95f05d31cd52666332aa7ee85"  // admin123
   ],
 
