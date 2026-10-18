@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architectural Practice & 3D Elevations | A&A Architect & Interior Designer · Meerut, UP</title>
+<meta name="description" content="A&A Architect & Interior Designer delivers premier architectural planning, 3D exterior elevations, structural blueprints, municipal sanction drawings & luxury villa design in Meerut, UP.">
+<meta name="keywords" content="Architect Meerut, Architectural Design Ganga Nagar, 3D Elevation Meerut, Structural Blueprints UP, Villa Architecture Mawana Road, MDA Sanctions Meerut, Building Plan Architect">
+<meta name="author" content="A&A Architect & Interior Designer">
+<link rel="canonical" href="https://aa-architect-interior-designer.vercel.app/architecture.html">
+<meta name="theme-color" content="#0b1713">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- Open Graph / WhatsApp Preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="A&A Architect & Interior Designer">
+<meta property="og:title" content="Architectural Practice & 3D Elevations | A&A Architect & Interior Designer">
+<meta property="og:description" content="Premier architectural practice in Meerut. Residential villas, commercial complexes, 3D exterior elevations, structural CAD blueprints & municipal sanctions.">
+<meta property="og:url" content="https://aa-architect-interior-designer.vercel.app/architecture.html">
+<meta property="og:image" content="images/villa_elevation.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["ArchitecturalFirm", "ProfessionalService"],
+  "name": "A&A Architect & Interior Designer - Architecture Division",
+  "url": "https://aa-architect-interior-designer.vercel.app/architecture.html",
+  "telephone": "+916397438387",
+  "priceRange": "₹₹ - ₹₹₹",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "B-321, Mawana Rd, B-Pocket, Radha Garden, Ganga Nagar",
+    "addressLocality": "Meerut",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "250001",
+    "addressCountry": "IN"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "68"
+  }
+}
+</script>
+
+<style>
+:root {
+  --g: #0b1713;
+  --g2: #12221b;
+  --g3: #1b2f26;
+  --g-glass: rgba(11, 23, 19, 0.94);
+  --br: #b88d4d;
+  --br-light: #dfc08a;
+  --br-glow: rgba(184, 141, 77, 0.28);
+  --m: #f8f6f2;
+  --tx: #e7ece9;
+  --mu: #93a39b;
+  --mu-light: #b0c0b8;
+  --ln: rgba(223, 192, 138, 0.16);
+  --gold-grad: linear-gradient(135deg, #ffffff 0%, #dfc08a 50%, #b88d4d 100%);
+  --gold-btn: linear-gradient(135deg, #dfc08a 0%, #b88d4d 50%, #9a6f33 100%);
+  --card-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--g);
+  color: var(--tx);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.68;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 90px 0; position: relative; }
+
+/* Sticky Header */
+#nv {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(12px, 2.2vw, 32px);
+  height: 64px;
+  background: rgba(11, 23, 19, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(223, 192, 138, 0.18);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.brand { display: flex; flex-direction: column; }
+.brand .lg {
+  font: 600 clamp(13px, 1.2vw, 15.5px) 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.08em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.brand .loc {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--br-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.loc-badge { color: #2ecc71; margin-right: 3px; }
+.loc-mob { display: none; }
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.1vw, 16px);
+  list-style: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+nav ul a {
+  color: #cad6d0;
+  transition: all 0.25s ease;
+  padding: 4px 2px;
+  position: relative;
+}
+nav ul a:hover, nav ul a.active {
+  color: var(--br-light);
+}
+nav ul a.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--br-light);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--br-light);
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  transition: all 0.25s ease;
+}
+.nav-phone:hover {
+  background: rgba(184, 141, 77, 0.18);
+  border-color: var(--br-light);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  background: var(--gold-btn);
+  color: #0b1713;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  border-radius: 6px;
+  border: 1px solid var(--br-light);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 8px 20px -6px rgba(184, 141, 77, 0.35);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(184, 141, 77, 0.55);
+  background: #ffffff;
+  color: #0b1713;
+  border-color: #ffffff;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--br-light);
+  border: 1px solid rgba(223, 192, 138, 0.4);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  background: rgba(223, 192, 138, 0.1);
+  border-color: var(--br-light);
+  color: #fff;
+}
+.mob-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(223, 192, 138, 0.12);
+  border: 1px solid rgba(184, 141, 77, 0.35);
+  color: var(--br-light);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Drawer */
+#mobMenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 23, 19, 0.98);
+  backdrop-filter: blur(28px);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#mobMenu.open { transform: translateX(0); }
+.mob-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid rgba(223, 192, 138, 0.18); }
+.mob-links { list-style: none; margin: 16px 0 auto 0; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+.mob-links a { font: 500 18px 'Cormorant Garamond', Georgia, serif; color: #f8f6f2; display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mob-links a:hover, .mob-links a.active { color: var(--br-light); padding-left: 6px; }
+
+/* Section Header styling */
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--br-light);
+  margin-bottom: 12px;
+}
+.sec-tag:before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--br);
+}
+.sec-title {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  color: var(--mu);
+  font-size: 16px;
+  max-width: 65ch;
+  line-height: 1.68;
+}
+
+/* ARCHITECTURE HERO */
+.arch-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: radial-gradient(ellipse at 80% 20%, #1a332a 0%, #0b1713 70%);
+  overflow: hidden;
+}
+.arch-hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 141, 77, 0.18) 0%, transparent 70%);
+  top: 10%;
+  right: 5%;
+  pointer-events: none;
+}
+.arch-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 34, 27, 0.85);
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  border-radius: 30px;
+  padding: 5px 16px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--br-light);
+  margin-bottom: 18px;
+}
+.hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
+.arch-hero h1 {
+  font-size: clamp(36px, 4.8vw, 64px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+.arch-hero h1 em {
+  font-style: italic;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.arch-hero p {
+  color: #b0c0b8;
+  font-size: 16.5px;
+  line-height: 1.7;
+  max-width: 58ch;
+  margin-bottom: 32px;
+}
+.arch-hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Architectural Hero Visual Frame */
+.arch-hero-visual {
+  position: relative;
+}
+.arch-hero-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+.arch-hero-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.arch-hero-card:hover img { transform: scale(1.03); }
+.arch-badge-float {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(11, 23, 19, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.arch-badge-title { font-size: 13.5px; font-weight: 700; color: #fff; }
+.arch-badge-sub { font-size: 11px; color: var(--br-light); }
+
+/* STATS STRIP */
+.stats-strip {
+  background: var(--g2);
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+  padding: 36px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat-num {
+  font: 700 clamp(28px, 3.2vw, 42px) 'Cormorant Garamond', Georgia, serif;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--mu);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+/* DISCIPLINES GRID */
+.disc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 48px;
+}
+.disc-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+.disc-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(223, 192, 138, 0.45);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6);
+}
+.disc-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold-grad);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.disc-card:hover:before { opacity: 1; }
+.disc-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.disc-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.disc-desc {
+  color: var(--mu);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.disc-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #cad6d0;
+  border-top: 1px solid rgba(223, 192, 138, 0.1);
+  padding-top: 16px;
+}
+.disc-points li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.disc-points li:before {
+  content: "✔";
+  color: var(--br-light);
+  font-size: 11px;
+}
+
+/* BLUEPRINT TO REALITY SECTION */
+.btr-section {
+  background: radial-gradient(ellipse at 50% 50%, #152720 0%, #0b1713 70%);
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+}
+.btr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: center;
+  margin-top: 40px;
+}
+.btr-viewer-box {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
+  background: #000;
+}
+.btr-img {
+  width: 100%;
+  aspect-ratio: 16/11;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+.btr-switcher {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  justify-content: center;
+}
+.btr-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cad6d0;
+  transition: all 0.25s ease;
+}
+.btr-tab.active {
+  background: var(--gold-btn);
+  color: #0b1713;
+  border-color: transparent;
+  font-weight: 700;
+}
+.btr-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.btr-step-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.btr-step-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(223, 192, 138, 0.12);
+  border: 1px solid rgba(184, 141, 77, 0.4);
+  color: var(--br-light);
+  font: 700 16px 'Cormorant Garamond', serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.btr-step-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.btr-step-desc {
+  font-size: 13.5px;
+  color: var(--mu);
+  line-height: 1.6;
+}
+
+/* DELIVERABLES MATRIX */
+.deliv-table-wrap {
+  margin-top: 48px;
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+table.deliv-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+table.deliv-table th {
+  padding: 16px 20px;
+  background: rgba(11, 23, 19, 0.6);
+  color: var(--br-light);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-bottom: 1px solid var(--ln);
+}
+table.deliv-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.08);
+  color: #cad6d0;
+}
+table.deliv-table tr:hover td {
+  background: rgba(223, 192, 138, 0.03);
+}
+
+/* ARCHITECTURAL CTA SECTION */
+.arch-cta-card {
+  margin-top: 60px;
+  background: linear-gradient(135deg, #172b22 0%, #0d1b15 100%);
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  border-radius: 16px;
+  padding: 56px 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+.arch-cta-card h2 {
+  font-size: clamp(30px, 3.8vw, 48px);
+  margin-bottom: 16px;
+}
+.arch-cta-card p {
+  color: #b0c0b8;
+  font-size: 16px;
+  max-width: 60ch;
+  margin: 0 auto 32px;
+}
+
+/* Footer */
+footer {
+  background: #08110e;
+  border-top: 1px solid rgba(223, 192, 138, 0.12);
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--mu);
+}
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .arch-hero-grid, .btr-grid { grid-template-columns: 1fr; }
+  .disc-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  nav ul, .nav-phone, .nav-cta { display: none; }
+  .mob-toggle { display: flex; }
+  .loc-desk { display: none; }
+  .loc-mob { display: inline; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="nv">
+  <div class="brand">
+    <a class="lg" href="index.html">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</a>
+    <span class="loc"><span class="loc-badge">●</span> <span class="loc-desk">ARCHITECTURAL PRACTICE &middot; GANGA NAGAR, MEERUT &middot; UP 250001</span><span class="loc-mob">MEERUT &middot; UP</span></span>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="architecture.html" class="active">Architecture</a></li>
+    <li><a href="interior.html">Interior Design</a></li>
+    <li><a href="portfolio.html">Projects</a></li>
+    <li><a href="services.html">Services (24)</a></li>
+    <li><a href="estimator.html">Cost Estimator</a></li>
+    <li><a href="about.html">About Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-phone" href="tel:+916397438387">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <span>063974 38387</span>
+    </a>
+    <a class="btn" style="padding:7px 16px;font-size:12px" href="contact.html">Book Architectural Consultation</a>
+    <button class="mob-toggle" id="mobOpen" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobMenu">
+  <div class="mob-header">
+    <div class="brand">
+      <span class="lg">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</span>
+      <span class="loc"><span class="loc-badge">●</span> ARCHITECTURAL PRACTICE &middot; MEERUT, UP</span>
+    </div>
+    <button class="mob-toggle" id="mobClose" aria-label="Close menu">✕</button>
+  </div>
+  <ul class="mob-links">
+    <li><a href="index.html">Home Page <span>&rarr;</span></a></li>
+    <li><a href="architecture.html" class="active">Architectural Practice <span>&rarr;</span></a></li>
+    <li><a href="interior.html">Interior Architecture &amp; Joinery <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html">All Projects &amp; Archive <span>&rarr;</span></a></li>
+    <li><a href="services.html">All 24 Specialized Services <span>&rarr;</span></a></li>
+    <li><a href="estimator.html">Instant Cost Estimator <span>&rarr;</span></a></li>
+    <li><a href="about.html">About Firm &amp; Principals <span>&rarr;</span></a></li>
+    <li><a href="contact.html">Contact &amp; Studio Directions <span>&rarr;</span></a></li>
+  </ul>
+  <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(223,192,138,0.2)">
+    <a class="btn" href="contact.html" style="width:100%;text-align:center">Consult Principal Architect &rarr;</a>
+  </div>
+</div>
+
+<!-- ARCHITECTURE HERO -->
+<header class="arch-hero">
+  <div class="arch-hero-glow"></div>
+  <div class="wrap arch-hero-grid">
+    <div>
+      <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Architectural Practice &middot; Meerut, UP &middot; Council of Architecture Standards</span>
+      </div>
+      <h1>Sculpting Built Environments from <em>Foundation to Elevation.</em></h1>
+      <p>
+        We fuse structural engineering rigor with timeless modern aesthetics. From luxury cantilevered residential villas and contemporary commercial facades to Vastu-compliant municipal sanction drawings, our studio provides complete architectural stewardship.
+      </p>
+      <div class="arch-hero-btns">
+        <a class="btn" href="contact.html">Book Site Survey &amp; Consultation &rarr;</a>
+        <a class="btn btn-outline" href="#btr">Inspect Blueprint to Reality &darr;</a>
+      </div>
+    </div>
+
+    <div class="arch-hero-visual">
+      <div class="arch-hero-card">
+        <img src="images/villa_elevation.jpg" alt="Contemporary Villa Architectural Elevation by A&A Architect & Interior Designer">
+        <div class="arch-badge-float">
+          <div>
+            <div class="arch-badge-title">The Cantilever Villa Residence</div>
+            <div class="arch-badge-sub">Ganga Nagar, Meerut &middot; 6,850 sq.ft. Built-Up</div>
+          </div>
+          <span style="color:#dfc08a;font-weight:700;font-size:12px;background:rgba(223,192,138,0.12);padding:4px 8px;border-radius:4px">Built 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="wrap stats-grid">
+    <div>
+      <div class="stat-num">5.0 ★</div>
+      <div class="stat-label">Google Verified Rating (68 Clients)</div>
+    </div>
+    <div>
+      <div class="stat-num">120+</div>
+      <div class="stat-label">Built Structures &amp; Turnkey Homes</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">MDA Sanction &amp; Bye-Law Approval</div>
+    </div>
+    <div>
+      <div class="stat-num">A &rarr; Z</div>
+      <div class="stat-label">Foundation to Finished Turnkey</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITECTURAL DISCIPLINES -->
+<section id="disciplines">
+  <div class="wrap">
+    <span class="sec-tag">Core Architectural Practice</span>
+    <h2 class="sec-title">Comprehensive Architectural Disciplines</h2>
+    <p class="sec-desc">
+      Every site is unique. We evaluate solar orientation, soil bearing capacities, wind patterns, and local Meerut Development Authority (MDA) bye-laws to produce architectural designs that are structurally sound and aesthetically iconic.
+    </p>
+
+    <div class="disc-grid">
+      <!-- Card 1 -->
+      <div class="disc-card">
+        <span class="disc-icon">🏛️</span>
+        <h3 class="disc-title">Luxury Villa &amp; Bungalow Architecture</h3>
+        <p class="disc-desc">
+          Bespoke private estates engineered with dramatic cantilevers, internal courtyards, double-height volumes, and seamless indoor-outdoor transitions.
+        </p>
+        <ul class="disc-points">
+          <li>Custom layout optimized for Vastu &amp; solar path</li>
+          <li>Cantilevered slabs &amp; column-free living halls</li>
+          <li>Integrated landscaping &amp; private reflection pools</li>
+        </ul>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="disc-card">
+        <span class="disc-icon">📐</span>
+        <h3 class="disc-title">3D Exterior Elevation &amp; Façades</h3>
+        <p class="disc-desc">
+          Photorealistic 3D elevations and daylight studies allowing you to experience every exterior material, parametric louver, and lighting tone before breaking ground.
+        </p>
+        <ul class="disc-points">
+          <li>Thermal solar louvers &amp; natural stone cladding</li>
+          <li>Night architectural illumination schemes</li>
+          <li>Curtain wall &amp; French panoramic glazing details</li>
+        </ul>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="disc-card">
+        <span class="disc-icon">🏗️</span>
+        <h3 class="disc-title">Structural CAD &amp; Working Blueprints</h3>
+        <p class="disc-desc">
+          High-precision engineering drafting including RCC column-beam reinforcement, foundation details, plumbing schematics, and electrical duct layouts.
+        </p>
+        <ul class="disc-points">
+          <li>Seismic-resistant structural load engineering</li>
+          <li>Full MEP coordination sets (HVAC, Electrical, Plumbing)</li>
+          <li>Detailed Bill of Quantities (BOQ) with material grades</li>
+        </ul>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="disc-card">
+        <span class="disc-icon">📜</span>
+        <h3 class="disc-title">Municipal Sanctions &amp; Bye-Law Approvals</h3>
+        <p class="disc-desc">
+          Hassle-free municipal authority approval layouts compliant with Meerut Development Authority (MDA), UP Awas Vikas, and local municipal bylaws.
+        </p>
+        <ul class="disc-points">
+          <li>Floor Area Ratio (FAR) &amp; ground coverage calculation</li>
+          <li>Setback and height compliance documentation</li>
+          <li>Sanction-ready CAD blueprints &amp; submission sets</li>
+        </ul>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="disc-card">
+        <span class="disc-icon">🏢</span>
+        <h3 class="disc-title">Commercial &amp; Institutional Complexes</h3>
+        <p class="disc-desc">
+          High-footfall corporate headquarters, retail shopping complexes, medical clinics, and boutique hotel structures engineered for maximum commercial efficiency.
+        </p>
+        <ul class="disc-points">
+          <li>High-capacity circulation &amp; fire safety compliance</li>
+          <li>Double-height experiential lobbies &amp; retail shopfronts</li>
+          <li>Energy-efficient glass curtain facades</li>
+        </ul>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="disc-card">
+        <span class="disc-icon">🔄</span>
+        <h3 class="disc-title">Structural Renovation &amp; Vertical Expansion</h3>
+        <p class="disc-desc">
+          Upgrading existing bungalows, adding additional floors, column retrofitting, removing structural walls to create open-plan concepts safely.
+        </p>
+        <ul class="disc-points">
+          <li>Non-destructive structural integrity assessment</li>
+          <li>Steel beam insertion &amp; load redistribution</li>
+          <li>Modern exterior facade restyling without rebuilding</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLUEPRINT TO REALITY INTERACTIVE EXPLORER -->
+<section id="btr" class="btr-section">
+  <div class="wrap">
+    <span class="sec-tag">Engineering Process</span>
+    <h2 class="sec-title">From Technical CAD Blueprint to Physical Reality</h2>
+    <p class="sec-desc">
+      Architectural mastery lies in bridging the gap between exact 2D dimensional drafting and 3D physical construction. Explore how we translate drafting table blueprints into physical landmarks.
+    </p>
+
+    <div class="btr-grid">
+      <div>
+        <div class="btr-viewer-box">
+          <img id="btrImg" class="btr-img" src="images/blueprint_cad.jpg" alt="Architectural drafting CAD blueprints by A&A Architect & Interior Designer">
+        </div>
+        <div class="btr-switcher">
+          <button class="btr-tab active" onclick="switchBtr('blueprint')">01. CAD Blueprint &amp; Model</button>
+          <button class="btr-tab" onclick="switchBtr('villa')">02. 3D Villa Elevation</button>
+          <button class="btr-tab" onclick="switchBtr('facade')">03. Executed Bungalow</button>
+        </div>
+      </div>
+
+      <div class="btr-step-list">
+        <div class="btr-step-item">
+          <div class="btr-step-num">01</div>
+          <div>
+            <div class="btr-step-title">Site Analysis &amp; Vastu Spatial Orientation</div>
+            <div class="btr-step-desc">
+              We conduct precise laser boundary measurements, soil test evaluation, and analyze sun-path angles to establish the building footprint.
+            </div>
+          </div>
+        </div>
+
+        <div class="btr-step-item">
+          <div class="btr-step-num">02</div>
+          <div>
+            <div class="btr-step-title">Schematic Floor Plans &amp; Volumetric 3D Model</div>
+            <div class="btr-step-desc">
+              Room dimensions, ceiling heights, cross-ventilation, and physical scale models are developed to validate spatial flow.
+            </div>
+          </div>
+        </div>
+
+        <div class="btr-step-item">
+          <div class="btr-step-num">03</div>
+          <div>
+            <div class="btr-step-title">Structural Engineering &amp; Reinforcement Sets</div>
+            <div class="btr-step-desc">
+              Every column, footing depth, cantilever beam, and rebar gauge is calculated to withstand seismic loads with zero settlement risks.
+            </div>
+          </div>
+        </div>
+
+        <div class="btr-step-item">
+          <div class="btr-step-num">04</div>
+          <div>
+            <div class="btr-step-title">On-Site Execution Oversight &amp; Handover</div>
+            <div class="btr-step-desc">
+              Our principal architects inspect formwork, concrete slump tests, and joinery alignment at every critical milestone.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES MATRIX -->
+<section id="deliverables">
+  <div class="wrap">
+    <span class="sec-tag">Complete Scope of Work</span>
+    <h2 class="sec-title">What Clients Receive: Full Architectural Blueprint Set</h2>
+    <p class="sec-desc">
+      When you commission A&amp;A Architect &amp; Interior Designer, you receive an exhaustive technical dossier ready for contractors and municipal authorities.
+    </p>
+
+    <div class="deliv-table-wrap">
+      <table class="deliv-table">
+        <thead>
+          <tr>
+            <th>Drawing Set</th>
+            <th>Deliverables Included</th>
+            <th>Scale &amp; Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>01. Master Architectural Plans</strong></td>
+            <td>Detailed floor plans (all levels), roof terrace drainage, furniture circulation layout, door-window schedules.</td>
+            <td>1:50 / 1:100 Working CAD</td>
+          </tr>
+          <tr>
+            <td><strong>02. 3D Elevation &amp; Façade Package</strong></td>
+            <td>High-res 4K exterior renders (front, side, aerial), night lighting simulation, exterior material &amp; paint codes.</td>
+            <td>Photorealistic 3D Renders</td>
+          </tr>
+          <tr>
+            <td><strong>03. Structural Engineering Drawings</strong></td>
+            <td>Foundation layout, column schedule, RCC beam reinforcement details, slab rebar drawings, staircase detailing.</td>
+            <td>Structural Civil Execution</td>
+          </tr>
+          <tr>
+            <td><strong>04. MEP Working Schematics</strong></td>
+            <td>Electrical conduit routes, DB load balancing, sanitary plumbing layouts, rainwater harvesting, HVAC conduits.</td>
+            <td>Concealed MEP Engineering</td>
+          </tr>
+          <tr>
+            <td><strong>05. Municipal Sanction Drawings</strong></td>
+            <td>MDA compliant setback drawings, site key plan, FAR calculation chart, coverage &amp; height compliance stamp sets.</td>
+            <td>Authority Submissions</td>
+          </tr>
+          <tr>
+            <td><strong>06. Bill of Quantities (BOQ)</strong></td>
+            <td>Accurate material estimation (Steel, Cement, Bricks, Glass, Louvers) with recommended brand specifications.</td>
+            <td>Budget Control &amp; Tendering</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Architectural CTA Box -->
+    <div class="arch-cta-card">
+      <h2>Ready to Build Your Architectural Landmark?</h2>
+      <p>
+        Whether you have an empty residential plot in Ganga Nagar, Mawana Road, or Meerut, or require architectural remodeling for a commercial building, book a dedicated consultation with our Principal Architect.
+      </p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="contact.html">Schedule Architectural Consultation &rarr;</a>
+        <a class="btn btn-outline" href="https://wa.me/916397438387?text=Hi%20A%26A%20Architect%20%26%20Interior%20Designer,%20I%20have%20an%20architectural%20project%20plot%20in%20Meerut%20and%20would%20like%20to%20discuss%20planning%20and%20elevations." target="_blank" rel="noopener">
+          Chat Directly on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap footer-wrap">
+    <div>
+      <strong>&copy; A&amp;A Architect &amp; Interior Designer, B-321, Mawana Rd, Radha Garden, Ganga Nagar, Meerut, UP 250001.</strong>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <a href="admin.html" style="color:var(--br-light);font-size:12px;border:1px solid rgba(184,141,77,0.3);padding:3px 8px;border-radius:4px">Admin Portal 🔒</a>
+      <span>Design &amp; Technology by <a href="https://www.theluxestudio.in/" target="_blank" rel="noopener" style="color:var(--br-light)">LuxeStudio</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky Nav
+window.addEventListener('scroll', () => {
+  document.getElementById('nv').classList.toggle('s', window.scrollY > 40);
+}, { passive: true });
+
+// Mobile Menu
+const mobOpen = document.getElementById('mobOpen');
+const mobClose = document.getElementById('mobClose');
+const mobMenu = document.getElementById('mobMenu');
+if (mobOpen && mobMenu) {
+  mobOpen.onclick = () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; };
+}
+if (mobClose && mobMenu) {
+  mobClose.onclick = () => { mobMenu.classList.remove('open'); document.body.style.overflow = ''; };
+}
+
+// Blueprint to Reality Switcher
+const btrImgs = {
+  blueprint: 'images/blueprint_cad.jpg',
+  villa: 'images/villa_elevation.jpg',
+  facade: 'images/bungalow_facade.jpg'
+};
+function switchBtr(key) {
+  const img = document.getElementById('btrImg');
+  const tabs = document.querySelectorAll('.btr-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  img.style.opacity = '0.2';
+  setTimeout(() => {
+    img.src = btrImgs[key];
+    img.style.opacity = '1';
+  }, 200);
+}
+</script>
+</body>
+</html>

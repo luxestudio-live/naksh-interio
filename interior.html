@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Interior Architecture &amp; Bespoke Joinery | A&A Architect &amp; Interior Designer · Meerut</title>
+<meta name="description" content="Explore luxury interior architecture, custom modular kitchens, master bedroom suites, false ceiling lighting & turnkey interior design in Meerut, UP by A&A Architect & Interior Designer.">
+<meta name="keywords" content="Interior Designer Meerut, Modular Kitchen Meerut, False Ceiling Ganga Nagar, Luxury Bedrooms Mawana Road, Turnkey Interiors UP, Interior Architecture Meerut">
+<meta name="author" content="A&A Architect & Interior Designer">
+<link rel="canonical" href="https://aa-architect-interior-designer.vercel.app/interior.html">
+<meta name="theme-color" content="#0b1713">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- Open Graph / WhatsApp Preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="A&A Architect & Interior Designer">
+<meta property="og:title" content="Interior Architecture & Turnkey Design | A&A Architect & Interior Designer">
+<meta property="og:description" content="5.0 ★ Rated Interior Architecture Studio in Meerut. Modular kitchens, master bedroom suites, false ceilings & turnkey home transformations.">
+<meta property="og:url" content="https://aa-architect-interior-designer.vercel.app/interior.html">
+<meta property="og:image" content="images/living_tv_unit.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<style>
+:root {
+  --g: #0b1713;
+  --g2: #12221b;
+  --g3: #1b2f26;
+  --g-glass: rgba(11, 23, 19, 0.94);
+  --br: #b88d4d;
+  --br-light: #dfc08a;
+  --br-glow: rgba(184, 141, 77, 0.28);
+  --m: #f8f6f2;
+  --tx: #e7ece9;
+  --mu: #93a39b;
+  --mu-light: #b0c0b8;
+  --ln: rgba(223, 192, 138, 0.16);
+  --gold-grad: linear-gradient(135deg, #ffffff 0%, #dfc08a 50%, #b88d4d 100%);
+  --gold-btn: linear-gradient(135deg, #dfc08a 0%, #b88d4d 50%, #9a6f33 100%);
+  --card-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--g);
+  color: var(--tx);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.68;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 90px 0; position: relative; }
+
+/* Sticky Header */
+#nv {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(12px, 2.2vw, 32px);
+  height: 64px;
+  background: rgba(11, 23, 19, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(223, 192, 138, 0.18);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.brand { display: flex; flex-direction: column; }
+.brand .lg {
+  font: 600 clamp(13px, 1.2vw, 15.5px) 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.08em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.brand .loc {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--br-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.loc-badge { color: #2ecc71; margin-right: 3px; }
+.loc-mob { display: none; }
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.1vw, 16px);
+  list-style: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+nav ul a {
+  color: #cad6d0;
+  transition: all 0.25s ease;
+  padding: 4px 2px;
+  position: relative;
+}
+nav ul a:hover, nav ul a.active {
+  color: var(--br-light);
+}
+nav ul a.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--br-light);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--br-light);
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  transition: all 0.25s ease;
+}
+.nav-phone:hover {
+  background: rgba(184, 141, 77, 0.18);
+  border-color: var(--br-light);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  background: var(--gold-btn);
+  color: #0b1713;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  border-radius: 6px;
+  border: 1px solid var(--br-light);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 8px 20px -6px rgba(184, 141, 77, 0.35);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(184, 141, 77, 0.55);
+  background: #ffffff;
+  color: #0b1713;
+  border-color: #ffffff;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--br-light);
+  border: 1px solid rgba(223, 192, 138, 0.4);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  background: rgba(223, 192, 138, 0.1);
+  border-color: var(--br-light);
+  color: #fff;
+}
+.mob-toggle {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(223, 192, 138, 0.12);
+  border: 1px solid rgba(184, 141, 77, 0.35);
+  color: var(--br-light);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile Drawer */
+#mobMenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 23, 19, 0.98);
+  backdrop-filter: blur(28px);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#mobMenu.open { transform: translateX(0); }
+.mob-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; border-bottom: 1px solid rgba(223, 192, 138, 0.18); }
+.mob-links { list-style: none; margin: 16px 0 auto 0; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+.mob-links a { font: 500 18px 'Cormorant Garamond', Georgia, serif; color: #f8f6f2; display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mob-links a:hover, .mob-links a.active { color: var(--br-light); padding-left: 6px; }
+
+/* Section Header styling */
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--br-light);
+  margin-bottom: 12px;
+}
+.sec-tag:before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--br);
+}
+.sec-title {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  color: var(--mu);
+  font-size: 16px;
+  max-width: 65ch;
+  line-height: 1.68;
+}
+
+/* HERO SECTION */
+.int-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: radial-gradient(ellipse at 80% 20%, #1e3a30 0%, #0b1713 70%);
+  overflow: hidden;
+}
+.int-hero-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 141, 77, 0.16) 0%, transparent 70%);
+  top: 15%;
+  right: 8%;
+  pointer-events: none;
+}
+.int-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 34, 27, 0.85);
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  border-radius: 30px;
+  padding: 5px 16px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--br-light);
+  margin-bottom: 18px;
+}
+.hero-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
+.int-hero h1 {
+  font-size: clamp(36px, 4.8vw, 64px);
+  line-height: 1.08;
+  margin-bottom: 20px;
+}
+.int-hero h1 em {
+  font-style: italic;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.int-hero p {
+  color: #b0c0b8;
+  font-size: 16.5px;
+  line-height: 1.7;
+  max-width: 58ch;
+  margin-bottom: 32px;
+}
+.int-hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Interior Hero Visual Card */
+.int-hero-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+.int-hero-card img {
+  width: 100%;
+  aspect-ratio: 16/11;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.int-hero-card:hover img { transform: scale(1.03); }
+.int-badge-float {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(11, 23, 19, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* INTERIOR DISCIPLINE CARDS */
+.int-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.int-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.int-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(223, 192, 138, 0.45);
+}
+.int-card-img-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.int-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.int-card:hover .int-card-img-wrap img { transform: scale(1.05); }
+.int-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(11, 23, 19, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(223, 192, 138, 0.35);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--br-light);
+  text-transform: uppercase;
+}
+.int-card-body {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.int-card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+.int-card-desc {
+  color: var(--mu);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.int-card-specs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.int-spec-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(223, 192, 138, 0.18);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  color: #cad6d0;
+}
+
+/* MATERIALITY VAULT */
+.mat-section {
+  background: radial-gradient(ellipse at 50% 50%, #152720 0%, #0b1713 70%);
+  border-top: 1px solid var(--ln);
+  border-bottom: 1px solid var(--ln);
+}
+.mat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.mat-item {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.mat-item:hover {
+  border-color: rgba(223, 192, 138, 0.4);
+  transform: translateY(-3px);
+}
+.mat-swatch {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  border: 2px solid rgba(223, 192, 138, 0.3);
+  flex-shrink: 0;
+}
+.mat-name { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.mat-role { font-size: 12px; color: var(--mu); line-height: 1.4; }
+
+/* BEFORE / AFTER SLIDER */
+.ba-section { padding: 90px 0; }
+.ba-container {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  margin-top: 40px;
+}
+.ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ba-after {
+  clip-path: inset(0 0 0 50%);
+}
+.ba-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: var(--br-light);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gold-btn);
+  color: #0b1713;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+.ba-slider-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 10;
+}
+.ba-tag {
+  position: absolute;
+  top: 16px;
+  background: rgba(11, 23, 19, 0.85);
+  border: 1px solid rgba(223, 192, 138, 0.3);
+  color: var(--br-light);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Footer */
+footer {
+  background: #08110e;
+  border-top: 1px solid rgba(223, 192, 138, 0.12);
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--mu);
+}
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .int-hero-grid, .int-showcase-grid { grid-template-columns: 1fr; }
+  .mat-grid { grid-template-columns: 1fr; }
+  nav ul, .nav-phone, .nav-cta { display: none; }
+  .mob-toggle { display: flex; }
+  .loc-desk { display: none; }
+  .loc-mob { display: inline; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="nv">
+  <div class="brand">
+    <a class="lg" href="index.html">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</a>
+    <span class="loc"><span class="loc-badge">●</span> <span class="loc-desk">INTERIOR ARCHITECTURE &middot; GANGA NAGAR, MEERUT &middot; UP 250001</span><span class="loc-mob">MEERUT &middot; UP</span></span>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="architecture.html">Architecture</a></li>
+    <li><a href="interior.html" class="active">Interior Design</a></li>
+    <li><a href="portfolio.html">Projects</a></li>
+    <li><a href="services.html">Services (24)</a></li>
+    <li><a href="estimator.html">Cost Estimator</a></li>
+    <li><a href="about.html">About Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-phone" href="tel:+916397438387">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.48.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+      <span>063974 38387</span>
+    </a>
+    <a class="btn" style="padding:7px 16px;font-size:12px" href="contact.html">Book Interior Consultation</a>
+    <button class="mob-toggle" id="mobOpen" aria-label="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobMenu">
+  <div class="mob-header">
+    <div class="brand">
+      <span class="lg">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</span>
+      <span class="loc"><span class="loc-badge">●</span> INTERIOR ARCHITECTURE &middot; MEERUT, UP</span>
+    </div>
+    <button class="mob-toggle" id="mobClose" aria-label="Close menu">✕</button>
+  </div>
+  <ul class="mob-links">
+    <li><a href="index.html">Home Page <span>&rarr;</span></a></li>
+    <li><a href="architecture.html">Architectural Practice <span>&rarr;</span></a></li>
+    <li><a href="interior.html" class="active">Interior Architecture &amp; Joinery <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html">All Projects &amp; Archive <span>&rarr;</span></a></li>
+    <li><a href="services.html">All 24 Specialized Services <span>&rarr;</span></a></li>
+    <li><a href="estimator.html">Instant Cost Estimator <span>&rarr;</span></a></li>
+    <li><a href="about.html">About Firm &amp; Principals <span>&rarr;</span></a></li>
+    <li><a href="contact.html">Contact &amp; Studio Directions <span>&rarr;</span></a></li>
+  </ul>
+  <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(223,192,138,0.2)">
+    <a class="btn" href="contact.html" style="width:100%;text-align:center">Consult Interior Lead &rarr;</a>
+  </div>
+</div>
+
+<!-- INTERIOR HERO -->
+<header class="int-hero">
+  <div class="int-hero-glow"></div>
+  <div class="wrap int-hero-grid">
+    <div>
+      <div class="hero-pill">
+        <span class="dot"></span>
+        <span>Interior Architecture &amp; Turnkey Execution &middot; 5.0 ★ Rated (68 Reviews)</span>
+      </div>
+      <h1>Sculpting Living Spaces with <em>Sensual Harmony &amp; Precision.</em></h1>
+      <p>
+        We treat interior design not as superficial decoration, but as an architectural discipline. Combining boiling-water-proof HDHMR joinery, book-matched Italian marble, acoustic timber wall fluting, and warm 3000K mood lighting into bespoke turnkey residences across Meerut &amp; NCR.
+      </p>
+      <div class="int-hero-btns">
+        <a class="btn" href="contact.html">Schedule Studio Consultation &rarr;</a>
+        <a class="btn btn-outline" href="portfolio.html">Explore Project Portfolio &rarr;</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="int-hero-card">
+        <img src="images/living_tv_unit.jpg" alt="Italian Statuario TV lounge by A&A Architect & Interior Designer">
+        <div class="int-badge-float">
+          <div>
+            <div style="font-size:13.5px;font-weight:700;color:#fff">Italian Statuario Marble TV Lounge</div>
+            <div style="font-size:11px;color:var(--br-light)">Shastri Nagar, Meerut &middot; Turnkey Living Suite</div>
+          </div>
+          <span style="color:#dfc08a;font-weight:700;font-size:12px;background:rgba(223,192,138,0.12);padding:4px 8px;border-radius:4px">5.0 ★ Rated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- INTERIOR SPECIALIZED DISCIPLINES -->
+<section id="disciplines">
+  <div class="wrap">
+    <span class="sec-tag">Specialized Interior Pillars</span>
+    <h2 class="sec-title">Architectural Precision Across Every Room</h2>
+    <p class="sec-desc">
+      From custom German-hardware modular kitchens and floor-to-ceiling tinted glass wardrobes to designer false ceilings with cobalt CNC jali backlighting, each room is engineered for beauty, durability, and daily comfort.
+    </p>
+
+    <div class="int-showcase-grid">
+      <!-- Card 1: Modular Kitchens -->
+      <article class="int-card">
+        <div class="int-card-img-wrap">
+          <img src="images/kitchen_walnut.jpg" alt="Contemporary Smoked Walnut Modular Kitchen Meerut">
+          <span class="int-card-badge">Culinary Architecture</span>
+        </div>
+        <div class="int-card-body">
+          <h3 class="int-card-title">Smoked Walnut &amp; Calacatta Quartz Modular Kitchens</h3>
+          <p class="int-card-desc">
+            Constructed with 100% boiling-water-proof HDHMR carcases, anti-scratch acrylic finishes, non-porous Calacatta quartz worktops, and German soft-close tandem runners engineered for 100,000+ opening cycles.
+          </p>
+          <div class="int-card-specs">
+            <span class="int-spec-tag">🍳 HDHMR Carcase</span>
+            <span class="int-spec-tag">💎 Calacatta Quartz</span>
+            <span class="int-spec-tag">🚪 Hafele/Blum Hardware</span>
+            <span class="int-spec-tag">💧 100% Waterproof</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2: Master Bedroom Suites -->
+      <article class="int-card">
+        <div class="int-card-img-wrap">
+          <img src="images/bedroom_suite.jpg" alt="Luxury Master Bedroom Suite with botanical mural">
+          <span class="int-card-badge">Master Bedroom Suites</span>
+        </div>
+        <div class="int-card-body">
+          <h3 class="int-card-title">Bespoke Master Suites with Fluted Accents &amp; Murals</h3>
+          <p class="int-card-desc">
+            Tailored upholstered headboards, curved architectural niches, hand-painted botanical wall murals, halo-illuminated vanity mirrors, and concealed ambient 3000K mood lighting.
+          </p>
+          <div class="int-card-specs">
+            <span class="int-spec-tag">🛏️ Custom Headboards</span>
+            <span class="int-spec-tag">🎨 Botanical Art Wall</span>
+            <span class="int-spec-tag">🪞 Halo Vanity Mirror</span>
+            <span class="int-spec-tag">💡 Indirect Cove Illumination</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3: Wardrobes & Dressing -->
+      <article class="int-card">
+        <div class="int-card-img-wrap">
+          <img src="images/walkin_wardrobe.jpg" alt="Floor to ceiling bronze glass wardrobes">
+          <span class="int-card-badge">Wardrobes &amp; Walk-ins</span>
+        </div>
+        <div class="int-card-body">
+          <h3 class="int-card-title">Floor-to-Ceiling Tinted Bronze Glass Wardrobes</h3>
+          <p class="int-card-desc">
+            Sleek bronze anodized aluminum slim frames, floor-to-ceiling tempered bronze glass, integrated proximity sensor LED strip lighting, velvet jewelry organizer drawers, and full-length vanity integration.
+          </p>
+          <div class="int-card-specs">
+            <span class="int-spec-tag">👗 Bronze Profile Frames</span>
+            <span class="int-spec-tag">💡 Smart Motion Sensors</span>
+            <span class="int-spec-tag">💎 Velvet Accessory Trays</span>
+            <span class="int-spec-tag">🪞 Dressing Table Integration</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4: Living Lounge & TV Console -->
+      <article class="int-card">
+        <div class="int-card-img-wrap">
+          <img src="images/living_tv_unit.jpg" alt="Living room false ceiling and TV console">
+          <span class="int-card-badge">Living &amp; Entertainment</span>
+        </div>
+        <div class="int-card-body">
+          <h3 class="int-card-title">Statuario Marble Entertainment Walls &amp; False Ceilings</h3>
+          <p class="int-card-desc">
+            Full-height book-matched Italian marble slabs flanked by acoustic fluted timber louvers, multi-tier gypsum ceilings featuring laser-cut geometric CNC jali fretwork, and cobalt blue ambient backlighting.
+          </p>
+          <div class="int-card-specs">
+            <span class="int-spec-tag">🏛️ Book-matched Marble</span>
+            <span class="int-spec-tag">🔈 Acoustic Timber Louvers</span>
+            <span class="int-spec-tag">💡 CNC Backlit Jali</span>
+            <span class="int-spec-tag">📺 Floating Smoked Console</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALITY VAULT -->
+<section class="mat-section">
+  <div class="wrap">
+    <span class="sec-tag">Materiality &amp; Tactility</span>
+    <h2 class="sec-title">Curated Materials Library &amp; Finishes</h2>
+    <p class="sec-desc">
+      We reject generic laminates. Every texture, stone vein, and metal finish is curated for authentic tactile richness and decades of endurance.
+    </p>
+
+    <div class="mat-grid">
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#e8e4dc"></div>
+        <div>
+          <div class="mat-name">Statuario Italian Marble</div>
+          <div class="mat-role">Feature TV walls, foyer vanity tops, book-matched slabs</div>
+        </div>
+      </div>
+
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#5c3a21"></div>
+        <div>
+          <div class="mat-name">Smoked Walnut Veneer</div>
+          <div class="mat-role">Bespoke joinery, fluted panels, floating credenzas</div>
+        </div>
+      </div>
+
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#c59b5f"></div>
+        <div>
+          <div class="mat-name">Brushed Architectural Brass</div>
+          <div class="mat-role">Inlay border strips, cabinet handles, pendant framing</div>
+        </div>
+      </div>
+
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#4a504d"></div>
+        <div>
+          <div class="mat-name">Tinted Bronze Glass</div>
+          <div class="mat-role">Walk-in wardrobe shutters, showcase cabinets, room dividers</div>
+        </div>
+      </div>
+
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#1d2e27"></div>
+        <div>
+          <div class="mat-name">Boiling-Water-Proof HDHMR</div>
+          <div class="mat-role">High-density moisture-resistant core for all kitchens &amp; vanities</div>
+        </div>
+      </div>
+
+      <div class="mat-item">
+        <div class="mat-swatch" style="background:#d9d3c7"></div>
+        <div>
+          <div class="mat-name">Calacatta Quartz Stone</div>
+          <div class="mat-role">Non-porous, stain-resistant culinary countertops &amp; backsplashes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE & AFTER SLIDER -->
+<section class="ba-section">
+  <div class="wrap">
+    <span class="sec-tag">Execution Fidelity</span>
+    <h2 class="sec-title">From Raw Civil Site to Handover Perfection</h2>
+    <p class="sec-desc">
+      Drag across the slider to inspect the raw framing stage against the final turnkey living suite executed in Ganga Nagar, Meerut.
+    </p>
+
+    <div class="ba-container" id="ba">
+      <img class="ba-img ba-before" src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1200&q=80" alt="Raw Site Before Execution">
+      <img class="ba-img ba-after" src="images/living_tv_unit.jpg" alt="Finished Luxury Interior">
+      <div class="ba-divider" id="baDivider">
+        <div class="ba-handle">⟷</div>
+      </div>
+      <span class="ba-tag" style="left:16px">RAW CIVIL SITE</span>
+      <span class="ba-tag" style="right:16px">DELIVERED SUITE</span>
+      <input type="range" min="2" max="98" value="50" class="ba-slider-input" id="rg" aria-label="Compare raw site and finished interior">
+    </div>
+
+    <!-- Interior CTA Strip -->
+    <div style="text-align:center;margin-top:60px">
+      <h3 style="font-size:32px;color:#fff;margin-bottom:12px">Planning an Interior Transformation in Meerut?</h3>
+      <p style="color:var(--mu);margin-bottom:28px">Visit our studio at B-321 Mawana Rd, Ganga Nagar, Meerut or request an on-site consultation.</p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="contact.html">Book Studio Consultation &rarr;</a>
+        <a class="btn btn-outline" href="estimator.html">Calculate Interior Budget &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap footer-wrap">
+    <div>
+      <strong>&copy; A&amp;A Architect &amp; Interior Designer, B-321, Mawana Rd, Radha Garden, Ganga Nagar, Meerut, UP 250001.</strong>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <a href="admin.html" style="color:var(--br-light);font-size:12px;border:1px solid rgba(184,141,77,0.3);padding:3px 8px;border-radius:4px">Admin Portal 🔒</a>
+      <span>Design &amp; Technology by <a href="https://www.theluxestudio.in/" target="_blank" rel="noopener" style="color:var(--br-light)">LuxeStudio</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky Nav
+window.addEventListener('scroll', () => {
+  document.getElementById('nv').classList.toggle('s', window.scrollY > 40);
+}, { passive: true });
+
+// Mobile Menu
+const mobOpen = document.getElementById('mobOpen');
+const mobClose = document.getElementById('mobClose');
+const mobMenu = document.getElementById('mobMenu');
+if (mobOpen && mobMenu) {
+  mobOpen.onclick = () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; };
+}
+if (mobClose && mobMenu) {
+  mobClose.onclick = () => { mobMenu.classList.remove('open'); document.body.style.overflow = ''; };
+}
+
+// Before & After Slider
+const rg = document.getElementById('rg');
+const ba = document.getElementById('ba');
+const divider = document.getElementById('baDivider');
+if (rg && ba) {
+  rg.oninput = () => {
+    const val = rg.value;
+    ba.querySelector('.ba-after').style.clipPath = `inset(0 0 0 ${val}%)`;
+    divider.style.left = val + '%';
+  };
+}
+</script>
+</body>
+</html>

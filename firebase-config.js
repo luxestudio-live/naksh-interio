@@ -8,32 +8,90 @@
 const AA_INITIAL_DATA = {
   siteSettings: {
     brandName: "A&A Architect & Interior Designer",
-    brandSubtitle: "ARCHITECT & INTERIOR DESIGNER · GANGA NAGAR, MEERUT, UP",
-    tagline: "5.0 ★ (68 Reviews) Top Rated Interior Designer in Meerut, UP",
-    heroTitle: "Exquisite interior spaces crafted with architectural precision, quality & elegance.",
-    heroDesc: "Professional interior design and architectural firm providing affordable residential and commercial design services across Ganga Nagar, Mawana Road, Shastri Nagar, and Meerut & NCR.",
+    brandSubtitle: "ARCHITECTURAL PRACTICE & INTERIOR DESIGN STUDIO · MEERUT, UP",
+    tagline: "5.0 ★ (68 Reviews) Premier Architecture & Interior Firm in Meerut, UP",
+    heroTitle: "Where Architectural Rigor Meets Interior Elegance.",
+    heroDesc: "Premier architectural practice & turnkey interior design studio in Meerut. Specializing in residential villa architecture, 3D exterior elevations, structural blueprints, municipal sanctions, and bespoke luxury interior fit-outs across Ganga Nagar, Mawana Road, Shastri Nagar & UP.",
     phone: "063974 38387",
     phoneTel: "+916397438387",
     email: "contact@aaarchitects.in",
     address: "B-321, Mawana Rd, B-Pocket, Radha Garden, Ganga Nagar, Meerut, Uttar Pradesh 250001",
     mapsQuery: "A%26A+Architect+%26+Interior+Designer+B-321+Mawana+Rd+Radha+Garden+Ganga+Nagar+Meerut+Uttar+Pradesh+250001",
-    hours: "Open · Closes 9 pm",
+    hours: "Open Daily · 09:30 AM to 09:00 PM",
     rating: "5.0",
     reviewCount: "68",
     stats: [
       { num: "5.0", sup: "★", label: "Google Rating from 68 Verified Clients" },
+      { num: "120", sup: "+", label: "Built Architectural & Turnkey Interior Projects" },
       { num: "24", sup: "", label: "Specialized Architectural & Interior Disciplines" },
-      { num: "9", sup: "PM", label: "Open Daily · Closes 9 PM for Consultations" },
-      { num: "100", sup: "%", label: "Affordable, High-Precision Turnkey Execution" },
-      { num: "A-Z", sup: "", label: "Architecture, 3D Elevation, Modular Carpentry & Styling" }
+      { num: "100", sup: "%", label: "Structural Sanction & Vastu Compliance Guarantee" },
+      { num: "A-Z", sup: "", label: "Design-Build: Land Survey to Handover" }
     ]
   },
   projects: [
     {
-      id: "proj_1",
+      id: "proj_arch_1",
+      title: "The Cantilever Residence & Private Water Oasis",
+      category: "Architecture & 3D Elevations",
+      typology: "Luxury Residential Villa",
+      loc: "Ganga Nagar, Mawana Road, Meerut",
+      area: "6,850 sq.ft. Built-Up (Plot: 600 sq.yds)",
+      img: "images/villa_elevation.jpg",
+      images: [
+        "images/villa_elevation.jpg",
+        "images/bungalow_facade.jpg",
+        "images/blueprint_cad.jpg",
+        "images/living_tv_unit.jpg"
+      ],
+      featured: true,
+      year: "2026",
+      desc: "Ultra-contemporary multi-level cantilevered villa featuring post-tensioned concrete slabs, motorized teak louvers, double-height insulated acoustic curtain glazing, sunken courtyard, and integrated perimeter reflection pool.",
+      tags: ["Villa Architecture", "3D Elevation", "Cantilever Structure", "Reflecting Pool"]
+    },
+    {
+      id: "proj_arch_2",
+      title: "Geometric Stone Residence with Koi Pond & Louvers",
+      category: "Architecture & 3D Elevations",
+      typology: "Contemporary Bungalow",
+      loc: "Radha Garden, Mawana Road, Meerut",
+      area: "4,900 sq.ft. Built-Up (Plot: 420 sq.yds)",
+      img: "images/bungalow_facade.jpg",
+      images: [
+        "images/bungalow_facade.jpg",
+        "images/villa_elevation.jpg",
+        "images/blueprint_cad.jpg",
+        "images/bedroom_suite.jpg"
+      ],
+      featured: true,
+      year: "2026",
+      desc: "Architectural bungalow articulation utilizing raw textured travertine stone cladding, bronze powder-coated solar louvers, floating monolithic stepping stones across a biological koi pond, and dynamic night architectural illumination.",
+      tags: ["Bungalow Design", "Stone Cladding", "Landscape Architecture", "Exterior Louvers"]
+    },
+    {
+      id: "proj_arch_3",
+      title: "Architectural Blueprints, Structural CAD & Sanction Drawings",
+      category: "Blueprints & CAD",
+      typology: "Technical Drawings & Engineering",
+      loc: "Meerut Development Authority (MDA) & UP",
+      area: "Full Blueprint Sets: Working, Structural & MEP",
+      img: "images/blueprint_cad.jpg",
+      images: [
+        "images/blueprint_cad.jpg",
+        "images/villa_elevation.jpg",
+        "images/bungalow_facade.jpg"
+      ],
+      featured: true,
+      year: "2026",
+      desc: "Comprehensive architectural and engineering working sets: Vastu-compliant spatial layouts, RCC structural column-beam reinforcement details, MEP (electrical, plumbing, HVAC ducting), and municipal sanction documentation.",
+      tags: ["Blueprints", "Working Drawings", "Structural CAD", "MDA Sanctions"]
+    },
+    {
+      id: "proj_int_1",
       title: "Designer Gypsum False Ceiling & Backlit CNC Jali",
-      category: "False Ceiling & Decor",
+      category: "Residential Interiors",
+      typology: "Living & Formal Lounge",
       loc: "Ganga Nagar, Meerut",
+      area: "1,200 sq.ft. Living Wing",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
@@ -46,10 +104,12 @@ const AA_INITIAL_DATA = {
       tags: ["False Ceiling", "CNC Jali Lighting", "Ambient Cove"]
     },
     {
-      id: "proj_2",
+      id: "proj_int_2",
       title: "Master Bedroom Suite with Painted Botanical Mural & Curved Headboard",
-      category: "Bedroom design",
+      category: "Residential Interiors",
+      typology: "Master Bedroom Suite",
       loc: "Radha Garden, Mawana Road, Meerut",
+      area: "480 sq.ft. Suite + Walk-in",
       img: "images/bedroom_suite.jpg",
       images: [
         "images/bedroom_suite.jpg",
@@ -59,30 +119,33 @@ const AA_INITIAL_DATA = {
       featured: true,
       year: "2026",
       desc: "Bespoke master suite with arched wall niche featuring vibrant hand-painted botanical murals, plush dual-tone upholstered headboard, integrated LED perimeter mood lighting, and tailored soft furnishings.",
-      tags: ["Bedroom design", "Custom Art", "Mood Lighting"]
+      tags: ["Master Suite", "Botanical Mural", "Mood Lighting", "Fluted Paneling"]
     },
     {
-      id: "proj_3",
-      title: "Italian Statuario Marble TV Lounge & Fluted Paneling",
-      category: "Living room design",
+      id: "proj_int_3",
+      title: "Italian Statuario Marble TV Lounge & Fluted Acoustic Paneling",
+      category: "Residential Interiors",
+      typology: "Family Entertainment Lounge",
       loc: "Shastri Nagar, Meerut",
+      area: "750 sq.ft. Entertainment Zone",
       img: "images/living_tv_unit.jpg",
       images: [
         "images/living_tv_unit.jpg",
         "images/kitchen_walnut.jpg",
-        "images/bedroom_suite.jpg",
-        "images/walkin_wardrobe.jpg"
+        "images/bedroom_suite.jpg"
       ],
       featured: true,
       year: "2026",
       desc: "Seamless full-height Statuario marble book-matched feature wall, acoustic fluted timber louvers, integrated 3000K indirect LED profiles, and floating smoked walnut entertainment cabinetry.",
-      tags: ["Living room design", "Statuario Marble", "TV Console"]
+      tags: ["Living Lounge", "Statuario Marble", "TV Console", "Acoustic Wall"]
     },
     {
-      id: "proj_4",
+      id: "proj_kit_1",
       title: "Contemporary Smoked Walnut & Quartz Modular Kitchen",
-      category: "Kitchen design",
+      category: "Modular Kitchens",
+      typology: "Culinary Island & Pantry",
       loc: "Saket, Meerut",
+      area: "320 sq.ft. Modular Kitchen",
       img: "images/kitchen_walnut.jpg",
       images: [
         "images/kitchen_walnut.jpg",
@@ -92,29 +155,15 @@ const AA_INITIAL_DATA = {
       featured: false,
       year: "2025",
       desc: "Architectural culinary studio crafted with boiling-water-proof HDHMR joinery, anti-scratch smoked walnut acrylic finishes, seamless Calacatta quartz countertops, and German soft-close tandem hardware.",
-      tags: ["Kitchen design", "Walnut Veneer", "Quartz Counter"]
+      tags: ["Modular Kitchen", "Walnut Joinery", "Quartz Counter", "German Tandem"]
     },
     {
-      id: "proj_5",
-      title: "Luxury Bedroom Suite with Halo Mirror & Fluted Vanity",
-      category: "Bedroom design",
-      loc: "Mawana Road, Meerut",
-      img: "images/bedroom_suite.jpg",
-      images: [
-        "images/bedroom_suite.jpg",
-        "images/walkin_wardrobe.jpg",
-        "images/living_tv_unit.jpg"
-      ],
-      featured: true,
-      year: "2025",
-      desc: "Elegantly detailed bedroom sanctuary with vertical fluted wall paneling, halo illuminated vanity ring mirror, integrated floating dressing table, and ambient warm ceiling cove illumination.",
-      tags: ["Bedroom design", "Vanity Station", "Fluted Paneling"]
-    },
-    {
-      id: "proj_6",
-      title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes",
-      category: "Cabinetry and hardware design",
+      id: "proj_ward_1",
+      title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes & Dressing Suite",
+      category: "Residential Interiors",
+      typology: "Walk-in Dressing Sanctuary",
       loc: "Modipuram, Meerut",
+      area: "240 sq.ft. Dressing Room",
       img: "images/walkin_wardrobe.jpg",
       images: [
         "images/walkin_wardrobe.jpg",
@@ -123,38 +172,25 @@ const AA_INITIAL_DATA = {
       featured: false,
       year: "2025",
       desc: "Walk-in wardrobe sanctuary with bronze aluminum slim profile frames, sensor LED strip shelving, velvet accessory trays, and full-length vanity mirror integration.",
-      tags: ["Cabinetry", "Glass Wardrobe", "LED Joinery"]
+      tags: ["Glass Wardrobe", "LED Joinery", "Bronze Profiles", "Dressing Suite"]
     },
     {
-      id: "proj_7",
-      title: "Sophisticated Dining Suite & Luxury Chandeliers",
-      category: "Dining room design",
-      loc: "Delhi Road, Meerut",
-      img: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
-      images: [
-        "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1400&q=80",
-        "images/kitchen_walnut.jpg"
-      ],
-      featured: false,
-      year: "2025",
-      desc: "Opulent dining room design with sintered stone dining table, sculptural brass pendant lighting, custom bar buffet credenza, and curated artwork.",
-      tags: ["Dining room design", "Custom Art", "Pendant Lighting"]
-    },
-    {
-      id: "proj_8",
-      title: "Commercial Office & Reception Lounge Architecture",
-      category: "Commercial interior design",
-      loc: "Meerut & NCR",
+      id: "proj_comm_1",
+      title: "Commercial Office Complex & Reception Lounge Architecture",
+      category: "Commercial Spaces",
+      typology: "Corporate Headquarters",
+      loc: "Meerut & NCR Expressway",
+      area: "8,500 sq.ft. Commercial Floor",
       img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
       images: [
         "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
         "images/living_tv_unit.jpg",
-        "images/bedroom_suite.jpg"
+        "images/blueprint_cad.jpg"
       ],
       featured: true,
       year: "2026",
-      desc: "Executive office interior with acoustic paneling, fluted timber reception counter, magnetic track illumination, and ergonomic executive cabins.",
-      tags: ["Commercial interior design", "Office space design", "Space planning"]
+      desc: "Executive office interior with acoustic paneling, fluted timber reception counter, magnetic track illumination, structural glass partitions, and ergonomic executive cabins.",
+      tags: ["Commercial Architecture", "Corporate Office", "Space Planning", "Acoustics"]
     }
   ],
   services: [

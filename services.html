@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>All 24 Specialized Services | A&A Architect &amp; Interior Designer · Meerut, UP</title>
+<meta name="description" content="Explore our complete catalog of 24 specialized architectural and interior design disciplines in Meerut: 3D elevations, villa architecture, modular kitchens, structural blueprints, luxury bathrooms & turnkey execution.">
+<meta name="keywords" content="Architectural Services Meerut, Interior Design Services UP, 3D Elevation Ganga Nagar, Modular Kitchen Mawana Road, Turnkey Architecture Uttar Pradesh, Commercial Architecture Meerut">
+<meta name="author" content="A&A Architect & Interior Designer">
+<link rel="canonical" href="https://aa-architect-interior-designer.vercel.app/services.html">
+<meta name="theme-color" content="#0b1713">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- Open Graph / WhatsApp Preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="A&A Architect & Interior Designer">
+<meta property="og:title" content="All 24 Specialized Disciplines | A&A Architect & Interior Designer">
+<meta property="og:description" content="Comprehensive architectural & interior disciplines in Meerut. 3D elevations, structural blueprints, modular kitchens, luxury bathrooms, and turnkey construction.">
+<meta property="og:url" content="https://aa-architect-interior-designer.vercel.app/services.html">
+<meta property="og:image" content="images/villa_elevation.jpg">
+<meta property="og:locale" content="en_IN">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+
+<style>
+:root {
+  --g: #0b1713;
+  --g2: #12221b;
+  --g3: #1b2f26;
+  --g-glass: rgba(11, 23, 19, 0.94);
+  --br: #b88d4d;
+  --br-light: #dfc08a;
+  --br-glow: rgba(184, 141, 77, 0.28);
+  --m: #f8f6f2;
+  --tx: #e7ece9;
+  --mu: #93a39b;
+  --mu-light: #b0c0b8;
+  --ln: rgba(223, 192, 138, 0.16);
+  --gold-grad: linear-gradient(135deg, #ffffff 0%, #dfc08a 50%, #b88d4d 100%);
+  --gold-btn: linear-gradient(135deg, #dfc08a 0%, #b88d4d 50%, #9a6f33 100%);
+  --card-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--g);
+  color: var(--tx);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.68;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { display: block; max-width: 100%; height: auto; object-fit: cover; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; position: relative; }
+
+/* Sticky Header */
+#nv {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(12px, 2.2vw, 32px);
+  height: 64px;
+  background: rgba(11, 23, 19, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(223, 192, 138, 0.18);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.brand { display: flex; flex-direction: column; }
+.brand .lg {
+  font: 600 clamp(13px, 1.2vw, 15.5px) 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.08em;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.brand .loc {
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--br-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.loc-badge { color: #2ecc71; margin-right: 3px; }
+.loc-mob { display: none; }
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.1vw, 16px);
+  list-style: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+nav ul a {
+  color: #cad6d0;
+  transition: all 0.25s ease;
+  padding: 4px 2px;
+  position: relative;
+}
+nav ul a:hover, nav ul a.active {
+  color: var(--br-light);
+}
+nav ul a.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--br-light);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--br-light);
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 141, 77, 0.25);
+  transition: all 0.25s ease;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  background: var(--gold-btn);
+  color: #0b1713;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  border-radius: 6px;
+  border: 1px solid var(--br-light);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--br-glow);
+  filter: brightness(1.08);
+}
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 12px;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--br-light);
+  border: 1px solid rgba(223, 192, 138, 0.4);
+}
+.btn-outline:hover {
+  background: rgba(223, 192, 138, 0.12);
+  border-color: var(--br-light);
+}
+
+.mob-toggle {
+  display: none;
+  font-size: 22px;
+  color: #fff;
+}
+.mob-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(11, 23, 19, 0.98);
+  backdrop-filter: blur(24px);
+  z-index: 200;
+  padding: 24px;
+  flex-direction: column;
+}
+.mob-menu.open { display: flex; }
+.mob-links {
+  list-style: none;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.mob-links a {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e7ece9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.12);
+}
+.mob-links a.active { color: var(--br-light); }
+
+@media (max-width: 960px) {
+  nav ul, .nav-phone, .nav-actions .btn { display: none; }
+  .mob-toggle { display: block; }
+  .loc-mob { display: inline-block; }
+  .brand .loc { display: none; }
+}
+
+/* SECTION HEADERS */
+.sec-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--br-light);
+  margin-bottom: 8px;
+}
+.sec-title {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.12;
+  margin-bottom: 16px;
+}
+.sec-desc {
+  color: var(--mu);
+  font-size: 16px;
+  max-width: 65ch;
+  line-height: 1.68;
+}
+
+/* HERO SECTION WITH AMBIENT BACKGROUND */
+.srv-hero {
+  padding-top: 70px;
+  padding-bottom: 70px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ln);
+  background: radial-gradient(circle at 50% 10%, rgba(27, 47, 38, 0.6) 0%, rgba(11, 23, 19, 0.98) 75%);
+}
+.srv-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  filter: saturate(1.2) brightness(0.6);
+  pointer-events: none;
+  z-index: 0;
+}
+.srv-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.srv-hero h1 {
+  font-size: clamp(38px, 5.2vw, 68px);
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.srv-hero h1 em {
+  font-style: italic;
+  background: var(--gold-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.srv-hero p {
+  color: #b0c0b8;
+  font-size: 16.5px;
+  max-width: 72ch;
+  margin: 0 auto 32px;
+}
+
+/* Hero Quick Discipline Pills */
+.hero-discipline-strip {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.discipline-pill-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(18, 34, 27, 0.85);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  padding: 8px 18px 8px 10px;
+  border-radius: 40px;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+.discipline-pill-card:hover {
+  border-color: var(--br-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.discipline-pill-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--br-light);
+}
+.discipline-pill-text {
+  text-align: left;
+}
+.discipline-pill-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.discipline-pill-sub {
+  font-size: 10px;
+  color: var(--br-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Category Filter Tabs */
+.srv-cat-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.srv-tab-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(223, 192, 138, 0.2);
+  color: #cad6d0;
+  transition: all 0.25s ease;
+}
+.srv-tab-btn:hover, .srv-tab-btn.active {
+  background: var(--gold-btn);
+  color: #0b1713;
+  border-color: transparent;
+  font-weight: 700;
+  transform: translateY(-1px);
+}
+
+/* VISUAL PILLAR SPOTLIGHT BANNER */
+.pillar-spotlight-banner {
+  background: linear-gradient(135deg, rgba(18, 34, 27, 0.95) 0%, rgba(11, 23, 19, 0.98) 100%);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+}
+@media (max-width: 900px) {
+  .pillar-spotlight-banner { grid-template-columns: 1fr; padding: 20px; }
+}
+.spotlight-info h3 {
+  font-size: clamp(26px, 3vw, 36px);
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.spotlight-info p {
+  color: #b0c0b8;
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.spotlight-specs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.spec-chip {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  background: rgba(223, 192, 138, 0.1);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  border-radius: 4px;
+  color: var(--br-light);
+}
+
+/* Spotlight Dual Visual Collage */
+.spotlight-visual-collage {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+  height: 250px;
+}
+@media (max-width: 600px) {
+  .spotlight-visual-collage { grid-template-columns: 1fr; height: auto; }
+}
+.collage-img-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(223, 192, 138, 0.2);
+}
+.collage-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.collage-img-wrap:hover img {
+  transform: scale(1.05);
+}
+.collage-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(11, 23, 19, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--br-light);
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(223, 192, 138, 0.25);
+}
+
+/* SERVICES GRID */
+.srv-pillar-block {
+  margin-bottom: 72px;
+}
+.pillar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.2);
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.pillar-title {
+  font-size: clamp(28px, 3.2vw, 36px);
+  color: #fff;
+}
+.pillar-count {
+  font-size: 12px;
+  color: var(--br-light);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.srv-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) {
+  .srv-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .srv-cards-grid { grid-template-columns: 1fr; }
+}
+
+/* SERVICE CARD WITH IMAGE */
+.srv-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+.srv-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(223, 192, 138, 0.45);
+  box-shadow: 0 18px 36px -10px rgba(0, 0, 0, 0.7);
+}
+
+/* Image Header on Service Card */
+.srv-card-media {
+  position: relative;
+  height: 180px;
+  width: 100%;
+  overflow: hidden;
+  background: #09130f;
+}
+.srv-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.srv-card:hover .srv-card-media img {
+  transform: scale(1.07);
+}
+.srv-card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(11, 23, 19, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(223, 192, 138, 0.35);
+  color: var(--br-light);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.srv-card-pill-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: var(--gold-btn);
+  color: #0b1713;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Text-Only Card Header with Blueprint Motif */
+.srv-card-motif-header {
+  padding: 20px 24px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.08);
+  background: linear-gradient(180deg, rgba(27, 47, 38, 0.25) 0%, transparent 100%);
+}
+.srv-card-motif-icon {
+  font-size: 26px;
+}
+.srv-card-motif-badge {
+  font-size: 10.5px;
+  color: var(--br-light);
+  font-weight: 600;
+  border: 1px solid rgba(223, 192, 138, 0.2);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.srv-card-body {
+  padding: 22px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.srv-card-name {
+  font-size: 19.5px;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.srv-card-desc {
+  color: var(--mu);
+  font-size: 13.5px;
+  line-height: 1.62;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+.srv-card-deliverables {
+  border-top: 1px solid rgba(223, 192, 138, 0.12);
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--br-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+/* INTERACTIVE "DISCIPLINE IN FOCUS" VISUALIZER */
+.visualizer-section {
+  background: radial-gradient(circle at 50% 50%, rgba(24, 45, 36, 0.5) 0%, rgba(11, 23, 19, 0.95) 80%);
+  border: 1px solid rgba(223, 192, 138, 0.25);
+  border-radius: 18px;
+  padding: clamp(24px, 4vw, 44px);
+  margin-bottom: 80px;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+}
+.visualizer-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.visualizer-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.vis-tab-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(223, 192, 138, 0.2);
+  color: #cad6d0;
+  transition: all 0.25s ease;
+}
+.vis-tab-btn:hover, .vis-tab-btn.active {
+  background: var(--gold-btn);
+  color: #0b1713;
+  border-color: transparent;
+  font-weight: 700;
+}
+.visualizer-stage {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 32px;
+  align-items: center;
+  background: rgba(18, 34, 27, 0.9);
+  border: 1px solid rgba(223, 192, 138, 0.2);
+  border-radius: 14px;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .visualizer-stage { grid-template-columns: 1fr; }
+}
+.vis-media-box {
+  position: relative;
+  height: 380px;
+  width: 100%;
+  overflow: hidden;
+  background: #08120e;
+}
+.vis-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.35s ease, transform 0.6s ease;
+}
+.vis-badge-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(11, 23, 19, 0.88);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--br-light);
+  color: var(--br-light);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 30px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.vis-info-box {
+  padding: 28px 32px;
+}
+@media (max-width: 600px) {
+  .vis-info-box { padding: 20px; }
+}
+.vis-title {
+  font-size: clamp(24px, 2.5vw, 32px);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.vis-desc {
+  color: #b0c0b8;
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.vis-deliverables-list {
+  list-style: none;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vis-deliverables-list li {
+  font-size: 13px;
+  color: #cad6d0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vis-deliverables-list li span {
+  color: #2ecc71;
+  font-weight: 700;
+}
+.vis-materials {
+  font-size: 12px;
+  color: var(--br-light);
+  border-top: 1px solid rgba(223, 192, 138, 0.15);
+  padding-top: 14px;
+  margin-bottom: 22px;
+}
+
+/* VISUAL ENGAGEMENT PACKAGES CARDS */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+@media (max-width: 960px) {
+  .packages-grid { grid-template-columns: 1fr; }
+}
+.pkg-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.pkg-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(223, 192, 138, 0.4);
+}
+.pkg-card.highlight {
+  border-color: var(--br-light);
+  box-shadow: 0 16px 36px -10px rgba(184, 141, 77, 0.25);
+  background: linear-gradient(180deg, rgba(27, 47, 38, 0.5) 0%, #12221b 100%);
+}
+.pkg-ribbon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--gold-btn);
+  color: #0b1713;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.pkg-img-wrap {
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+}
+.pkg-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pkg-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.pkg-title {
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.pkg-scope {
+  font-size: 12px;
+  color: var(--br-light);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+.pkg-desc {
+  font-size: 13.5px;
+  color: var(--mu);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.pkg-features {
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pkg-features li {
+  font-size: 12.5px;
+  color: #cad6d0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Deliverables Comparison Matrix */
+.matrix-wrap {
+  margin-top: 20px;
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  overflow-x: auto;
+}
+table.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+table.matrix-table th {
+  padding: 18px 20px;
+  background: rgba(11, 23, 19, 0.85);
+  color: var(--br-light);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  border-bottom: 1px solid var(--ln);
+}
+table.matrix-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.08);
+  color: #cad6d0;
+}
+table.matrix-table tr:hover td {
+  background: rgba(223, 192, 138, 0.03);
+}
+
+/* FAQ Accordion */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+@media (max-width: 800px) {
+  .faq-grid { grid-template-columns: 1fr; }
+}
+.faq-card {
+  background: var(--g2);
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  padding: 24px;
+}
+.faq-q { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.faq-a { font-size: 13.5px; color: var(--mu); line-height: 1.65; }
+
+/* Footer */
+footer {
+  background: #08110e;
+  border-top: 1px solid rgba(223, 192, 138, 0.12);
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--mu);
+}
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header id="nv">
+  <a href="index.html" class="brand" aria-label="A&A Architect & Interior Designer Home">
+    <span class="lg">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</span>
+    <span class="loc"><span class="loc-badge">●</span> MEERUT, UP · EST. 2018</span>
+  </a>
+
+  <nav aria-label="Primary Navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="architecture.html">Architecture</a></li>
+      <li><a href="interior.html">Interiors</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="estimator.html">Cost Estimator</a></li>
+      <li><a href="about.html">About Studio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav-actions">
+    <a href="tel:+916397438387" class="nav-phone" title="Call Principal Architect">
+      <span>📞</span> 063974 38387
+    </a>
+    <a href="contact.html" class="btn btn-sm">Book Consultation</a>
+    <button class="mob-toggle" id="mobOpen" aria-label="Open navigation menu">☰</button>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mob-menu" id="mobMenu">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="brand">
+      <span class="lg">A&amp;A ARCHITECT &amp; INTERIOR DESIGNER</span>
+      <span class="loc"><span class="loc-badge">●</span> MEERUT, UP</span>
+    </div>
+    <button class="mob-toggle" id="mobClose" aria-label="Close menu">✕</button>
+  </div>
+  <ul class="mob-links">
+    <li><a href="index.html">Home Page <span>&rarr;</span></a></li>
+    <li><a href="architecture.html">Architectural Practice <span>&rarr;</span></a></li>
+    <li><a href="interior.html">Interior Architecture &amp; Joinery <span>&rarr;</span></a></li>
+    <li><a href="portfolio.html">All Projects &amp; Archive <span>&rarr;</span></a></li>
+    <li><a href="services.html" class="active">All 24 Specialized Services <span>&rarr;</span></a></li>
+    <li><a href="estimator.html">Instant Cost Estimator <span>&rarr;</span></a></li>
+    <li><a href="about.html">About Firm &amp; Principals <span>&rarr;</span></a></li>
+    <li><a href="contact.html">Contact &amp; Studio Directions <span>&rarr;</span></a></li>
+  </ul>
+  <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(223,192,138,0.2)">
+    <a class="btn" href="contact.html" style="width:100%;text-align:center">Book Consultation &rarr;</a>
+  </div>
+</div>
+
+<!-- SERVICES HERO -->
+<header class="srv-hero">
+  <img src="images/villa_elevation.jpg" alt="A&A Architectural Project Background" class="srv-hero-bg">
+  <div class="wrap srv-hero-content">
+    <span class="sec-tag">Comprehensive Practice Catalog</span>
+    <h1>24 Specialized Disciplines. <em>One Unified Vision.</em></h1>
+    <p>
+      From structural blueprints and Meerut Development Authority (MDA) sanctions to custom German HDHMR modular kitchens and bespoke bronze glass wardrobes—we deliver seamless architectural precision and interior artistry under one roof.
+    </p>
+
+    <!-- Visual Discipline Quick Anchors -->
+    <div class="hero-discipline-strip">
+      <a href="#pillarArch" class="discipline-pill-card">
+        <img src="images/villa_elevation.jpg" alt="Architectural Planning" class="discipline-pill-thumb">
+        <div class="discipline-pill-text">
+          <div class="discipline-pill-title">01. Architecture &amp; CAD</div>
+          <div class="discipline-pill-sub">8 Disciplines</div>
+        </div>
+      </a>
+      <a href="#pillarInt" class="discipline-pill-card">
+        <img src="images/kitchen_walnut.jpg" alt="Interior Architecture" class="discipline-pill-thumb">
+        <div class="discipline-pill-text">
+          <div class="discipline-pill-title">02. Interior Architecture</div>
+          <div class="discipline-pill-sub">10 Disciplines</div>
+        </div>
+      </a>
+      <a href="#pillarTurnkey" class="discipline-pill-card">
+        <img src="images/bungalow_facade.jpg" alt="Turnkey Civil" class="discipline-pill-thumb">
+        <div class="discipline-pill-text">
+          <div class="discipline-pill-title">03. Turnkey Execution</div>
+          <div class="discipline-pill-sub">6 Disciplines</div>
+        </div>
+      </a>
+      <a href="#visualizer" class="discipline-pill-card">
+        <img src="images/blueprint_cad.jpg" alt="Discipline Visualizer" class="discipline-pill-thumb">
+        <div class="discipline-pill-text">
+          <div class="discipline-pill-title">Discipline Visualizer</div>
+          <div class="discipline-pill-sub">Interactive 4K</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="srv-cat-tabs">
+      <a class="srv-tab-btn active" href="#pillarArch">01. Architectural Engineering &amp; Blueprints</a>
+      <a class="srv-tab-btn" href="#pillarInt">02. Interior Architecture &amp; Joinery</a>
+      <a class="srv-tab-btn" href="#pillarTurnkey">03. Turnkey Execution &amp; Civil</a>
+      <a class="srv-tab-btn" href="#packages">Comparison Packages</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" style="padding-top:60px">
+
+  <!-- ==============================================
+       PILLAR 1: ARCHITECTURAL PLANNING & ENGINEERING
+       ============================================== -->
+  <section id="pillarArch" class="srv-pillar-block">
+    <div class="pillar-header">
+      <div>
+        <span class="sec-tag">Pillar 01</span>
+        <h2 class="pillar-title">Architectural Planning &amp; Engineering</h2>
+      </div>
+      <span class="pillar-count">8 Core Architectural Disciplines</span>
+    </div>
+
+    <!-- Spotlight Banner for Pillar 01 -->
+    <div class="pillar-spotlight-banner">
+      <div class="spotlight-info">
+        <span class="sec-tag">Structural Precision &amp; 3D Modeling</span>
+        <h3>Bespoke Villa Architecture &amp; Sanctions</h3>
+        <p>
+          Every structural project begins with meticulous solar orientation analysis, Vastu Purusha Mandala harmony, and precision RCC calculations. We provide complete authority-approved submission sets compliant with Meerut Development Authority (MDA) bye-laws.
+        </p>
+        <div class="spotlight-specs">
+          <span class="spec-chip">Seismic Zone IV Compliant</span>
+          <span class="spec-chip">100% MDA Bye-law Clearance</span>
+          <span class="spec-chip">4K Day &amp; Night 3D Renders</span>
+          <span class="spec-chip">Column-Beam Rebar Schedules</span>
+        </div>
+        <a href="architecture.html" class="btn btn-sm">Explore Architectural Practice &rarr;</a>
+      </div>
+
+      <div class="spotlight-visual-collage">
+        <div class="collage-img-wrap">
+          <img src="images/villa_elevation.jpg" alt="Cantilevered Villa Exterior Elevation">
+          <span class="collage-tag">3D Villa Façade</span>
+        </div>
+        <div class="collage-img-wrap">
+          <img src="images/blueprint_cad.jpg" alt="Architectural Drafting & CAD Table">
+          <span class="collage-tag">CAD Structural Blueprints</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 Architectural Service Cards -->
+    <div class="srv-cards-grid">
+      <!-- 1. Villa Architecture (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/villa_elevation.jpg" alt="Residential Villa & Bungalow Architecture">
+          <span class="srv-card-badge">Flagship</span>
+          <span class="srv-card-pill-tag">Bungalow &amp; Villa</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Residential Villa &amp; Bungalow Architecture</h3>
+          <p class="srv-card-desc">Bespoke luxury estates featuring cantilevered concrete volumes, internal courtyards, double-height atriums, and reflection pools.</p>
+          <div class="srv-card-deliverables">📦 Master blueprints + 4K 3D elevations</div>
+        </div>
+      </div>
+
+      <!-- 2. 3D Exterior Elevation (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/bungalow_facade.jpg" alt="3D Exterior Elevation & Façade Engineering">
+          <span class="srv-card-badge">Photoreal</span>
+          <span class="srv-card-pill-tag">Façade Modeling</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">3D Exterior Elevation &amp; Façade Engineering</h3>
+          <p class="srv-card-desc">Photorealistic 4K exterior renderings, daylight shadow studies, parametric bronze louvers, and night illumination simulation.</p>
+          <div class="srv-card-deliverables">📦 4K Day &amp; Night Renders + Material Codes</div>
+        </div>
+      </div>
+
+      <!-- 3. Structural CAD & Blueprints (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/blueprint_cad.jpg" alt="Structural CAD & RCC Reinforcement">
+          <span class="srv-card-badge">Engineering</span>
+          <span class="srv-card-pill-tag">Working Sets</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Structural CAD &amp; RCC Reinforcement</h3>
+          <p class="srv-card-desc">Seismic-resistant column-beam schedules, footing depth calculation, post-tensioned slab details, and steel rebar schedules.</p>
+          <div class="srv-card-deliverables">📦 Structural Engineer Vetted CAD Sets</div>
+        </div>
+      </div>
+
+      <!-- 4. Commercial Architecture (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/commercial_facade.jpg" alt="Commercial Complex & Retail Architecture">
+          <span class="srv-card-badge">Corporate</span>
+          <span class="srv-card-pill-tag">Commercial</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Commercial Complex &amp; Retail Architecture</h3>
+          <p class="srv-card-desc">Corporate office hubs, retail shopfronts, and hospitality spaces engineered for maximum commercial visibility and glass curtain walls.</p>
+          <div class="srv-card-deliverables">📦 Full Commercial Master Planning Sets</div>
+        </div>
+      </div>
+
+      <!-- 5. Municipal Sanctions -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">📜</span>
+          <span class="srv-card-motif-badge">MDA Compliant</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Municipal Sanctions &amp; MDA Approvals</h3>
+          <p class="srv-card-desc">Sanction-ready layout drawings compliant with Meerut Development Authority (MDA) and UP Awas Vikas FAR bye-laws, setbacks, and height limits.</p>
+          <div class="srv-card-deliverables">📦 Authority Submission Blueprint Dossier</div>
+        </div>
+      </div>
+
+      <!-- 6. Vastu Master Planning -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🧭</span>
+          <span class="srv-card-motif-badge">Scientific Vastu</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Vastu-Integrated Master Planning</h3>
+          <p class="srv-card-desc">Harmonizing traditional Vastu Purusha Mandala principles with sleek contemporary open-concept architecture and natural daylighting.</p>
+          <div class="srv-card-deliverables">📦 Vastu Energy Flow &amp; Spatial Alignment</div>
+        </div>
+      </div>
+
+      <!-- 7. Space Planning & Volume -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">📏</span>
+          <span class="srv-card-motif-badge">Ergonomics</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Space Planning &amp; Volume Manipulation</h3>
+          <p class="srv-card-desc">Comprehensive 2D/3D spatial mapping ensuring uninterrupted sightlines, double-height volumes, and cross ventilation throughout.</p>
+          <div class="srv-card-deliverables">📦 Dimensional Circulation Analysis</div>
+        </div>
+      </div>
+
+      <!-- 8. Structural Renovation -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🔄</span>
+          <span class="srv-card-motif-badge">Retrofit</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Structural Renovation &amp; Floor Addition</h3>
+          <p class="srv-card-desc">Safe vertical floor addition, load-bearing column retrofitting, and complete exterior facade restyling without rebuilding the structural core.</p>
+          <div class="srv-card-deliverables">📦 Structural Retrofit &amp; Modernization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       INTERACTIVE "DISCIPLINE IN FOCUS" VISUALIZER
+       ============================================== -->
+  <section id="visualizer" class="visualizer-section">
+    <div class="visualizer-header">
+      <span class="sec-tag">Interactive Visualizer</span>
+      <h2 class="sec-title" style="margin-bottom:8px">Disciplines in High-Definition Focus</h2>
+      <p style="color:var(--mu);max-width:60ch;margin:0 auto">
+        Select a specialized discipline below to inspect high-resolution execution, certified materiality, and tangible architectural deliverables.
+      </p>
+    </div>
+
+    <!-- Visualizer Tabs -->
+    <div class="visualizer-tabs">
+      <button class="vis-tab-btn active" onclick="switchVisualizer('villa')">Villa Architecture</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('kitchen')">Modular Kitchens</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('bedroom')">Master Bedroom Suites</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('wardrobe')">Bronze Glass Wardrobes</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('living')">Statuario TV Walls</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('bathroom')">Luxury Bathrooms</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('cad')">Blueprints &amp; CAD</button>
+      <button class="vis-tab-btn" onclick="switchVisualizer('commercial')">Commercial Facades</button>
+    </div>
+
+    <!-- Visualizer Stage -->
+    <div class="visualizer-stage">
+      <div class="vis-media-box">
+        <img id="visImage" src="images/villa_elevation.jpg" alt="Discipline Visualizer Preview">
+        <div class="vis-badge-overlay" id="visCategoryBadge">Architectural Planning</div>
+      </div>
+      <div class="vis-info-box">
+        <span class="sec-tag" id="visDisciplineTag">Pillar 01 · Flagship Scope</span>
+        <h3 class="vis-title" id="visTitle">Residential Villa &amp; Bungalow Architecture</h3>
+        <p class="vis-desc" id="visDesc">
+          Comprehensive bespoke villa design from soil load testing to 4K exterior elevations. Includes cantilevered concrete overhangs, double-height atriums, infinity pool water features, and floorplans harmonized with Vastu Purusha Mandala principles.
+        </p>
+        <ul class="vis-deliverables-list" id="visList">
+          <li><span>✔</span> Complete MDA-sanctioned submission blueprints</li>
+          <li><span>✔</span> 4K Photorealistic day and night exterior 3D renders</li>
+          <li><span>✔</span> Structural RCC column-beam reinforcement schedules</li>
+          <li><span>✔</span> Detailed Bill of Quantities (BOQ) with certified materials</li>
+        </ul>
+        <div class="vis-materials" id="visMaterials">
+          <strong>Certified Materials:</strong> Fe550D TMT Rebar, M25 Concrete, Double-Glazed Low-E Glass, Natural Travertine Facades.
+        </div>
+        <a id="visInquiryBtn" href="https://wa.me/916397438387?text=Hello%20A%26A%20Architect,%20I%20am%20interested%20in%20Villa%20Architecture%20services." class="btn btn-sm" target="_blank" rel="noopener">
+          Inquire About This Discipline &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       PILLAR 2: INTERIOR ARCHITECTURE & BESPOKE JOINERY
+       ============================================== -->
+  <section id="pillarInt" class="srv-pillar-block">
+    <div class="pillar-header">
+      <div>
+        <span class="sec-tag">Pillar 02</span>
+        <h2 class="pillar-title">Interior Architecture &amp; Bespoke Joinery</h2>
+      </div>
+      <span class="pillar-count">10 Specialized Disciplines</span>
+    </div>
+
+    <!-- Spotlight Banner for Pillar 02 -->
+    <div class="pillar-spotlight-banner">
+      <div class="spotlight-info">
+        <span class="sec-tag">Factory Joinery &amp; Luxury Finishes</span>
+        <h3>Bespoke Living Spaces &amp; Modular Joinery</h3>
+        <p>
+          We don't assemble flat-pack cabinets. Our interior architecture studio manufactures 100% boiling-water-proof (BWP) HDHMR joinery with German soft-close mechanisms, Italian marble cladding, and architectural 3000K concealed illumination.
+        </p>
+        <div class="spotlight-specs">
+          <span class="spec-chip">100% BWP HDHMR Grade</span>
+          <span class="spec-chip">Blum / Hafele Soft-Close</span>
+          <span class="spec-chip">Italian Statuario Marble</span>
+          <span class="spec-chip">Bronze Tinted Toughened Glass</span>
+        </div>
+        <a href="interior.html" class="btn btn-sm">Explore Interior Architecture &rarr;</a>
+      </div>
+
+      <div class="spotlight-visual-collage">
+        <div class="collage-img-wrap">
+          <img src="images/kitchen_walnut.jpg" alt="Modular Island Kitchen">
+          <span class="collage-tag">Modular Kitchen Island</span>
+        </div>
+        <div class="collage-img-wrap">
+          <img src="images/walkin_wardrobe.jpg" alt="Bronze Glass Walk-in Wardrobe">
+          <span class="collage-tag">Bronze Wardrobes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 Interior Service Cards -->
+    <div class="srv-cards-grid">
+      <!-- 1. Modular Kitchens (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/kitchen_walnut.jpg" alt="Modular Kitchen Systems & Islands">
+          <span class="srv-card-badge">Signature</span>
+          <span class="srv-card-pill-tag">BWP HDHMR</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Modular Kitchen Systems &amp; Islands</h3>
+          <p class="srv-card-desc">100% boiling-water-proof HDHMR carcases, German tandem soft-close hardware, anti-scratch acrylics, and seamless Calacatta quartz.</p>
+          <div class="srv-card-deliverables">📦 Modular CAD working drawings + Hardware BOQ</div>
+        </div>
+      </div>
+
+      <!-- 2. Master Bedroom Suites (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/bedroom_suite.jpg" alt="Master Bedroom Suites & Custom Headboards">
+          <span class="srv-card-badge">Bespoke</span>
+          <span class="srv-card-pill-tag">Acoustic Fluting</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Master Bedroom Suites &amp; Custom Headboards</h3>
+          <p class="srv-card-desc">Plush upholstered headboards, curved wall niches, hand-painted murals, halo vanity mirrors, and acoustic timber wall fluting.</p>
+          <div class="srv-card-deliverables">📦 Custom Millwork Details + Fabric Palette</div>
+        </div>
+      </div>
+
+      <!-- 3. Walk-in Wardrobes (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/walkin_wardrobe.jpg" alt="Floor-to-Ceiling Bronze Glass Wardrobes">
+          <span class="srv-card-badge">Illuminated</span>
+          <span class="srv-card-pill-tag">Bronze Glass</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Floor-to-Ceiling Bronze Glass Wardrobes</h3>
+          <p class="srv-card-desc">Bronze aluminum profiles, tempered glass shutters, sensor-activated shelf lighting, velvet accessory drawers, and vanity dressers.</p>
+          <div class="srv-card-deliverables">📦 Wardrobe Internal Sections + Hardware Specs</div>
+        </div>
+      </div>
+
+      <!-- 4. Living Lounge & TV Units (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/living_tv_unit.jpg" alt="Living Lounge & Statuario TV Units">
+          <span class="srv-card-badge">Marble Wall</span>
+          <span class="srv-card-pill-tag">Italian Statuario</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Living Lounge &amp; Statuario TV Units</h3>
+          <p class="srv-card-desc">Book-matched Italian Statuario marble slabs, acoustic fluted timber louvers, 3000K concealed LED profiles, and floating smoked walnut credenzas.</p>
+          <div class="srv-card-deliverables">📦 TV Console Elevation &amp; Wiring Schemes</div>
+        </div>
+      </div>
+
+      <!-- 5. Luxury Bathrooms (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/luxury_bathroom.jpg" alt="Luxury Bathroom & Vanity Design">
+          <span class="srv-card-badge">Sanitary</span>
+          <span class="srv-card-pill-tag">Travertine &amp; Quartz</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Luxury Bathroom &amp; Vanity Suites</h3>
+          <p class="srv-card-desc">Floating double marble vanities, backlit fluted travertine walls, bronze brushed fittings, and minimalist frameless shower cubicles.</p>
+          <div class="srv-card-deliverables">📦 Wet/Dry Layout &amp; Sanitary Fixture Schedule</div>
+        </div>
+      </div>
+
+      <!-- 6. False Ceiling & CNC Jali -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">💡</span>
+          <span class="srv-card-motif-badge">Lighting Circuits</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">False Ceiling &amp; Backlit CNC Jali</h3>
+          <p class="srv-card-desc">Multi-tier gypsum ceilings, laser-cut geometric CNC jali fretwork, atmospheric warm backlighting, and magnetic architectural track profiles.</p>
+          <div class="srv-card-deliverables">📦 Ceiling Grid &amp; Electrical Circuiting Plans</div>
+        </div>
+      </div>
+
+      <!-- 7. Dining Room & Bar Credenzas -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🍷</span>
+          <span class="srv-card-motif-badge">Custom Joinery</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Dining Room &amp; Bar Credenzas</h3>
+          <p class="srv-card-desc">Statement sintered stone tables, designer brass chandeliers, custom wine display cabinets, and fluted buffet consoles with quartz countertops.</p>
+          <div class="srv-card-deliverables">📦 Dining Suite Elevation &amp; Joinery Details</div>
+        </div>
+      </div>
+
+      <!-- 8. Grand Pivot Doors -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🚪</span>
+          <span class="srv-card-motif-badge">Architectural</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Grand Pivot Doors &amp; Acoustic Frames</h3>
+          <p class="srv-card-desc">8-foot to 10-foot architectural entrance pivot doors with hidden heavy-duty pivots, digital lock integration, and acoustic core insulation.</p>
+          <div class="srv-card-deliverables">📦 Door Schedule &amp; Concealed Frame Details</div>
+        </div>
+      </div>
+
+      <!-- 9. Custom Art Selection -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🎨</span>
+          <span class="srv-card-motif-badge">Curated Decor</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Custom Art Selection &amp; Wall Murals</h3>
+          <p class="srv-card-desc">Curated commissioned canvas artwork, botanical murals, brass sculptural accents, and tailored wall texture layering matching the color palette.</p>
+          <div class="srv-card-deliverables">📦 Art Curation Dossier + Texture Samples</div>
+        </div>
+      </div>
+
+      <!-- 10. Window Design & Motorized Glazing -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🪟</span>
+          <span class="srv-card-motif-badge">Automation</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Window Design &amp; Motorized Glazing</h3>
+          <p class="srv-card-desc">Thermal-break aluminum frames, acoustic double-glazing, motorized concealed drapery pockets, and panoramic sightline framing.</p>
+          <div class="srv-card-deliverables">📦 Glazing Schedule &amp; Drapery Pocket Details</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       PILLAR 3: TURNKEY EXECUTION & CIVIL
+       ============================================== -->
+  <section id="pillarTurnkey" class="srv-pillar-block">
+    <div class="pillar-header">
+      <div>
+        <span class="sec-tag">Pillar 03</span>
+        <h2 class="pillar-title">Turnkey Construction &amp; Civil Execution</h2>
+      </div>
+      <span class="pillar-count">6 Delivery Disciplines</span>
+    </div>
+
+    <!-- Spotlight Banner for Pillar 03 -->
+    <div class="pillar-spotlight-banner">
+      <div class="spotlight-info">
+        <span class="sec-tag">Single Contract Stewardship</span>
+        <h3>Foundation to Move-In Key Handover</h3>
+        <p>
+          Eliminate contractor conflicts and budget overruns. Our turnkey design-build practice takes complete legal and operational accountability from excavation and RCC casting to finishing, sanitary installation, and final styling.
+        </p>
+        <div class="spotlight-specs">
+          <span class="spec-chip">Direct Principal Architect Audits</span>
+          <span class="spec-chip">Strict Milestone Escrow</span>
+          <span class="spec-chip">Zero Subcontractor Markup</span>
+          <span class="spec-chip">As-Built MEP Documentation</span>
+        </div>
+        <a href="estimator.html" class="btn btn-sm">Calculate Turnkey Budget &rarr;</a>
+      </div>
+
+      <div class="spotlight-visual-collage">
+        <div class="collage-img-wrap">
+          <img src="images/bungalow_facade.jpg" alt="Turnkey Civil Construction">
+          <span class="collage-tag">Finished Turnkey Residence</span>
+        </div>
+        <div class="collage-img-wrap">
+          <img src="images/living_tv_unit.jpg" alt="Italian Marble Polishing">
+          <span class="collage-tag">Marble Inlay Execution</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 Turnkey Service Cards -->
+    <div class="srv-cards-grid">
+      <!-- 1. Turnkey Construction (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/bungalow_facade.jpg" alt="Turnkey Construction (Foundation to Finish)">
+          <span class="srv-card-badge">Full EPC</span>
+          <span class="srv-card-pill-tag">Design-Build</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Turnkey Construction (Foundation to Finish)</h3>
+          <p class="srv-card-desc">Complete EPC execution covering excavation, RCC frame casting, brickwork, plastering, waterproofing, and structural finishing.</p>
+          <div class="srv-card-deliverables">📦 Daily Site Logs + Milestone Delivery Guarantee</div>
+        </div>
+      </div>
+
+      <!-- 2. Italian Marble Inlay (PHOTO CARD) -->
+      <div class="srv-card">
+        <div class="srv-card-media">
+          <img src="images/living_tv_unit.jpg" alt="Flooring Selection & Inlay Execution">
+          <span class="srv-card-badge">Artisan</span>
+          <span class="srv-card-pill-tag">Italian Marble</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Flooring Selection &amp; Inlay Execution</h3>
+          <p class="srv-card-desc">Book-matched Italian marble diamond polishing, herringbone engineered hardwood, large-format vitrified slabs, and seamless microtopping.</p>
+          <div class="srv-card-deliverables">📦 Tile/Stone Laying Patterns &amp; Slopes</div>
+        </div>
+      </div>
+
+      <!-- 3. Concealed MEP Engineering -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">⚡</span>
+          <span class="srv-card-motif-badge">Heavy Duty</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Concealed MEP Engineering</h3>
+          <p class="srv-card-desc">Copper electrical conduit piping, DB distribution boards, smart automation wiring, plumbing riser shafts, and VRV/VRF HVAC ducting.</p>
+          <div class="srv-card-deliverables">📦 As-Built MEP Schematics</div>
+        </div>
+      </div>
+
+      <!-- 4. Painting & Luxury Stucco -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🖌️</span>
+          <span class="srv-card-motif-badge">Finishes</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Interior Painting &amp; Luxury Stucco</h3>
+          <p class="srv-card-desc">Italian Venetian plaster, limewash finishes, anti-fungal velvet royal emulsions, and zero-VOC eco coatings with laser-straight edges.</p>
+          <div class="srv-card-deliverables">📦 Paint Code Schedule + Stucco Mockups</div>
+        </div>
+      </div>
+
+      <!-- 5. Home Staging -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🏡</span>
+          <span class="srv-card-motif-badge">Move-in Ready</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Home Staging &amp; Furnishing Styling</h3>
+          <p class="srv-card-desc">Curated soft furnishings, custom drapery, luxury rugs, designer table lamps, and atmospheric styling ready for immediate move-in.</p>
+          <div class="srv-card-deliverables">📦 Styling Palette &amp; Accessories Curation</div>
+        </div>
+      </div>
+
+      <!-- 6. Architect Site Supervision -->
+      <div class="srv-card">
+        <div class="srv-card-motif-header">
+          <span class="srv-card-motif-icon">🤝</span>
+          <span class="srv-card-motif-badge">Quality Audit</span>
+        </div>
+        <div class="srv-card-body">
+          <h3 class="srv-card-name">Dedicated Architect Site Supervision</h3>
+          <p class="srv-card-desc">Direct on-site quality auditing by Principal Architect and Senior Interior Leads ensuring zero material deviation and on-time delivery.</p>
+          <div class="srv-card-deliverables">📦 Quality Audit Checklists &amp; Handover Certificate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       VISUAL COMPARISON PACKAGES
+       ============================================== -->
+  <section id="packages">
+    <div class="pillar-header">
+      <div>
+        <span class="sec-tag">Engagement Options</span>
+        <h2 class="pillar-title">Comparing Service Engagement Packages</h2>
+      </div>
+      <span class="pillar-count">Transparent Deliverables</span>
+    </div>
+
+    <!-- Visual Package Cards -->
+    <div class="packages-grid">
+      <!-- Package 1: Architectural Only -->
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img src="images/blueprint_cad.jpg" alt="Architectural Planning Package">
+        </div>
+        <div class="pkg-body">
+          <span class="pkg-scope">Tier 01 · Planning Only</span>
+          <h3 class="pkg-title">Architectural Planning</h3>
+          <p class="pkg-desc">For clients with their own civil contractor who need sanctioned drawings, 3D elevations, and structural blueprints.</p>
+          <ul class="pkg-features">
+            <li><span>✔</span> 2D Vastu Floor Plans &amp; Zoning</li>
+            <li><span>✔</span> 4K Day &amp; Night 3D Elevations</li>
+            <li><span>✔</span> Structural RCC &amp; Column Schedules</li>
+            <li><span>✔</span> MDA Sanction Submission Dossier</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline" style="width:100%;text-align:center">Choose Architecture &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Package 2: Interior Only -->
+      <div class="pkg-card">
+        <div class="pkg-img-wrap">
+          <img src="images/kitchen_walnut.jpg" alt="Turnkey Interior Fit-out Package">
+        </div>
+        <div class="pkg-body">
+          <span class="pkg-scope">Tier 02 · Interior Fit-out</span>
+          <h3 class="pkg-title">Turnkey Interiors</h3>
+          <p class="pkg-desc">For apartments, builder floors, or newly constructed homes requiring complete bespoke interior joinery and fit-out.</p>
+          <ul class="pkg-features">
+            <li><span>✔</span> Modular Kitchens &amp; Wardrobes</li>
+            <li><span>✔</span> False Ceiling &amp; Circuit Lighting</li>
+            <li><span>✔</span> Italian Marble &amp; Tile Installation</li>
+            <li><span>✔</span> Full Carpentry &amp; Stucco Painting</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline" style="width:100%;text-align:center">Choose Interiors &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Package 3: Complete Design & Build (HIGHLIGHTED) -->
+      <div class="pkg-card highlight">
+        <span class="pkg-ribbon">Most Popular</span>
+        <div class="pkg-img-wrap">
+          <img src="images/villa_elevation.jpg" alt="Complete Design and Build Turnkey Package">
+        </div>
+        <div class="pkg-body">
+          <span class="pkg-scope">Tier 03 · Single Contract</span>
+          <h3 class="pkg-title">Complete Design &amp; Build</h3>
+          <p class="pkg-desc">Total architectural engineering + turnkey civil construction + bespoke interior fit-out from soil excavation to final key handover.</p>
+          <ul class="pkg-features">
+            <li><span>✔</span> Full Architectural &amp; MDA Sanctions</li>
+            <li><span>✔</span> Complete Civil Foundation to Finish</li>
+            <li><span>✔</span> Factory Modular Joinery &amp; Wardrobes</li>
+            <li><span>✔</span> Dedicated Architect Site Supervision</li>
+          </ul>
+          <a href="contact.html" class="btn" style="width:100%;text-align:center">Choose Full Design &amp; Build &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Deliverables Comparison Matrix Table -->
+    <div class="matrix-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Deliverable / Scope</th>
+            <th>01. Architectural Planning</th>
+            <th>02. Turnkey Interior Fit-out</th>
+            <th>03. Complete Design &amp; Build</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>2D Conceptual Floor Plans &amp; Vastu</strong></td>
+            <td>✔ Included</td>
+            <td>✔ Interior Layout Only</td>
+            <td>✔ Comprehensive Master Sets</td>
+          </tr>
+          <tr>
+            <td><strong>3D Exterior Elevations (Day &amp; Night)</strong></td>
+            <td>✔ Included (4K Renders)</td>
+            <td>— Optional Add-on</td>
+            <td>✔ Included (Complete Façade)</td>
+          </tr>
+          <tr>
+            <td><strong>Structural Engineering &amp; Reinforcement</strong></td>
+            <td>✔ Included</td>
+            <td>— (Civil alterations only)</td>
+            <td>✔ Complete RCC Load Sets</td>
+          </tr>
+          <tr>
+            <td><strong>Municipal Sanction Drawings (MDA)</strong></td>
+            <td>✔ Included</td>
+            <td>—</td>
+            <td>✔ Complete Sanction Filing</td>
+          </tr>
+          <tr>
+            <td><strong>HDHMR Modular Kitchens &amp; Joinery</strong></td>
+            <td>— (Joinery CAD provided)</td>
+            <td>✔ Manufactured &amp; Installed</td>
+            <td>✔ Manufactured &amp; Installed</td>
+          </tr>
+          <tr>
+            <td><strong>False Ceilings &amp; Smart Lighting</strong></td>
+            <td>— (Lighting plan provided)</td>
+            <td>✔ Turnkey Execution</td>
+            <td>✔ Turnkey Execution</td>
+          </tr>
+          <tr>
+            <td><strong>On-Site Civil Construction Supervision</strong></td>
+            <td>✔ Periodic Milestones</td>
+            <td>✔ Daily Interior Lead</td>
+            <td>✔ Dedicated Full-Time Supervision</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       FAQS & DIRECT ARCHITECT CTA
+       ============================================== -->
+  <section id="faqs">
+    <div class="pillar-header">
+      <div>
+        <span class="sec-tag">Frequently Asked Questions</span>
+        <h2 class="pillar-title">Architectural &amp; Interior Queries</h2>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h4 class="faq-q">What is the difference between an architect and an interior designer?</h4>
+        <p class="faq-a">An architect plans the entire physical structure from foundation to elevation, ensuring structural safety, MDA bye-laws, natural lighting, and site integration. An interior designer crafts the internal living spaces, joinery, and lighting. A&amp;A combines both under one roof for seamless synergy.</p>
+      </div>
+
+      <div class="faq-card">
+        <h4 class="faq-q">Can you handle building sanction approvals with Meerut Development Authority (MDA)?</h4>
+        <p class="faq-a">Yes. We prepare complete municipal sanction drawings complying with Meerut Development Authority (MDA) and UP Awas Vikas bye-laws, including FAR, ground coverage, and setback regulations.</p>
+      </div>
+
+      <div class="faq-card">
+        <h4 class="faq-q">Do you execute turnkey projects outside Meerut?</h4>
+        <p class="faq-a">Yes, while our flagship studio is located in Ganga Nagar, Mawana Road, Meerut, we actively design and execute luxury villas and turnkey residences across Mawana, Modipuram, Shastri Nagar, Hapur, Noida, and NCR.</p>
+      </div>
+
+      <div class="faq-card">
+        <h4 class="faq-q">How do you ensure material quality during turnkey execution?</h4>
+        <p class="faq-a">We use strict BOQ specifications naming certified brands (e.g., Century/Green HDHMR, Hafele/Blum hardware, Asian Paints Royal, Saint-Gobain glass) and our Principal Architect conducts physical audits before any material is installed.</p>
+      </div>
+    </div>
+
+    <!-- CTA Box with Visual Aesthetics -->
+    <div style="margin-top:60px;background:linear-gradient(135deg, #172b22 0%, #0d1b15 100%);border:1px solid rgba(223,192,138,0.3);border-radius:16px;padding:48px 36px;text-align:center;box-shadow:0 16px 40px rgba(0,0,0,0.5)">
+      <span class="sec-tag">Studio Consultation in Meerut</span>
+      <h3 style="font-size:clamp(28px, 3.5vw, 40px);color:#fff;margin-bottom:12px;line-height:1.2">Discuss Your Project with Principal Architect</h3>
+      <p style="color:var(--mu);margin-bottom:28px;max-width:60ch;margin-left:auto;margin-right:auto">
+        Get immediate clarity on municipal sanction requirements, structural blueprints, and realistic budget projections for your villa or interior fit-out.
+      </p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+        <a class="btn" href="contact.html">Book Studio Meeting in Meerut &rarr;</a>
+        <a class="btn btn-outline" href="estimator.html">Launch Instant Cost Estimator &rarr;</a>
+        <a class="btn btn-outline" href="https://wa.me/916397438387" target="_blank" rel="noopener">Chat on WhatsApp 💬</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-wrap">
+    <div>
+      <strong>&copy; A&amp;A Architect &amp; Interior Designer, B-321, Mawana Rd, Radha Garden, Ganga Nagar, Meerut, UP 250001.</strong>
+    </div>
+    <div style="display:flex;gap:16px;align-items:center">
+      <a href="admin.html" style="color:var(--br-light);font-size:12px;border:1px solid rgba(184,141,77,0.3);padding:3px 8px;border-radius:4px">Admin Portal 🔒</a>
+      <span>Design &amp; Technology by <a href="https://www.theluxestudio.in/" target="_blank" rel="noopener" style="color:var(--br-light)">LuxeStudio</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky Nav
+window.addEventListener('scroll', () => {
+  const nv = document.getElementById('nv');
+  if (nv) nv.classList.toggle('s', window.scrollY > 40);
+}, { passive: true });
+
+// Mobile Menu
+const mobOpen = document.getElementById('mobOpen');
+const mobClose = document.getElementById('mobClose');
+const mobMenu = document.getElementById('mobMenu');
+if (mobOpen && mobMenu) {
+  mobOpen.onclick = () => { mobMenu.classList.add('open'); document.body.style.overflow = 'hidden'; };
+}
+if (mobClose && mobMenu) {
+  mobClose.onclick = () => { mobMenu.classList.remove('open'); document.body.style.overflow = ''; };
+}
+
+// Interactive Discipline in Focus Visualizer
+const visualizerData = {
+  villa: {
+    category: "Architectural Planning",
+    tag: "Pillar 01 · Flagship Scope",
+    title: "Residential Villa & Bungalow Architecture",
+    image: "images/villa_elevation.jpg",
+    desc: "Comprehensive bespoke villa design from soil load testing to 4K exterior elevations. Includes cantilevered concrete overhangs, double-height atriums, infinity pool water features, and floorplans harmonized with Vastu Purusha Mandala principles.",
+    deliverables: [
+      "Complete MDA-sanctioned submission blueprints",
+      "4K Photorealistic day and night exterior 3D renders",
+      "Structural RCC column-beam reinforcement schedules",
+      "Detailed Bill of Quantities (BOQ) with certified materials"
+    ],
+    materials: "Fe550D TMT Rebar, M25 Concrete, Double-Glazed Low-E Glass, Natural Travertine Facades.",
+    inquiryParam: "Villa%20Architecture"
+  },
+  kitchen: {
+    category: "Interior Architecture",
+    tag: "Pillar 02 · Factory Joinery",
+    title: "Modular Island Kitchen Systems",
+    image: "images/kitchen_walnut.jpg",
+    desc: "100% boiling-water-proof (BWP) HDHMR joinery tailored to precision millimeter tolerances. Includes seamless waterfall Calacatta quartz countertops, German soft-close tandem drawers, concealed pantry units, and integrated appliance garages.",
+    deliverables: [
+      "Modular joinery CAD sections and dimensional layouts",
+      "German Blum/Hafele soft-close hardware schedule",
+      "Quartz countertop fabrication & waterfall edging",
+      "Under-cabinet 3000K warm LED profile lighting"
+    ],
+    materials: "Century Pro BWP HDHMR, Merino Anti-Fingerprint Acrylic, Blum Legrabox, KalingaStone Quartz.",
+    inquiryParam: "Modular%20Kitchen"
+  },
+  bedroom: {
+    category: "Interior Architecture",
+    tag: "Pillar 02 · Master Living",
+    title: "Master Bedroom Suites & Headboards",
+    image: "images/bedroom_suite.jpg",
+    desc: "Private luxury master retreats engineered for serenity, acoustic isolation, and aesthetic warmth. Features full-height upholstered headboards, fluted acoustic timber louvers, floating bedside credenzas, and ambient indirect cove lighting.",
+    deliverables: [
+      "Custom bedframe and headboard elevation shop drawings",
+      "Acoustic fluted wall panelling and fabric swatches",
+      "Bedside electrical switching and smart lighting circuits",
+      "Concealed drapery pelmet detail and blackout curtains"
+    ],
+    materials: "Kiln-Dried Hardwood, High-Density Acoustic Foam, D'Decor Linen Velvets, Smoked Oak Veneer.",
+    inquiryParam: "Master%20Bedroom%20Suite"
+  },
+  wardrobe: {
+    category: "Interior Architecture",
+    tag: "Pillar 02 · Storage Systems",
+    title: "Floor-to-Ceiling Bronze Glass Wardrobes",
+    image: "images/walkin_wardrobe.jpg",
+    desc: "Walk-in wardrobe systems engineered with anodized bronze aluminum slim profiles and 8mm toughened smoked glass. Integrated infrared sensor shelf lighting illuminates leather-lined jewelry drawers, vanity mirrors, and tie racks.",
+    deliverables: [
+      "Detailed internal section drawings with accessory allocations",
+      "Sensor lighting schematics and low-voltage drivers",
+      "Custom velvet jewelry organizer trays and watch winders",
+      "Integrated floor-to-ceiling dressing vanity with backlight"
+    ],
+    materials: "Anodized Bronze Aluminum Extrusions, 8mm Toughened Smoked Glass, Microfiber Velvet Liners.",
+    inquiryParam: "Bronze%20Glass%20Wardrobes"
+  },
+  living: {
+    category: "Interior Architecture",
+    tag: "Pillar 02 · Lounge Architecture",
+    title: "Living Lounges & Statuario TV Units",
+    image: "images/living_tv_unit.jpg",
+    desc: "Curated formal living and family entertainment lounges centered around dramatic book-matched Italian Statuario marble slabs, fluted walnut paneling, concealed cable management, and indirect 3000K warm halo illumination.",
+    deliverables: [
+      "Full wall elevation with marble slab vein-matching layout",
+      "Floating walnut credenza joinery details and soundbar integration",
+      "Concealed cable conduit and subwoofer ventilation details",
+      "Magnetic track lighting integration with dimmable spotlights"
+    ],
+    materials: "Imported Italian Statuario Marble, Smoked American Walnut, Black Anodized Track Lights.",
+    inquiryParam: "Living%20Lounge%20TV%20Unit"
+  },
+  bathroom: {
+    category: "Interior Architecture",
+    tag: "Pillar 02 · Wellness Suites",
+    title: "Luxury Bathroom & Vanity Suites",
+    image: "images/luxury_bathroom.jpg",
+    desc: "Spa-grade residential wellness bathrooms featuring floating double marble vanities, fluted travertine feature walls, warm brushed bronze tapware, concealed in-wall cisterns, and frameless toughened glass walk-in shower enclosures.",
+    deliverables: [
+      "Wet and dry zone spatial partitioning and floor gradient plans",
+      "Custom floating vanity millwork with undermount basins",
+      "Concealed plumbing and thermostatic diverter layout",
+      "Niche cove lighting and anti-fog backlit vanity mirror"
+    ],
+    materials: "Natural Fluted Travertine, Statuario Marble Vanity, Brushed Bronze Fixtures, Saint-Gobain Glass.",
+    inquiryParam: "Luxury%20Bathroom%20Design"
+  },
+  cad: {
+    category: "Architectural Planning",
+    tag: "Pillar 01 · Engineering",
+    title: "Structural Blueprints & CAD Sets",
+    image: "images/blueprint_cad.jpg",
+    desc: "Rigorous technical documentation for residential and commercial construction. Every set is vetted by certified structural engineers to ensure seismic stability, optimal rebar quantity calculation, and absolute compliance with building codes.",
+    deliverables: [
+      "RCC footing, column, plinth beam and slab structural sets",
+      "Comprehensive rebar bending schedules (BBS)",
+      "Concealed plumbing riser and electrical conduit schematics",
+      "Architectural site dimension coordinates and setback boundaries"
+    ],
+    materials: "CAD DWG / Vector Sets, Print Blueprints, Certified Structural Engineer Stamp.",
+    inquiryParam: "Structural%20CAD%20Blueprints"
+  },
+  commercial: {
+    category: "Architectural Planning",
+    tag: "Pillar 01 · Commercial",
+    title: "Commercial Complex & Retail Facades",
+    image: "images/commercial_facade.jpg",
+    desc: "High-impact retail shopfronts, corporate headquarters, and commercial centers designed for dramatic street presence, maximum floorplate efficiency, and energy-efficient glass curtain walls.",
+    deliverables: [
+      "Commercial master planning and vertical circulation schemes",
+      "Structural glass curtain wall details and wind load calculations",
+      "Corporate entrance atrium and lobby interior architecture",
+      "Commercial fire safety, emergency egress, and parking layouts"
+    ],
+    materials: "DGU Glass Curtain Walls, Architectural Textured Concrete, Anodized Bronze Louvers.",
+    inquiryParam: "Commercial%20Architecture"
+  }
+};
+
+function switchVisualizer(key) {
+  const data = visualizerData[key];
+  if (!data) return;
+
+  // Update tabs active state
+  document.querySelectorAll('.vis-tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(key));
+  });
+
+  const img = document.getElementById('visImage');
+  const catBadge = document.getElementById('visCategoryBadge');
+  const tag = document.getElementById('visDisciplineTag');
+  const title = document.getElementById('visTitle');
+  const desc = document.getElementById('visDesc');
+  const list = document.getElementById('visList');
+  const mat = document.getElementById('visMaterials');
+  const btn = document.getElementById('visInquiryBtn');
+
+  // Smooth fade
+  if (img) {
+    img.style.opacity = '0.3';
+    setTimeout(() => {
+      img.src = data.image;
+      img.style.opacity = '1';
+    }, 180);
+  }
+
+  if (catBadge) catBadge.textContent = data.category;
+  if (tag) tag.textContent = data.tag;
+  if (title) title.textContent = data.title;
+  if (desc) desc.textContent = data.desc;
+  if (mat) mat.innerHTML = `<strong>Certified Materials:</strong> ${data.materials}`;
+  if (btn) btn.href = `https://wa.me/916397438387?text=Hello%20A%26A%20Architect,%20I%20am%20interested%20in%20${data.inquiryParam}%20services.`;
+
+  if (list) {
+    list.innerHTML = data.deliverables.map(item => `<li><span>✔</span> ${item}</li>`).join('');
+  }
+}
+</script>
+</body>
+</html>
