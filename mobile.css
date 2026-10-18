@@ -1,0 +1,610 @@
+/* ===================================================================
+   KUNJ ARCHITECTS - COMPREHENSIVE RESPONSIVE MOBILE STYLESHEET
+   Enforces perfect mobile responsiveness across all devices & viewports
+   Tested on 320px, 360px, 375px, 390px, 412px, 768px viewports
+   =================================================================== */
+
+/* --- 1. Anti-Overflow & Viewport Lock --- */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative !important;
+  -webkit-text-size-adjust: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box !important;
+}
+
+img, svg, video, canvas, iframe {
+  max-width: 100% !important;
+  height: auto;
+}
+
+/* Prevent iOS auto-zoom on input focus (minimum 16px font-size) */
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* --- 2. Container & Section Spacing --- */
+@media (max-width: 768px) {
+  .wrap {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  section {
+    padding: 48px 0 !important;
+  }
+
+  /* Prevent absolute background glows from expanding mobile canvas */
+  .hero-glow,
+  .int-hero-glow,
+  .arch-hero-glow,
+  .srv-hero-glow {
+    display: none !important;
+  }
+}
+
+/* --- 3. Sticky Header & Mobile Nav Bar --- */
+@media (max-width: 900px) {
+  nav ul,
+  .nav-phone,
+  .nav-actions .btn,
+  .nav-actions a.btn,
+  .nav-cta {
+    display: none !important;
+  }
+
+  .mob-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+  }
+
+  .loc-desk {
+    display: none !important;
+  }
+
+  .loc-mob {
+    display: inline !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #nv {
+    height: 56px !important;
+    padding: 0 14px !important;
+  }
+
+  #nv.s {
+    height: 52px !important;
+  }
+
+  .brand .lg {
+    font-size: 13.5px !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .brand .loc {
+    font-size: 7.5px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .nav-actions {
+    gap: 8px !important;
+  }
+
+  /* Hide any secondary CTAs that squeeze the nav bar */
+  .nav-actions .btn,
+  .nav-actions a.btn,
+  .nav-cta {
+    display: none !important;
+  }
+}
+
+/* --- 4. Mobile Drawer Menu (#mobMenu) --- */
+#mobMenu {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  height: 100% !important;
+  height: 100dvh !important;
+  background: rgba(11, 23, 19, 0.985) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  z-index: 999999 !important;
+  padding: 20px 18px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+
+#mobMenu.open {
+  transform: translateX(0) !important;
+}
+
+.mob-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid rgba(223, 192, 138, 0.18) !important;
+}
+
+.mob-links {
+  list-style: none !important;
+  margin: 14px 0 auto 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding: 0 !important;
+}
+
+.mob-links a {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 18px !important;
+  color: #f8f6f2 !important;
+  padding: 8px 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  min-height: 44px !important;
+  transition: color 0.2s ease, padding-left 0.2s ease !important;
+}
+
+.mob-links a:hover,
+.mob-links a.active {
+  color: #dfc08a !important;
+  padding-left: 6px !important;
+}
+
+/* --- 5. Hero Sections & Headings --- */
+@media (max-width: 768px) {
+  .hero,
+  .srv-hero,
+  .arch-hero,
+  .int-hero,
+  .ab-hero,
+  .ct-hero,
+  .pt-hero {
+    min-height: auto !important;
+    padding-top: 76px !important;
+    padding-bottom: 40px !important;
+  }
+
+  h1,
+  .hero h1,
+  .srv-hero h1,
+  .arch-hero h1,
+  .int-hero h1,
+  .ab-hero h1,
+  .ct-hero h1,
+  .pt-hero h1 {
+    font-size: clamp(26px, 7.5vw, 34px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+    word-break: break-word !important;
+  }
+
+  h2,
+  .sec-title,
+  .arch-cta-card h2,
+  .ab-ch-text h2 {
+    font-size: clamp(22px, 6.5vw, 30px) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 12px !important;
+    word-break: break-word !important;
+  }
+
+  h3 {
+    font-size: clamp(18px, 5vw, 22px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .sec-desc,
+  .hero-desc,
+  .ab-hero p,
+  .ct-hero p,
+  .srv-hero p {
+    font-size: 14px !important;
+    line-height: 1.62 !important;
+    margin-bottom: 20px !important;
+    max-width: 100% !important;
+  }
+
+  /* Badges & Pills that could overflow */
+  .hero-pill,
+  .hero-pill-badge,
+  .sec-tag,
+  .pillar-tag-badge,
+  .mob-rating-pill,
+  .badge {
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: left !important;
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    line-height: 1.4 !important;
+    font-size: 11px !important;
+    padding: 5px 12px !important;
+  }
+
+  /* Hero Button Groups */
+  .hero-btns,
+  .arch-hero-btns,
+  .int-hero-btns,
+  .srv-hero-btns {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .hero-btns .btn,
+  .hero-btns .btn-outline,
+  .arch-hero-btns .btn,
+  .arch-hero-btns .btn-outline,
+  .int-hero-btns .btn,
+  .int-hero-btns .btn-outline {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 13px 18px !important;
+    box-sizing: border-box !important;
+    font-size: 13.5px !important;
+  }
+
+  /* Horizontal Swipe Pills for Category Tabs */
+  .hero-switcher-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px 14px !important;
+  }
+
+  .hero-tabs,
+  .srv-cat-tabs,
+  .fl,
+  .pt-filters,
+  .hero-discipline-strip {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    margin-top: 10px !important;
+    scrollbar-width: none !important;
+  }
+
+  .hero-tabs::-webkit-scrollbar,
+  .srv-cat-tabs::-webkit-scrollbar,
+  .fl::-webkit-scrollbar,
+  .pt-filters::-webkit-scrollbar,
+  .hero-discipline-strip::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .hero-tab-btn,
+  .srv-cat-btn,
+  .srv-tab-btn,
+  .fl button,
+  .pt-filter-btn,
+  .discipline-pill-card {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    font-size: 11.5px !important;
+    padding: 6px 12px !important;
+  }
+
+  /* Hero Visual Showcase Frame & Floating Badges */
+  .hv,
+  .arch-hero-card,
+  .int-hero-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 18px !important;
+  }
+
+  .hv-frame,
+  .arch-hero-card,
+  .int-hero-card {
+    aspect-ratio: 16/10 !important;
+    width: 100% !important;
+  }
+
+  .hv-floating-pill,
+  .arch-badge-float,
+  .int-badge-float {
+    padding: 6px 10px !important;
+  }
+
+  .hv-pill-bottom,
+  .arch-badge-float,
+  .int-badge-float {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+  }
+
+  .hv-pill-top {
+    top: 10px !important;
+    right: 10px !important;
+    font-size: 10.5px !important;
+  }
+}
+
+/* --- 6. Grids & Layout Containers --- */
+@media (max-width: 900px) {
+  .hg,
+  .arch-hero-grid,
+  .int-hero-grid,
+  .contact-hero-grid,
+  .ct-form-section,
+  .about-hero-grid,
+  .ab-chapter,
+  .pillar-spotlight-banner,
+  .calc-card,
+  .dual-pillars-grid,
+  .btr-home-grid,
+  .btr-grid,
+  .rv-grid,
+  .int-showcase-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .stats-grid,
+  .stats-ribbon {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px 10px !important;
+  }
+
+  .stat-num,
+  .stat-box .num {
+    font-size: clamp(22px, 6vw, 28px) !important;
+  }
+
+  .stat-label,
+  .stat-box .lbl {
+    font-size: 10.5px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .gr,
+  .pr-grid,
+  .srv-cards-grid,
+  .disc-grid,
+  .mat-grid,
+  .faq-grid,
+  .packages-grid,
+  .f-row,
+  .spotlight-visual-collage,
+  .opt-grid,
+  .ct-hubs-grid,
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Prevent any grid child from blowing out width */
+  .hg > *,
+  .gr > *,
+  .pr-grid > *,
+  .srv-cards-grid > *,
+  .dual-pillars-grid > *,
+  .btr-home-grid > *,
+  .btr-grid > *,
+  .disc-grid > *,
+  .mat-grid > *,
+  .faq-grid > *,
+  .packages-grid > *,
+  .calc-card > *,
+  .spotlight-info,
+  .spotlight-visual-collage,
+  .ct-hubs-grid > *,
+  .pillars-grid > *,
+  .ab-chapter > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .spotlight-visual-collage {
+    height: auto !important;
+    aspect-ratio: auto !important;
+  }
+
+  .collage-img-wrap {
+    aspect-ratio: 16/10 !important;
+    height: 180px !important;
+  }
+
+  .pillar-card-box,
+  .pr-card,
+  .gr-item,
+  .faq-card,
+  .hub-card,
+  .pillar-card {
+    padding: 20px 16px !important;
+  }
+}
+
+/* --- 7. Tables & Deliverables Matrices --- */
+.deliv-table-wrap,
+.matrix-wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin-top: 20px !important;
+  margin-bottom: 24px !important;
+  border: 1px solid rgba(223, 192, 138, 0.16) !important;
+  border-radius: 12px !important;
+  background: var(--g2) !important;
+  display: block !important;
+}
+
+table.matrix-table,
+table.deliv-table {
+  width: 100% !important;
+  min-width: 580px !important;
+  border-collapse: collapse !important;
+}
+
+table.matrix-table th,
+table.matrix-table td,
+table.deliv-table th,
+table.deliv-table td {
+  padding: 12px 14px !important;
+  font-size: 13px !important;
+  white-space: normal !important;
+}
+
+/* --- 8. Before & After Slider & Touch Handling --- */
+.ba-container,
+.ba-slider-input {
+  touch-action: pan-y !important;
+}
+
+input[type="range"] {
+  touch-action: pan-y !important;
+}
+
+/* --- 9. Forms & Inputs --- */
+@media (max-width: 640px) {
+  .f-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .f-group input,
+  .f-group textarea,
+  .f-group select,
+  .f-input {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .ct-form-wrap,
+  .contact-form-card,
+  .contact-info-card {
+    padding: 20px 16px !important;
+  }
+
+  .btn-submit {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* --- 10. Cost Estimator Page --- */
+@media (max-width: 768px) {
+  .calc-card {
+    padding: 18px 14px !important;
+  }
+
+  .est-summary-card,
+  .calc-summary {
+    padding: 18px 14px !important;
+  }
+
+  .est-total-num,
+  .calc-total {
+    font-size: clamp(28px, 8vw, 38px) !important;
+  }
+
+  .opt-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* --- 11. Portfolio Page Toolbar --- */
+@media (max-width: 768px) {
+  .pt-top-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+
+  .pt-search-box {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .pt-sort {
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+}
+
+/* --- 12. Testimonials & Pillar Cards --- */
+@media (max-width: 768px) {
+  .rv-grid {
+    padding: 24px 18px !important;
+  }
+
+  .rv-big-score {
+    font-size: 52px !important;
+  }
+
+  .rv-quote-box blockquote {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+
+  .pillar-body {
+    padding: 22px 18px !important;
+  }
+
+  .arch-cta-card {
+    padding: 36px 18px !important;
+  }
+}
+
+/* --- 13. Footer --- */
+@media (max-width: 768px) {
+  footer {
+    padding: 32px 0 40px !important;
+  }
+
+  .footer-wrap {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 14px !important;
+    align-items: center !important;
+  }
+}
