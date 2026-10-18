@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>A&A Architect & Interior Designer | Executive Admin Portal</title>
+<title>Kunj Architects | Executive Admin Portal</title>
 <meta name="robots" content="noindex, nofollow">
 
 <!-- Favicon -->
@@ -614,7 +614,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
 <div id="authGate">
   <div class="auth-card">
     <div style="font-size:36px;margin-bottom:8px">🏛️</div>
-    <span class="brand-lg" style="font-size:26px">A&A Architect & Interior Designer</span>
+    <span class="brand-lg" style="font-size:26px">Kunj Architects</span>
     <span class="brand-sub" style="margin-bottom:24px">Executive Admin Portal</span>
     <form id="authForm" onsubmit="handleAuthSubmit(event)">
       <div class="form-group" style="text-align:left">
@@ -628,7 +628,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
       <button class="btn" style="width:100%;margin-top:4px;padding:12px" type="submit">Unlock Admin Panel &rarr;</button>
       
       <div style="margin-top:20px;background:rgba(184, 141, 77, 0.08);border:1px solid var(--ln);border-radius:8px;padding:12px 14px;font-size:11.5px;color:var(--mu);text-align:center;line-height:1.55">
-        🔒 Protected Executive Administration Portal.<br>Authorized A&A Architect & Interior Designer studio personnel only.
+        🔒 Protected Executive Administration Portal.<br>Authorized Kunj Architects studio personnel only.
       </div>
     </form>
   </div>
@@ -637,7 +637,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
 <!-- Left Sidebar Navigation -->
 <aside class="sidebar">
   <div class="brand-box">
-    <span class="brand-lg">A&A Architect & Interior Designer</span>
+    <span class="brand-lg">Kunj Architects</span>
     <span class="brand-sub">Management Suite</span>
   </div>
 
@@ -743,7 +743,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.02); }
           <div class="kpi-icon">★</div>
           <div>
             <div class="kpi-num" id="kpiRating">5.0</div>
-            <div class="kpi-label">Google Rating (68 Reviews)</div>
+            <div class="kpi-label">Google Rating (117 Reviews)</div>
           </div>
         </div>
       </div>
@@ -1294,7 +1294,7 @@ service cloud.firestore {
         </div>
         <div class="form-group">
           <label>Location</label>
-          <input type="text" id="pLoc" placeholder="e.g. Ganga Nagar, Meerut" required>
+          <input type="text" id="pLoc" placeholder="e.g. Ramganga Nagar, Bareilly" required>
         </div>
         <div class="form-group">
           <label>Completion Year</label>
@@ -1394,7 +1394,7 @@ service cloud.firestore {
         </div>
         <div class="form-group">
           <label>Location</label>
-          <input type="text" id="rLoc" required placeholder="e.g. Ganga Nagar, Meerut">
+          <input type="text" id="rLoc" required placeholder="e.g. Ramganga Nagar, Bareilly">
         </div>
         <div class="form-group full">
           <label>Testimonial Quote</label>
@@ -1437,7 +1437,7 @@ async function handleAuthSubmit(e) {
     if (isValid) {
       sessionStorage.setItem("dpa_admin_auth", "true");
       document.getElementById("authGate").style.display = "none";
-      showToast("Welcome to A&A Architect & Interior Designer Admin Suite!");
+      showToast("Welcome to Kunj Architects Admin Suite!");
       loadAdminData();
       renderSecurityTab();
     } else {
@@ -1798,7 +1798,7 @@ function renderProjectsTable() {
       </td>
       <td><strong>${p.title}</strong></td>
       <td><span style="color:var(--br-light)">${p.category}</span></td>
-      <td>📍 ${p.loc || 'Ganga Nagar, Meerut'}</td>
+      <td>📍 ${p.loc || 'Ramganga Nagar, Bareilly'}</td>
       <td>${p.year || '2026'}</td>
       <td>${p.featured ? '★ Yes' : 'No'}</td>
       <td>
@@ -1994,7 +1994,7 @@ function editProject(id) {
   document.getElementById("projModalTitle").textContent = "Edit Project: " + p.title;
   document.getElementById("pTitle").value = p.title;
   document.getElementById("pCategory").value = p.category;
-  document.getElementById("pLoc").value = p.loc || "Ganga Nagar, Meerut";
+  document.getElementById("pLoc").value = p.loc || "Ramganga Nagar, Bareilly";
   document.getElementById("pYear").value = p.year || "2026";
   document.getElementById("pFeatured").value = p.featured ? "true" : "false";
   document.getElementById("pTags").value = (p.tags || []).join(", ");
@@ -2095,14 +2095,14 @@ async function deleteInquiryItem(id) {
 
 // 4. Content Manager Form
 function renderContentForm() {
-  document.getElementById("fBrandName").value = siteSettings.brandName || "A&A Architect & Interior Designer";
-  document.getElementById("fBrandSub").value = siteSettings.brandSubtitle || "ARCHITECT & INTERIOR DESIGNER · GANGA NAGAR, MEERUT, UP";
-  document.getElementById("fHeroTag").value = siteSettings.tagline || "5.0 ★ (68 Reviews) Top Rated Interior Designer in Meerut, UP";
+  document.getElementById("fBrandName").value = siteSettings.brandName || "Kunj Architects";
+  document.getElementById("fBrandSub").value = siteSettings.brandSubtitle || "ARCHITECT & INTERIOR DESIGNER · GANGA NAGAR, BAREILLY, UP";
+  document.getElementById("fHeroTag").value = siteSettings.tagline || "4.9 ★ (117 Reviews) Top Rated Interior Designer in Bareilly, UP";
   document.getElementById("fHeroTitle").value = siteSettings.heroTitle || "";
   document.getElementById("fHeroDesc").value = siteSettings.heroDesc || "";
-  document.getElementById("fPhone").value = siteSettings.phone || "063974 38387";
-  document.getElementById("fPhoneTel").value = siteSettings.phoneTel || "+916397438387";
-  document.getElementById("fAddress").value = siteSettings.address || "B-321, Mawana Rd, B-Pocket, Radha Garden, Ganga Nagar, Meerut, Uttar Pradesh 250001";
+  document.getElementById("fPhone").value = siteSettings.phone || "095574 55753";
+  document.getElementById("fPhoneTel").value = siteSettings.phoneTel || "+919557455753";
+  document.getElementById("fAddress").value = siteSettings.address || "Ramganga Nagar, Dohra Road, adjacent to Shri vedanta hospitals, Bareilly, Dohara, Uttar Pradesh 243006";
   document.getElementById("fHours").value = siteSettings.hours || "Open · Closes 9 pm";
   document.getElementById("fRating").value = siteSettings.rating || "5.0";
   document.getElementById("fReviewCount").value = siteSettings.reviewCount || "68";

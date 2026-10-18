@@ -1,30 +1,30 @@
 /**
- * A&A Architect & Interior Designer - Firebase Cloud Integration & Data Service
+ * Kunj Architects - Firebase Cloud Integration & Data Service
  * Provides Firestore sync, Firebase Auth, and robust local caching for all website components.
- * Premier Interior Architecture & Design Studio · Meerut, Uttar Pradesh
+ * Architecture firm providing innovative home design through professional teamwork · Bareilly, Uttar Pradesh
  */
 
-// Default Seed Data for A&A Architect & Interior Designer
-const AA_INITIAL_DATA = {
+// Default Seed Data for Kunj Architects
+const KUNJ_INITIAL_DATA = {
   siteSettings: {
-    brandName: "A&A Architect & Interior Designer",
-    brandSubtitle: "ARCHITECTURAL PRACTICE & INTERIOR DESIGN STUDIO · MEERUT, UP",
-    tagline: "5.0 ★ (68 Reviews) Premier Architecture & Interior Firm in Meerut, UP",
-    heroTitle: "Where Architectural Rigor Meets Interior Elegance.",
-    heroDesc: "Premier architectural practice & turnkey interior design studio in Meerut. Specializing in residential villa architecture, 3D exterior elevations, structural blueprints, municipal sanctions, and bespoke luxury interior fit-outs across Ganga Nagar, Mawana Road, Shastri Nagar & UP.",
-    phone: "063974 38387",
-    phoneTel: "+916397438387",
-    email: "contact@aaarchitects.in",
-    address: "B-321, Mawana Rd, B-Pocket, Radha Garden, Ganga Nagar, Meerut, Uttar Pradesh 250001",
-    mapsQuery: "A%26A+Architect+%26+Interior+Designer+B-321+Mawana+Rd+Radha+Garden+Ganga+Nagar+Meerut+Uttar+Pradesh+250001",
-    hours: "Open Daily · 09:30 AM to 09:00 PM",
-    rating: "5.0",
-    reviewCount: "68",
+    brandName: "Kunj Architects",
+    brandSubtitle: "ARCHITECTURE FIRM & LUXURY INTERIOR STUDIO · BAREILLY, UP",
+    tagline: "4.9 ★ (117 Reviews) Premier Architecture Firm in Bareilly, UP",
+    heroTitle: "Innovative Home Design Through Professional Teamwork.",
+    heroDesc: "Architecture firm providing innovative home design through professional teamwork. Specializing in residential villa architecture, 3D exterior elevations, structural blueprints, BDA municipal sanctions, and bespoke luxury interior fit-outs across Ramganga Nagar, Dohra Road, Civil Lines, Bareilly & UP.",
+    phone: "095574 55753",
+    phoneTel: "+919557455753",
+    email: "contact@kunjarchitects.com",
+    address: "Ramganga Nagar, Dohra Road, adjacent to Shri vedanta hospitals, Bareilly, Dohara, Uttar Pradesh 243006",
+    mapsQuery: "Kunj+Architects+Ramganga+Nagar+Dohra+Road+Bareilly+Uttar+Pradesh+243006",
+    hours: "Mon – Sat: 10:00 AM to 07:30 PM (Sun by Appointment)",
+    rating: "4.9",
+    reviewCount: "117",
     stats: [
-      { num: "5.0", sup: "★", label: "Google Rating from 68 Verified Clients" },
-      { num: "120", sup: "+", label: "Built Architectural & Turnkey Interior Projects" },
+      { num: "4.9", sup: "★", label: "Google Rating from 117 Verified Clients" },
+      { num: "150", sup: "+", label: "Built Architectural & Turnkey Interior Projects" },
       { num: "24", sup: "", label: "Specialized Architectural & Interior Disciplines" },
-      { num: "100", sup: "%", label: "Structural Sanction & Vastu Compliance Guarantee" },
+      { num: "100", sup: "%", label: "BDA Sanction & Vastu Compliance Guarantee" },
       { num: "A-Z", sup: "", label: "Design-Build: Land Survey to Handover" }
     ]
   },
@@ -34,7 +34,7 @@ const AA_INITIAL_DATA = {
       title: "The Cantilever Residence & Private Water Oasis",
       category: "Architecture & 3D Elevations",
       typology: "Luxury Residential Villa",
-      loc: "Ganga Nagar, Mawana Road, Meerut",
+      loc: "Ramganga Nagar, Dohra Road, Bareilly",
       area: "6,850 sq.ft. Built-Up (Plot: 600 sq.yds)",
       img: "images/villa_elevation.jpg",
       images: [
@@ -53,7 +53,7 @@ const AA_INITIAL_DATA = {
       title: "Geometric Stone Residence with Koi Pond & Louvers",
       category: "Architecture & 3D Elevations",
       typology: "Contemporary Bungalow",
-      loc: "Radha Garden, Mawana Road, Meerut",
+      loc: "Dohra Road, Bareilly",
       area: "4,900 sq.ft. Built-Up (Plot: 420 sq.yds)",
       img: "images/bungalow_facade.jpg",
       images: [
@@ -72,7 +72,7 @@ const AA_INITIAL_DATA = {
       title: "Architectural Blueprints, Structural CAD & Sanction Drawings",
       category: "Blueprints & CAD",
       typology: "Technical Drawings & Engineering",
-      loc: "Meerut Development Authority (MDA) & UP",
+      loc: "Bareilly Development Authority (BDA) & UP",
       area: "Full Blueprint Sets: Working, Structural & MEP",
       img: "images/blueprint_cad.jpg",
       images: [
@@ -83,14 +83,14 @@ const AA_INITIAL_DATA = {
       featured: true,
       year: "2026",
       desc: "Comprehensive architectural and engineering working sets: Vastu-compliant spatial layouts, RCC structural column-beam reinforcement details, MEP (electrical, plumbing, HVAC ducting), and municipal sanction documentation.",
-      tags: ["Blueprints", "Working Drawings", "Structural CAD", "MDA Sanctions"]
+      tags: ["Blueprints", "Working Drawings", "Structural CAD", "BDA Sanctions"]
     },
     {
       id: "proj_int_1",
       title: "Designer Gypsum False Ceiling & Backlit CNC Jali",
       category: "Residential Interiors",
       typology: "Living & Formal Lounge",
-      loc: "Ganga Nagar, Meerut",
+      loc: "Ramganga Nagar, Bareilly",
       area: "1,200 sq.ft. Living Wing",
       img: "images/living_tv_unit.jpg",
       images: [
@@ -108,7 +108,7 @@ const AA_INITIAL_DATA = {
       title: "Master Bedroom Suite with Painted Botanical Mural & Curved Headboard",
       category: "Residential Interiors",
       typology: "Master Bedroom Suite",
-      loc: "Radha Garden, Mawana Road, Meerut",
+      loc: "Dohra Road, Bareilly",
       area: "480 sq.ft. Suite + Walk-in",
       img: "images/bedroom_suite.jpg",
       images: [
@@ -126,7 +126,7 @@ const AA_INITIAL_DATA = {
       title: "Italian Statuario Marble TV Lounge & Fluted Acoustic Paneling",
       category: "Residential Interiors",
       typology: "Family Entertainment Lounge",
-      loc: "Shastri Nagar, Meerut",
+      loc: "Civil Lines, Bareilly",
       area: "750 sq.ft. Entertainment Zone",
       img: "images/living_tv_unit.jpg",
       images: [
@@ -144,7 +144,7 @@ const AA_INITIAL_DATA = {
       title: "Contemporary Smoked Walnut & Quartz Modular Kitchen",
       category: "Modular Kitchens",
       typology: "Culinary Island & Pantry",
-      loc: "Saket, Meerut",
+      loc: "Pilibhit Bypass Road, Bareilly",
       area: "320 sq.ft. Modular Kitchen",
       img: "images/kitchen_walnut.jpg",
       images: [
@@ -162,7 +162,7 @@ const AA_INITIAL_DATA = {
       title: "Floor-to-Ceiling Tinted Bronze Glass Wardrobes & Dressing Suite",
       category: "Residential Interiors",
       typology: "Walk-in Dressing Sanctuary",
-      loc: "Modipuram, Meerut",
+      loc: "Mahanagar, Bareilly",
       area: "240 sq.ft. Dressing Room",
       img: "images/walkin_wardrobe.jpg",
       images: [
@@ -179,11 +179,11 @@ const AA_INITIAL_DATA = {
       title: "Commercial Office Complex & Reception Lounge Architecture",
       category: "Commercial Spaces",
       typology: "Corporate Headquarters",
-      loc: "Meerut & NCR Expressway",
+      loc: "Bareilly & Rohilkhand Corridor",
       area: "8,500 sq.ft. Commercial Floor",
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+      img: "images/commercial_facade.jpg",
       images: [
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
+        "images/commercial_facade.jpg",
         "images/living_tv_unit.jpg",
         "images/blueprint_cad.jpg"
       ],
@@ -319,23 +319,23 @@ const AA_INITIAL_DATA = {
     {
       id: "rev_1",
       author: "Amit Singhal",
-      loc: "Ganga Nagar, Meerut",
+      loc: "Ramganga Nagar, Bareilly",
       stars: 5,
-      quote: "A&A Architect & Interior Designer did an exceptional job with our new home. Their architectural planning and false ceiling designs transformed our entire floor. Truly the best and most affordable interior designer in Meerut!"
+      quote: "Kunj Architects did an exceptional job with our new home. Their architectural planning, 3D exterior elevations, and false ceiling designs transformed our entire residence in Bareilly. Truly the most innovative and professional architecture firm in UP!"
     },
     {
       id: "rev_2",
       author: "Dr. Neha Sharma",
-      loc: "Radha Garden, Mawana Road, Meerut",
+      loc: "Dohra Road, Bareilly",
       stars: 5,
-      quote: "Highly impressed by their professionalism and space planning. They delivered our modular kitchen and bedroom wardrobes well before the deadline with outstanding finish and craftsmanship. 5.0-star experience!"
+      quote: "Highly impressed by their professionalism and space planning. They handled our BDA sanctions and delivered our modular kitchen and bedroom wardrobes well before the deadline with outstanding craftsmanship. 4.9-star experience!"
     },
     {
       id: "rev_3",
       author: "Gaurav Tyagi",
-      loc: "Shastri Nagar, Meerut",
+      loc: "Civil Lines, Bareilly",
       stars: 5,
-      quote: "From 3D architectural elevations to final turnkey handover, A&A took care of every single design, carpentry, and electrical detail. Their commercial and residential design capability is top-notch in Meerut."
+      quote: "From 3D architectural elevations to BDA sanction approvals and final turnkey handover, Kunj Architects took care of every single design, structural, carpentry, and electrical detail. Their residential design capability is top-notch in Bareilly."
     }
   ],
   inquiries: [
@@ -344,7 +344,7 @@ const AA_INITIAL_DATA = {
       name: "Rajesh Kumar",
       phone: "+91 98971 22341",
       service: "Interior architectural design",
-      message: "Need complete architectural interior design and space planning for a 3BHK villa in Ganga Nagar, Meerut.",
+      message: "Need complete architectural interior design and space planning for a 3BHK villa in Ramganga Nagar, Bareilly.",
       timestamp: new Date(Date.now() - 3600000 * 4).toISOString(),
       status: "New"
     },
@@ -353,15 +353,16 @@ const AA_INITIAL_DATA = {
       name: "Meenakshi Verma",
       phone: "+91 98370 55123",
       service: "Kitchen design",
-      message: "Planning modern modular kitchen with quartz countertop in Radha Garden, Mawana Road. Please share cost estimate.",
+      message: "Planning modern modular kitchen with quartz countertop in Dohra Road, Bareilly. Please share cost estimate.",
       timestamp: new Date(Date.now() - 3600000 * 28).toISOString(),
       status: "Contacted"
     }
   ]
 };
 
-const TLS_INITIAL_DATA = AA_INITIAL_DATA;
-const DPA_INITIAL_DATA = AA_INITIAL_DATA;
+const AA_INITIAL_DATA = KUNJ_INITIAL_DATA;
+const TLS_INITIAL_DATA = KUNJ_INITIAL_DATA;
+const DPA_INITIAL_DATA = KUNJ_INITIAL_DATA;
 
 // Data Service Singleton
 window.DPAService = {
@@ -389,7 +390,7 @@ window.DPAService = {
       this.isFirebaseActive = false;
     }
 
-    // Ensure Local Storage has initial seed data with A&A Architect & Interior Designer branding
+    // Ensure Local Storage has initial seed data with Kunj Architects branding
     if (!localStorage.getItem("aa_architect_seeded_v1")) {
       this.seedLocalData();
     }
@@ -482,7 +483,7 @@ window.DPAService = {
       if (!gallery) {
         gallery = p.img ? [p.img] : [];
       }
-      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Ganga Nagar, Meerut');
+      let loc = p.loc || (initialMatch ? initialMatch.loc : 'Ramganga Nagar, Bareilly');
       return {
         ...p,
         loc: loc,
